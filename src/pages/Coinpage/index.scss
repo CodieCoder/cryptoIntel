@@ -1,0 +1,108 @@
+@import "../../styles";
+
+.coin-page {
+  box-shadow: $boxShadow;
+  min-height: 50rem;
+  padding: 2%;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  .coin-page-loading {
+    text-align: center;
+    font-weight: bold;
+  }
+  .coin-page-data {
+    .coin-page-render {
+      .coin-page-top {
+        .coin-page-top-chart {
+          height: 30rem;
+        }
+        .coin-page-name {
+          display: flex;
+          .coin-page-name-img {
+            display: inline;
+          }
+          .coin-page-name-name {
+            display: inline;
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+          }
+        }
+        .coin-page-numbers {
+          display: flex;
+          margin-top: 0.2rem;
+          margin-left: 1rem;
+          .live-price {
+            display: inline;
+            font-size: 1.5rem;
+            font-weight: 600;
+          }
+          .live-percent {
+            display: inline;
+            margin-left: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+          }
+        }
+
+        .coin-page-right {
+          margin-top: 4rem;
+          //   background-color: #ddd;
+          //   text-align: center;
+          .coin-page-dsecription-div {
+            margin-top: 1rem;
+            .coin-page-dsecription-hd {
+              font-weight: 600;
+              color: #555;
+              padding-bottom: 0.5rem;
+            }
+            .coin-page-dsecription-info {
+              display: inline;
+              margin-top: 2rem;
+              margin-right: 0.5rem;
+              padding: 0.5rem;
+              padding-top: 0.1rem;
+              padding-bottom: 0.1rem;
+              background-color: #eee;
+              border-radius: 3px;
+              a {
+                text-decoration: none;
+                color: #222;
+                font-weight: 600;
+              }
+            }
+          }
+        }
+        .coin-page-market {
+          margin-top: 1rem;
+          //   display: flex;
+          .coin-page-market-divs {
+            border-bottom: 1px solid #ddd;
+            // display: inline;
+            margin: auto;
+            padding-bottom: 0.5rem;
+            .coin-page-market-hd {
+              font-weight: 600;
+              color: #555;
+            }
+            .coin-page-market-text {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+    .coin-page-about {
+      margin-top: 2rem;
+      h5 {
+        font-weight: 600;
+      }
+      .coin-page-about-text {
+        margin-top: 1rem;
+        text-indent: 1rem;
+        white-space: break-spaces;
+        font-weight: 600;
+      }
+    }
+  }
+}

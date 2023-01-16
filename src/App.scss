@@ -1,0 +1,22 @@
+@import "./styles";
+
+.boilerplate {
+  position: relative;
+  font-size: $fontSize;
+  min-height: 100vh;
+}
+.page {
+  position: relative;
+  // height: 80%;
+  // margin-top: 1rem;
+  // margin-bottom: 3rem;
+  // bottom: 15rem;
+  // background-color: ;
+}
+
+.boilerplate_footer {
+  clear: both;
+  margin-top: 20rem;
+  margin-bottom: 0;
+  bottom: 0rem;
+}

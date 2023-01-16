@@ -1,0 +1,31 @@
+@import "../../styles";
+
+.registration-page {
+  margin: auto;
+  .form-error-div {
+    height: 3rem;
+    padding-bottom: 1rem;
+  }
+  .registration-page-form {
+    margin: auto;
+    text-align: center;
+    .registration-page-form-head {
+      margin: auto;
+      text-align: center;
+      font-size: 1rem;
+      // font-weight: 600;
+    }
+    .registration-page-form-bottom {
+      text-align: right;
+    }
+  }
+}
+
+.form-err-msg {
+  color: $red;
+  text-align: left;
+}
+.form-good-msg {
+  color: $green;
+  text-align: left;
+}
