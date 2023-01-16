@@ -1,0 +1,15 @@
+.pagination {
+  margin-top: 1rem;
+  .pagination-component {
+    text-align: center;
+    margin: auto;
+    font-weight: 600;
+    .page-item {
+      background-color: #fff;
+      border: 2px solid #fff;
+      a {
+        color: #555;
+      }
+    }
+  }
+}

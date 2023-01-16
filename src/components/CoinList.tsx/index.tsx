@@ -6,7 +6,7 @@ import CoinListMobile from "./CoinListMobile"
 import CoinModal from "./CoinModal"
 import { Spinner } from "react-bootstrap"
 import PagesContext from "../../Context"
-import CoinPagination from "./Pagination"
+import CoinPagination from "../Pagination/Pagination"
 
 interface ICoinListist {
   pagination?: boolean
