@@ -4,7 +4,6 @@ import PagesContext from "../../Context"
 import "./index.scss"
 
 const Notify = () => {
-  console.log("Testing NOTIFY    called")
   const { notifyContent, showNotify, setShowNotify } = useContext(PagesContext)
   return (
     <ToastContainer position="top-center" containerPosition="fixed">

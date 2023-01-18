@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import { Sparklines, SparklinesLine } from "react-sparklines"
+import CoinIcon from "../HtmlElements/CoinIcon"
+import CryptoFavourite from "../HtmlElements/CryptoFavourite"
 import NumberType from "../NumberType"
 
 interface ICoinList {
@@ -11,17 +13,22 @@ const CoinList: React.FC<ICoinList> = ({ coin, showModal }) => {
 
   useEffect(() => {
     setCoinsList(coin)
-  })
+  }, [])
 
   return (
     <tr className="coinlist-table-tr">
       <td className="coinlist-table-td">
-        <i className="bi bi-star"></i>
+        <CryptoFavourite coin={coin} />
       </td>
       <td className="coinlist-table-td">{coin?.market_cap_rank}</td>
       <td className="coinlist-table-td">
-        <img src={coin?.image} width="20px" className="float-start" />
-        <div className="coinlist-table-name">{coin?.name}</div>
+        {/* <img src={coin?.image} width="20px" className="float-start" /> */}
+        <span className="float-start">
+          <CoinIcon src={coin?.image} />
+        </span>
+        <div className="coinlist-table-name" onClick={() => showModal(coin)}>
+          {coin?.name}
+        </div>
       </td>
       <td className="coinlist-table-td">{coin?.symbol.toUpperCase()}</td>
       <td className="coinlist-table-td">

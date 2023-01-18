@@ -7,6 +7,7 @@ export type USERDETAILS = {
   fullname: string
   country: string
   gender: string
+  favouriteCoins: string
   key: string
   userKey: string
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Alert, Fade, FloatingLabel, Form } from "react-bootstrap"
 import { LoadingButton, MyButton } from "../../components/HtmlElements/Button"
-import UserRegistration from "./register"
+import UserRegistration from "../../Apis/user/register"
 import { formValidator, ValidatorEnum } from "../../utils/FormValidator"
 import "./index.scss"
 import { CountryList } from "../../Assets/CountryList"
@@ -97,7 +97,6 @@ const RegistrationPage = () => {
             notify.error("Network Error.")
           } else {
             if (data?.error === false) {
-              console.log("Testing Good", data)
               //redirect to login page
               notify.success("Registration successfull!")
               setLoginModalTab(LOGINMODAL.Login)

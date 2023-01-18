@@ -21,6 +21,7 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
   const [loginModalTab, setLoginModalTab] = useState<"login" | "signup">(
     "login"
   )
+  const [favouriteCoins, setFavouriteCoins] = useState<any>([])
 
   useEffect(() => {
     const checkLogin = isUserLogin()
@@ -28,6 +29,7 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
     if (checkLogin === true && userData) {
       setLogin(checkLogin)
       setUserDetails(userData)
+      setFavouriteCoins(JSON.parse(userData?.favouriteCoins))
     }
   }, [])
 
@@ -43,6 +45,9 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
         setUserDetails(data)
         setLogin(true)
         setUserDetails_LocalStorage(data)
+        //set user's favourite coin
+        data?.favouriteCoins &&
+          setFavouriteCoins(JSON.parse(data.favouriteCoins))
         setShowLoginModal(false)
         notify.success("Login successfull!")
       }
@@ -54,6 +59,14 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
     setUserDetails(undefined)
     logoutUser()
     window.location.reload()
+  }
+
+  const updateFavouriteCoinsHandler = (newFav: string[]) => {
+    if (login === true && userDetails) {
+      userDetails.favouriteCoins = JSON.stringify(newFav)
+      setUserDetails_LocalStorage(userDetails)
+      setFavouriteCoins(JSON.parse(userDetails.favouriteCoins))
+    }
   }
 
   useEffect(() => {
@@ -70,7 +83,8 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
   const notifyUser = (content: React.ReactNode, icon: React.ReactNode) => {
     const combinedContent = (
       <div>
-        {icon} &nbsp; {content}
+        {icon}
+        <span>&nbsp; {content}</span>
       </div>
     )
     setNotifyContent(combinedContent)
@@ -97,6 +111,8 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
       setShowLoginModal,
       loginModalTab,
       setLoginModalTab,
+      favouriteCoins,
+      updateFavouriteCoinsHandler,
     }),
     [
       currency,
@@ -113,6 +129,8 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
       setShowLoginModal,
       loginModalTab,
       setLoginModalTab,
+      favouriteCoins,
+      updateFavouriteCoinsHandler,
     ]
   )
   return (

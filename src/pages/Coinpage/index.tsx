@@ -21,9 +21,7 @@ const Coinpage = () => {
         setCoinData(response.data)
       })
       setCoinLoading(false)
-    } catch (err) {
-      // console.error("Error : ", err);
-    }
+    } catch (err) {}
   }
 
   useEffect(() => {
@@ -31,8 +29,6 @@ const Coinpage = () => {
   }, [vs_currency])
 
   const displayData = (coin: any) => {
-    // console.log("TESTING coin : ", coin);
-
     if (coin) {
       return (
         <div className="coin-page-render">

@@ -4,7 +4,6 @@ import PagesContext from "../../Context"
 import Notify from "./notify"
 
 const NotificationAlert = () => {
-  console.log("Testing Was called")
   const { notify } = useContext(PagesContext)
   notify.error("Network Error.")
   return <></>

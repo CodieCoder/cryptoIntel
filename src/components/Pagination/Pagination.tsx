@@ -8,13 +8,20 @@ interface IPagination {
 }
 
 const defaultCoinMax = 1000
-const testPageNo = 6
 
 const CoinPagination: React.FC<IPagination> = ({ pageNo, setPageNo }) => {
+  const clickHandler = (item: number) => {
+    setPageNo(item)
+  }
   const prevItems = (pageNo: number) => {
     const result = []
     for (let i = 3; i > 0; i--) {
-      result.push(<Pagination.Item key={i}>{pageNo - i}</Pagination.Item>)
+      pageNo - i >= 1 &&
+        result.push(
+          <Pagination.Item key={i} onClick={() => clickHandler(pageNo - i)}>
+            {pageNo - i}
+          </Pagination.Item>
+        )
     }
     return result
   }
@@ -29,7 +36,12 @@ const CoinPagination: React.FC<IPagination> = ({ pageNo, setPageNo }) => {
     }
     const result = []
     for (let i = 1; i < max; i++) {
-      result.push(<Pagination.Item key={i}>{pageNo + i}</Pagination.Item>)
+      pageNo + i <= 200 &&
+        result.push(
+          <Pagination.Item key={i} onClick={() => clickHandler(pageNo + i)}>
+            {pageNo + i}
+          </Pagination.Item>
+        )
     }
     return result
   }
@@ -37,14 +49,28 @@ const CoinPagination: React.FC<IPagination> = ({ pageNo, setPageNo }) => {
   return (
     <div className="pagination">
       <Pagination className="pagination-component">
-        <Pagination.First />
-        <Pagination.Prev />
-        {testPageNo > 1 && prevItems(testPageNo)}
-        <Pagination.Item active>{testPageNo}</Pagination.Item>
-        {testPageNo < 200 && nextItems(testPageNo)}
-        <Pagination.Next />
+        <Pagination.First
+          disabled={pageNo > 1 ? false : true}
+          onClick={() => pageNo > 1 && clickHandler(1)}
+        />
+        <Pagination.Prev
+          disabled={pageNo > 1 ? false : true}
+          onClick={() => pageNo > 1 && clickHandler(pageNo - 1)}
+        />
+        {pageNo > 1 && prevItems(pageNo)}
+        <Pagination.Item active onClick={() => clickHandler(pageNo)}>
+          {pageNo}
+        </Pagination.Item>
+        {pageNo < 200 && nextItems(pageNo)}
+        <Pagination.Next
+          disabled={pageNo < 200 ? false : true}
+          onClick={() => pageNo < 200 && clickHandler(pageNo + 1)}
+        />
 
-        <Pagination.Last />
+        <Pagination.Last
+          disabled={pageNo < 200 ? false : true}
+          onClick={() => pageNo < 200 && clickHandler(200)}
+        />
       </Pagination>
     </div>
   )

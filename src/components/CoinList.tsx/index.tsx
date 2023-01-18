@@ -38,7 +38,7 @@ const CoinsListing: React.FC<ICoinListist> = ({
 
   useEffect(() => {
     CoinListAPI()
-  }, [currency])
+  }, [currency, pageNo])
 
   const modalShow = (coin: any) => {
     setSelectedCoin(coin)
@@ -46,19 +46,13 @@ const CoinsListing: React.FC<ICoinListist> = ({
   }
 
   const handleClose = () => setModalOn(false)
+
   return (
     <>
       <CoinModal coin={selectedCoin} show={modalOn} toggler={handleClose} />
       <div className="container coin-list-div">
         {loading ? (
-          <div
-            style={{
-              margin: "auto",
-              marginTop: "5rem",
-              textAlign: "center",
-              minHeight: "20rem",
-            }}
-          >
+          <div className="loading-div">
             <Spinner
               as="span"
               animation="border"
@@ -163,7 +157,7 @@ const CoinsListing: React.FC<ICoinListist> = ({
           </>
         )}
       </div>
-      <CoinPagination pageNo={pageNo} setPageNo={setPageNo} />
+      {pagination && <CoinPagination pageNo={pageNo} setPageNo={setPageNo} />}
     </>
   )
 }

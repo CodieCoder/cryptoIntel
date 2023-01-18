@@ -32,7 +32,6 @@ const LivePrice = ({
       const data = JSON.parse(lastMessage?.data)
       setMessageHistory(data)
     }
-    // console.log("Testing okay : ", messageHistory);
   }, [lastMessage, currency, vs_currency, initialPrice])
 
   const percentage = (newNumber: number, oldNumber: number) => {

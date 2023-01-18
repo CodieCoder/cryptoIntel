@@ -13,12 +13,10 @@ const Profile = () => {
   const { userDetails, logOut } = useContext(UserContext)
   const { notify } = useContext(PagesContext)
   const [isFormDisabled, setIsFormDisabled] = useState(true)
-  // console.log("Testing showNotify : ", )
   const getUserProfile = async () => {
     // const userToken = userRequesToken(userDetails?.key, userDetails?.email)
     return AxiosRequest.get(`user/profile/${userDetails.userKey}`)
       .then((data) => {
-        // console.log("Testing USER PROFILE : ", data.data)
         if (data?.data?.error) {
           logOut(false)
         } else {

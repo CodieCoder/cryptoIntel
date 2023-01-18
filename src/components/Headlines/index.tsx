@@ -11,7 +11,6 @@ const Headlines = () => {
     setNewsData(NewsHeadlines())
   }, [])
 
-  //   console.log("testing : ", newsData?.results);
   const goToNews = (link: string): void => {
     window.open(link, "_blank")
   }
