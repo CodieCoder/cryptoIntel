@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import PagesContext from "./Context"
 import { USERDETAILS } from "./Constants"
-import { FcHighPriority, FcOk, FcMediumPriority } from "react-icons/fc"
+import { FcHighPriority, FcCheckmark, FcMediumPriority } from "react-icons/fc"
 import {
   setUserDetails as setUserDetails_LocalStorage,
   getUserDetails,
@@ -11,8 +11,8 @@ import {
 
 //provider/context to use throuout the app pages
 const PagesProvider = (props: { children: React.ReactNode }) => {
-  const [currency, setCurrency] = useState<String>("usd")
-  const [vs_currency, setVs_currency] = useState<String>()
+  const [currency, setCurrency] = useState<string>("usd")
+  const [vs_currency, setVs_currency] = useState<string>()
   const [login, setLogin] = useState<boolean>()
   const [showNotify, setShowNotify] = useState<boolean>(false)
   const [notifyContent, setNotifyContent] = useState<React.ReactNode>()
@@ -29,7 +29,10 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
     if (checkLogin === true && userData) {
       setLogin(checkLogin)
       setUserDetails(userData)
-      setFavouriteCoins(JSON.parse(userData?.favouriteCoins))
+      const favCoins = userData?.favouriteCoins
+        ? JSON.parse(userData?.favouriteCoins)
+        : []
+      setFavouriteCoins(favCoins)
     }
   }, [])
 
@@ -74,7 +77,7 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
   }, [currency])
 
   const notify = {
-    success: (content: React.ReactNode) => notifyUser(content, <FcOk />),
+    success: (content: React.ReactNode) => notifyUser(content, <FcCheckmark />),
     warning: (content: React.ReactNode) =>
       notifyUser(content, <FcHighPriority />),
     error: (content: React.ReactNode) =>

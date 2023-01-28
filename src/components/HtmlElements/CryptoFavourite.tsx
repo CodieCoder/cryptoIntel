@@ -18,14 +18,21 @@ const CryptoFavourite = ({ coin }: { coin: any }) => {
   const favouriteClickHandler = async () => {
     //add to favourite or show login/signup modal
     //check is user is logged in
+    const isAdded = isFavourite
     if (login === true) {
       //add to favourite
       const updatedFav = await updateFavourite(userDetails?.userKey, coin?.id)
       if (updatedFav?.error === false) {
         updateFavouriteCoinsHandler(updatedFav?.msg)
+        console.log(`Testing Resposne : ${updatedFav?.msg}`)
         notify.success(
           <span>
-            <CoinIcon src={coin?.image} /> &nbsp; {coin?.name}!
+            <CoinIcon src={coin?.image} /> &nbsp; {coin?.name}
+            {isAdded ? (
+              <span> removed from favourites</span>
+            ) : (
+              <span> added to favourites</span>
+            )}
           </span>
         )
       } else {

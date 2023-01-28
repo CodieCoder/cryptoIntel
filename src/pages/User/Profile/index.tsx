@@ -17,14 +17,15 @@ const Profile = () => {
     // const userToken = userRequesToken(userDetails?.key, userDetails?.email)
     return AxiosRequest.get(`user/profile/${userDetails.userKey}`)
       .then((data) => {
-        if (data?.data?.error) {
-          logOut(false)
-        } else {
+        if (data?.data?.error === false) {
           return data?.data?.msg
+        } else {
+          logOut()
         }
       })
       .catch((error) => {
         console.error(error)
+        return error
       })
   }
 
