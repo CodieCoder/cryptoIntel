@@ -1,5 +1,4 @@
-import { url } from "inspector";
-import React from "react";
+import React from "react"
 
 const EachHeadline = ({ news }: { news: any }) => {
   //   console.log("testing : ", news);
@@ -42,7 +41,7 @@ const EachHeadline = ({ news }: { news: any }) => {
       <div className="headlines-description">{news.description}</div>
       {/* <div className="headlines-title">{news.title}</div> */}
     </div>
-  );
-};
+  )
+}
 
-export default EachHeadline;
+export default EachHeadline

@@ -5,7 +5,7 @@ import "./index.scss"
 import Spinner from "react-bootstrap/esm/Spinner"
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets-fixed"
 import LivePrice from "../../components/LivePrice"
-import { Sparklines, SparklinesLine, SparklinesSpots } from "react-sparklines"
+import { Sparklines, SparklinesLine } from "react-sparklines"
 import PagesContext from "../../Context"
 
 const Coinpage = () => {
@@ -53,6 +53,7 @@ const Coinpage = () => {
                       src={coin?.image?.large}
                       width="35px"
                       className="float-start"
+                      alt={coin?.name}
                     />
                   </div>
                   <div className="coin-page-name-name">

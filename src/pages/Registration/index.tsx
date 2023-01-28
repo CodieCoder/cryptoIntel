@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import { Alert, Fade, FloatingLabel, Form } from "react-bootstrap"
-import { LoadingButton, MyButton } from "../../components/HtmlElements/Button"
+import { LoadingButton } from "../../components/HtmlElements/Button"
 import UserRegistration from "../../Apis/user/register"
 import { formValidator, ValidatorEnum } from "../../utils/FormValidator"
 import "./index.scss"
 import { CountryList } from "../../Assets/CountryList"
-import { useNavigate } from "react-router-dom"
 import PagesContext from "../../Context"
 import { LOGINMODAL } from "../../Constants"
 
@@ -78,6 +77,7 @@ const RegistrationPage = () => {
       if (formValidator(field) === false) {
         errCheck++
       }
+      return
     })
     if (errCheck > 0) {
       return

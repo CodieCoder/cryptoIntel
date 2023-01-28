@@ -73,7 +73,7 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
   }
 
   useEffect(() => {
-    setVs_currency(currency == "usd" ? "usdt" : currency)
+    setVs_currency(currency === "usd" ? "usdt" : currency)
   }, [currency])
 
   const notify = {
@@ -83,6 +83,7 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
     error: (content: React.ReactNode) =>
       notifyUser(content, <FcMediumPriority />),
   }
+
   const notifyUser = (content: React.ReactNode, icon: React.ReactNode) => {
     const combinedContent = (
       <div>

@@ -16,7 +16,7 @@ const LivePrice = ({
   //WebSocket using "react-use-websocket"
 
   const {
-    sendMessage,
+    // sendMessage,
     lastMessage,
   }: // readyState,
   {

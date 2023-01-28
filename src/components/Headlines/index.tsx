@@ -33,6 +33,7 @@ const Headlines = () => {
                     </div>
                   )
                 }
+                return
               })
             : "Loading"}
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React from "react"
 import { Sparklines, SparklinesLine } from "react-sparklines"
 import CoinIcon from "../HtmlElements/CoinIcon"
 import CryptoFavourite from "../HtmlElements/CryptoFavourite"
@@ -9,11 +9,11 @@ interface ICoinList {
   showModal: any
 }
 const CoinList: React.FC<ICoinList> = ({ coin, showModal }) => {
-  const [coinsList, setCoinsList] = useState<string[]>([])
+  // const [coinsList, setCoinsList] = useState<string[]>([])
 
-  useEffect(() => {
-    setCoinsList(coin)
-  }, [])
+  // useEffect(() => {
+  //   setCoinsList(coin)
+  // }, [])
 
   return (
     <tr className="coinlist-table-tr">

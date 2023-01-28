@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import { AxiosRequest } from "../../../Library/axios"
 import UserContext from "../context"
 import { useQuery, useMutation } from "react-query"
@@ -64,7 +64,6 @@ const Profile = () => {
   const {
     data: profileData,
     isLoading,
-    isFetching,
     refetch: refetchProfile,
   } = useQuery("user-profile", () => getUserProfile(), {
     refetchOnMount: false,
@@ -85,8 +84,8 @@ const Profile = () => {
     e.preventDefault()
     e.stopPropagation()
     setIsFormDisabled(true)
-    const formData = new FormData(e.target),
-      formDataObj = Object.fromEntries(formData.entries())
+    const formData = new FormData(e.target)
+    // formDataObj = Object.fromEntries(formData.entries())
     updateUserProfileMutation(formData)
   }
 

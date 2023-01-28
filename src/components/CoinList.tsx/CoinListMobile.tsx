@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Sparklines, SparklinesLine } from "react-sparklines";
+import React from "react"
+import { Sparklines, SparklinesLine } from "react-sparklines"
 
 const CoinList = ({ coin, showModal }: { coin: any; showModal: any }) => {
-  const [coinsList, setCoinsList] = useState<string[]>([]);
+  // const [coinsList, setCoinsList] = useState<string[]>([])
 
-  useEffect(() => {
-    setCoinsList(coin);
-  });
+  // useEffect(() => {
+  //   setCoinsList(coin)
+  // })
 
   return (
     <tr className="coinlist-table-tr" onClick={() => showModal(coin)}>
@@ -15,7 +15,12 @@ const CoinList = ({ coin, showModal }: { coin: any; showModal: any }) => {
       </td>
       <td className="coinlist-table-td">{coin?.market_cap_rank}</td>
       <td className="coinlist-table-td">
-        <img src={coin?.image} width="20px" className="float-start" />
+        <img
+          src={coin?.image}
+          width="20px"
+          className="float-start"
+          alt={coin?.symbol}
+        />
         <div className="coinlist-table-name">{coin?.name}</div>
       </td>
       {/* <td className="coinlist-table-td">{coin?.symbol.toUpperCase()}</td> */}
@@ -35,7 +40,7 @@ const CoinList = ({ coin, showModal }: { coin: any; showModal: any }) => {
         </Sparklines>
       </td>
     </tr>
-  );
-};
+  )
+}
 
-export default CoinList;
+export default CoinList

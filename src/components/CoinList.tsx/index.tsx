@@ -106,6 +106,7 @@ const CoinsListing: React.FC<ICoinListist> = ({
                         ) {
                           return value
                         }
+                        return []
                       })
                       .map((coin: any, index: number) => (
                         <CoinList
@@ -143,6 +144,7 @@ const CoinsListing: React.FC<ICoinListist> = ({
                         ) {
                           return value
                         }
+                        return []
                       })
                       .map((coin: any, index: number) => (
                         <CoinListMobile

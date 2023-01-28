@@ -56,7 +56,7 @@ const CryptoFavourite = ({ coin }: { coin: any }) => {
         setIsFavourite(false)
       }
     }
-  }, [login, favouriteCoins])
+  }, [login, favouriteCoins, coin.id])
 
   return (
     <span className="favourite-star" onClick={favouriteClickHandler}>

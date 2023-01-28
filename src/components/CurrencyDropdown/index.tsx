@@ -22,6 +22,7 @@ const CurrencyDropdown = () => {
           ) {
             return value.name
           }
+          return
         })}
       </span>
       <ul className="dropdown-menu">

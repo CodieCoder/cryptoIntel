@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext } from "react"
 import DesktopHeader from "./DesktopHeader"
 import MobileHeader from "./MobileHeader"
 import PagesContext from "../../Context"

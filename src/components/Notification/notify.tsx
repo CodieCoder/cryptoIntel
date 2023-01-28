@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useState } from "react"
+import React, { useContext } from "react"
 import { Toast, ToastContainer } from "react-bootstrap"
 import PagesContext from "../../Context"
 import "./index.scss"
