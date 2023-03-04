@@ -1,0 +1,36 @@
+@import "/src/styles";
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  background-color: $primaryColor;
+  min-height: 20rem;
+  color: #fff;
+  padding-bottom: 5%;
+  .footer-div {
+    margin-top: 2rem;
+  }
+
+  .footer-hd {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+  }
+  .footer-links {
+    text-align: left;
+
+    .footer-headings {
+      font-weight: 800;
+    }
+    .footer-links-body {
+      //   margin: 1rem;
+    }
+    .footer-links-links {
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+  }
+  .footer-socials {
+    text-align: center;
+  }
+}

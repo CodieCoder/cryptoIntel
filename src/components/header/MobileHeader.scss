@@ -1,0 +1,67 @@
+@import "/src/styles";
+
+.mobile-top-header {
+  // background-color: $primaryColor;
+  background-color: #fff;
+  box-shadow: 0px 3px 10px #ccc;
+  color: #fff;
+  color: #444;
+}
+
+.mobile-top-header-drawer {
+  background-color: $primaryColor;
+  color: #fff;
+}
+.mobile-top-menu {
+  background-color: $primaryColor;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  .mobile-top-menu-links {
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    &:hover {
+      background-color: #fff;
+      color: $primaryColor;
+    }
+    .mobile-top-memu-link-icon {
+      padding: 0.5rem;
+      // font-size: 1.5rem;
+      // border-right: 1px solid #eee;
+    }
+    .mobile-top-memu-link-title {
+      // font-size: ;
+      padding: 0.5rem;
+      // font-size: 1rem;
+    }
+  }
+}
+.mobile-top-header-account-div {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.mobile-top-header-account {
+  font-weight: 600;
+  display: flex;
+  .mobile-top-header-links {
+    display: inline;
+    margin-left: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    &:first-child {
+      border-right: 1px solid #aaa;
+      padding-right: 0.5rem;
+    }
+  }
+  a {
+    color: #444;
+    text-decoration: none;
+  }
+}
+
+.mobile-top-menu-drawer-bottom {
+  padding: 0.5rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}

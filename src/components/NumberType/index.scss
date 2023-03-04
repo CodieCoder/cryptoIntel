@@ -1,0 +1,11 @@
+@import "../../styles";
+
+.number-color {
+  color: #555;
+}
+.number-color-up {
+  color: $numberUp;
+}
+.number-color-down {
+  color: $numberDown;
+}
