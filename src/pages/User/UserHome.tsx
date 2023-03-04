@@ -18,7 +18,6 @@ const User = () => {
   // }, [hashPage])
 
   useEffect(() => {
-    // console.log("Testing PARAMS : ", subpagesParam)
     //@ts-ignore
     setHashPage(USERPAGES[subpagesParam] || USERPAGES.home)
   }, [subpagesParam])

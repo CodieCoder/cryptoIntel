@@ -1,6 +1,6 @@
-import React from "react";
-import CenterBody from "./CenterBody";
-import LeftBody from "./LeftBody";
+import React from "react"
+import CenterBody from "./CenterBody"
+import LeftBody from "./LeftBody"
 
 const Body = () => {
   return (
@@ -14,7 +14,7 @@ const Body = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Body;
+export default Body

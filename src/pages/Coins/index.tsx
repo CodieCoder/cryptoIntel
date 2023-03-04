@@ -7,9 +7,8 @@ const CoinsPage = () => {
     <div className="container coins">
       <br />
       <Trending />
-      <hr />
       {/* <h3>All coins</h3> */}
-      <CoinsListing />
+      <CoinsListing pagination={true} />
     </div>
   )
 }

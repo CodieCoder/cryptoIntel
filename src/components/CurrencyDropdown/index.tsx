@@ -4,7 +4,6 @@ import { CURRENCY_LIST } from "../../Assets/CurrencyList"
 
 const CurrencyDropdown = () => {
   const { currency, setCurrency } = useContext(PagesContext)
-  console.log("Testing--- : ", currency)
 
   const changeCurrency = (data: string) => setCurrency(data?.toLowerCase())
   //   useEffect(() => {}, [currency]);
@@ -23,6 +22,7 @@ const CurrencyDropdown = () => {
           ) {
             return value.name
           }
+          return
         })}
       </span>
       <ul className="dropdown-menu">

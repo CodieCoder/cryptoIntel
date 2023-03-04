@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from "react";
-import "./index.scss";
-import axios from "axios";
-import EachNft from "./EachNft";
+import React, { useEffect, useState } from "react"
+import "./index.scss"
+import axios from "axios"
+import EachNft from "./EachNft"
 
 const url: string =
-  "https://api.coingecko.com/api/v3/nfts/list?order=h24_volume_native_asc&per_page=10";
+  "https://api.coingecko.com/api/v3/nfts/list?order=h24_volume_native_asc&per_page=10"
 
 const client = axios.create({
   baseURL: url,
-});
+})
 
 const NftList = () => {
-  const [nftList, setNftList] = useState<any>();
+  const [nftList, setNftList] = useState<any>()
 
   const NftlistApi = async () => {
-    let response = await client.get("");
-    setNftList(response.data);
-  };
+    let response = await client.get("")
+    setNftList(response.data)
+  }
 
   useEffect(() => {
-    NftlistApi();
-    console.log("TESTING THIS>>: ", nftList);
-  }, []);
+    NftlistApi()
+  }, [])
   return (
     <div className="container">
       <div className="nft-list">
@@ -35,12 +34,12 @@ const NftList = () => {
                 >
                   <EachNft nft={nft} />
                 </div>
-              );
+              )
             })}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NftList;
+export default NftList

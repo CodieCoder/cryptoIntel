@@ -1,5 +1,5 @@
-import React from "react";
-import "./index.scss";
+import React from "react"
+import "./index.scss"
 
 // interface Type{
 //  type:string = "number" || "percent" || "%"
@@ -12,29 +12,29 @@ const NumberType = ({
   checker,
   icon,
 }: {
-  type: string;
-  number: number;
-  length: number;
-  checker: number;
-  icon: boolean;
+  type: string
+  number: number
+  length: number
+  checker: number
+  icon?: boolean
 }) => {
-  number = number > 0.001 ? Number(number) : number;
-  number = number > 0.001 ? Number(number.toFixed(length)) : number;
-  checker = Number(checker);
+  number = number > 0.001 ? Number(number) : number
+  number = number > 0.001 ? Number(number.toFixed(length)) : number
+  checker = Number(checker)
   const typeCheck = (type: string) => {
     if (type === "percent" || type === "%" || type === "percentage") {
-      return "%";
+      return "%"
     } else {
-      return "";
+      return ""
     }
-  };
+  }
   return (
     <span
       className={` number-color ${
         checker > 0 ? "number-color-up" : "number-color-down"
       }`}
     >
-      {icon ? (
+      {icon && (
         <span>
           {checker > 0 ? (
             <i className="bi bi-caret-up-fill"></i>
@@ -42,13 +42,10 @@ const NumberType = ({
             <i className="bi bi-caret-down-fill"></i>
           )}
         </span>
-      ) : (
-        <span></span>
-      )}
-      {number?.toLocaleString()}
-      {typeCheck(type)}
+      )}{" "}
+      {number?.toLocaleString()} {typeCheck(type)}
     </span>
-  );
-};
+  )
+}
 
-export default NumberType;
+export default NumberType

@@ -14,6 +14,7 @@
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
     "chart.js": "^3.9.1",
+    "gh-pages": "^4.0.0",
     "moment": "^2.29.4",
     "popper.js": "^1.16.1",
     "react": "^18.2.0",
@@ -34,6 +35,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -44,6 +47,7 @@
       "react-app/jest"
     ]
   },
+  "homepage" : "https://codiecoder.github.io/",
   "browserslist": {
     "production": [
       ">0.2%",

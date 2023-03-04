@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import { AxiosRequest } from "../../../Library/axios"
 import UserContext from "../context"
 import { useQuery, useMutation } from "react-query"
@@ -13,20 +13,19 @@ const Profile = () => {
   const { userDetails, logOut } = useContext(UserContext)
   const { notify } = useContext(PagesContext)
   const [isFormDisabled, setIsFormDisabled] = useState(true)
-  // console.log("Testing showNotify : ", )
   const getUserProfile = async () => {
     // const userToken = userRequesToken(userDetails?.key, userDetails?.email)
     return AxiosRequest.get(`user/profile/${userDetails.userKey}`)
       .then((data) => {
-        // console.log("Testing USER PROFILE : ", data.data)
-        if (data?.data?.error) {
-          logOut(false)
-        } else {
+        if (data?.data?.error === false) {
           return data?.data?.msg
+        } else {
+          logOut()
         }
       })
       .catch((error) => {
         console.error(error)
+        return error
       })
   }
 
@@ -65,7 +64,6 @@ const Profile = () => {
   const {
     data: profileData,
     isLoading,
-    isFetching,
     refetch: refetchProfile,
   } = useQuery("user-profile", () => getUserProfile(), {
     refetchOnMount: false,
@@ -86,8 +84,8 @@ const Profile = () => {
     e.preventDefault()
     e.stopPropagation()
     setIsFormDisabled(true)
-    const formData = new FormData(e.target),
-      formDataObj = Object.fromEntries(formData.entries())
+    const formData = new FormData(e.target)
+    // formDataObj = Object.fromEntries(formData.entries())
     updateUserProfileMutation(formData)
   }
 

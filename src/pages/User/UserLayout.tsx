@@ -22,6 +22,7 @@ const UserLayout = (props: {
   const switchPages = (page: string) => {
     setActivePage(page)
   }
+
   const menuLinks = () => {
     return Object.values(USERPAGES).map((menuItem: string, index: number) =>
       activePage === menuItem ? (

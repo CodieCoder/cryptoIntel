@@ -1,14 +1,9 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import { Alert, Fade, FloatingLabel, Form } from "react-bootstrap"
-import { LoadingButton, MyButton } from "../../components/HtmlElements/Button"
-import {
-  formValidator,
-  USER_INFO_CONSTANT,
-  ValidatorEnum,
-} from "../../utils/FormValidator"
-import UserLogin from "./login"
+import { LoadingButton } from "../../components/HtmlElements/Button"
+import { formValidator, ValidatorEnum } from "../../utils/FormValidator"
+import UserLogin from "../../Apis/user/login"
 import "./index.scss"
-import { useNavigate } from "react-router-dom"
 import PagesContext from "../../Context"
 
 const LoginPage = () => {
@@ -69,7 +64,6 @@ const LoginPage = () => {
             //redirect to User dashboard page
             //save user data in context
             if (data?.error === false) {
-              console.log("Testing USERDETAILS : ", data)
               loginHandler(data.msg)
             }
             setLoginResponse(true)

@@ -1,0 +1,30 @@
+.widget-news-brief {
+  border: 1px solid #eee;
+  border-radius: 3px;
+  padding: 0.8rem;
+  text-align: left;
+  margin: auto;
+  .each {
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eee;
+    .EachBrief {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      .date {
+        background-color: #eee;
+        padding: 0.3rem;
+        color: #555;
+      }
+      .title {
+        font-weight: 600;
+        margin-top: 0.3rem;
+      }
+      .tags {
+        font-style: italic;
+        color: #999;
+        margin-top: 0.4rem;
+        text-align: left;
+      }
+    }
+  }
+}

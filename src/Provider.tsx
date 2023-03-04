@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import PagesContext from "./Context"
 import { USERDETAILS } from "./Constants"
-import { FcHighPriority, FcOk, FcMediumPriority } from "react-icons/fc"
+import { FcHighPriority, FcCheckmark, FcMediumPriority } from "react-icons/fc"
 import {
   setUserDetails as setUserDetails_LocalStorage,
   getUserDetails,
@@ -11,8 +11,8 @@ import {
 
 //provider/context to use throuout the app pages
 const PagesProvider = (props: { children: React.ReactNode }) => {
-  const [currency, setCurrency] = useState<String>("usd")
-  const [vs_currency, setVs_currency] = useState<String>()
+  const [currency, setCurrency] = useState<string>("usd")
+  const [vs_currency, setVs_currency] = useState<string>()
   const [login, setLogin] = useState<boolean>()
   const [showNotify, setShowNotify] = useState<boolean>(false)
   const [notifyContent, setNotifyContent] = useState<React.ReactNode>()
@@ -21,6 +21,7 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
   const [loginModalTab, setLoginModalTab] = useState<"login" | "signup">(
     "login"
   )
+  const [favouriteCoins, setFavouriteCoins] = useState<any>([])
 
   useEffect(() => {
     const checkLogin = isUserLogin()
@@ -28,6 +29,10 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
     if (checkLogin === true && userData) {
       setLogin(checkLogin)
       setUserDetails(userData)
+      const favCoins = userData?.favouriteCoins
+        ? JSON.parse(userData?.favouriteCoins)
+        : []
+      setFavouriteCoins(favCoins)
     }
   }, [])
 
@@ -43,6 +48,9 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
         setUserDetails(data)
         setLogin(true)
         setUserDetails_LocalStorage(data)
+        //set user's favourite coin
+        data?.favouriteCoins &&
+          setFavouriteCoins(JSON.parse(data.favouriteCoins))
         setShowLoginModal(false)
         notify.success("Login successfull!")
       }
@@ -56,21 +64,31 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
     window.location.reload()
   }
 
+  const updateFavouriteCoinsHandler = (newFav: string[]) => {
+    if (login === true && userDetails) {
+      userDetails.favouriteCoins = JSON.stringify(newFav)
+      setUserDetails_LocalStorage(userDetails)
+      setFavouriteCoins(JSON.parse(userDetails.favouriteCoins))
+    }
+  }
+
   useEffect(() => {
-    setVs_currency(currency == "usd" ? "usdt" : currency)
+    setVs_currency(currency === "usd" ? "usdt" : currency)
   }, [currency])
 
   const notify = {
-    success: (content: React.ReactNode) => notifyUser(content, <FcOk />),
+    success: (content: React.ReactNode) => notifyUser(content, <FcCheckmark />),
     warning: (content: React.ReactNode) =>
       notifyUser(content, <FcHighPriority />),
     error: (content: React.ReactNode) =>
       notifyUser(content, <FcMediumPriority />),
   }
+
   const notifyUser = (content: React.ReactNode, icon: React.ReactNode) => {
     const combinedContent = (
       <div>
-        {icon} &nbsp; {content}
+        {icon}
+        <span>&nbsp; {content}</span>
       </div>
     )
     setNotifyContent(combinedContent)
@@ -97,6 +115,8 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
       setShowLoginModal,
       loginModalTab,
       setLoginModalTab,
+      favouriteCoins,
+      updateFavouriteCoinsHandler,
     }),
     [
       currency,
@@ -113,6 +133,8 @@ const PagesProvider = (props: { children: React.ReactNode }) => {
       setShowLoginModal,
       loginModalTab,
       setLoginModalTab,
+      favouriteCoins,
+      updateFavouriteCoinsHandler,
     ]
   )
   return (

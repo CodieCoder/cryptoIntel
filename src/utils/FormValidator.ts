@@ -76,7 +76,6 @@ export const formValidator = (data: RegsitrationFormValidator): boolean => {
   const getMinMax = range.split("-")
   const min: number = Number(getMinMax[0])
   const max: number = Number(getMinMax[1])
-  // console.log(`Testing ${range} ${min} - ${max}`);
   if (formField.length < min || formField.length > max) {
     errCheck(true)
     return false
