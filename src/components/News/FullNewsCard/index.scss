@@ -1,0 +1,32 @@
+.FullNewsCard {
+  padding: 1rem;
+  margin: auto;
+  .header {
+    .top-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      .image {
+        margin: auto;
+        margin-top: 1rem;
+      }
+    }
+    .title {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+    .share {
+      display: flex;
+      padding: 0.5rem;
+      // width: 99%;
+      div {
+        margin-left: 0.3rem;
+      }
+    }
+  }
+  .body {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+  }
+}

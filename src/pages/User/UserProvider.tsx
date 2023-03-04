@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  createContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { USERDETAILS } from "../../Constants"
 import {
@@ -16,8 +10,6 @@ import UserContext from "./context"
 
 const UserProvider = (props: { children: React.ReactNode }) => {
   const NavigateTo = useNavigate()
-  // const Context = useContext(UserContext)
-  // const UsersContext = createContext({})
   const { children } = props
   const [isLogin, setIsLogin] = useState(false)
   const [userDetails, setUserDetails] = useState<USERDETAILS>()

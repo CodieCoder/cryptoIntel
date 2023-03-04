@@ -1,12 +1,12 @@
 import React from "react"
 import CoinsListing from "../../../../components/CoinList.tsx"
 import "./index.scss"
-import Headlines from "../../../../components/Headlines"
+import TopStories from "./headlines"
 
 const CenterBody = () => {
   return (
     <div className="center-body">
-      <Headlines />
+      <TopStories />
       <CoinsListing />
     </div>
   )

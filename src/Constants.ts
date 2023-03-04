@@ -12,6 +12,19 @@ export type USERDETAILS = {
   userKey: string
 }
 
+export type TNews = {
+  news_body: string
+  news_categories: string
+  news_date: string
+  news_image: string
+  news_language: string
+  news_randkey: string
+  news_source_info: string
+  news_title: string
+  news_url: string
+  news_tags: string
+}
+
 export enum LOCALSTORAGE {
   UserDetails = "userDetails",
   Islogin = "isLogin",

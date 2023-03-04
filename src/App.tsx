@@ -13,8 +13,9 @@ import UserIndex from "./pages/User"
 import { QueryClient, QueryClientProvider } from "react-query"
 import Notify from "./components/Notification/notify"
 import CoinsPage from "./pages/Coins"
-import NewsPage from "./pages/News"
+import NewsPage from "./pages/News/AllNews"
 import LoginModal from "./components/LoginModal"
+import FullNews from "./pages/News/FullNews"
 
 const queryClient = new QueryClient()
 
@@ -38,7 +39,10 @@ function App() {
               <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/coins" element={<CoinsPage />} />
-                <Route path="/news" element={<NewsPage />} />
+                <Route path="/news">
+                  <Route path="" element={<NewsPage />} />
+                  <Route path=":newsId" element={<FullNews />} />
+                </Route>
                 <Route path="/coin/:coinId" element={<Coinpage />} />
                 <Route path="/register/" element={<RegistrationPage />} />
                 <Route path="/login/" element={<LoginPage />} />
