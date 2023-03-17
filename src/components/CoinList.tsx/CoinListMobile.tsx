@@ -2,12 +2,6 @@ import React from "react"
 import { Sparklines, SparklinesLine } from "react-sparklines"
 
 const CoinList = ({ coin, showModal }: { coin: any; showModal: any }) => {
-  // const [coinsList, setCoinsList] = useState<string[]>([])
-
-  // useEffect(() => {
-  //   setCoinsList(coin)
-  // })
-
   return (
     <tr className="coinlist-table-tr" onClick={() => showModal(coin)}>
       <td className="coinlist-table-td">

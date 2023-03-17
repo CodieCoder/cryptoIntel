@@ -4,17 +4,24 @@
   margin-top: 1rem;
   text-align: center;
   font-weight: 600;
-  //   border: 1px solid $primaryColor_light;
-  //   background-color: rgb(57, 98, 183);
+  width: auto;
+  padding: 0;
+  background-color: rgba(250, 259, 250, 0.1);
   //   background-color: #fff;
-  box-shadow: 0px 3px 10px #aaa;
-  //   border-radius: 5px;
+  // box-shadow: 0px 3px 10px #aaa;
+  border-radius: 5px;
+  border: 0;
   .notify-body {
-    background-color: rgba(57, 98, 193, 0.9);
-    // background-color: #fff;
+    // background-color: rgba(57, 98, 193, 0.9);
+    background-color: #fff;
+    // background-color: rgba(250, 259, 250, 0.1);
     // border: 2px solid rgba(57, 98, 193, 0.9);
-    color: #fff;
+    // border: 1px solid $primaryColor;
+    // color: #fff;
     // color: #444;
-    border-radius: 2px;
+    width: auto;
+    border-radius: 5px;
+    // border: 0;
+    // padding: 0;
   }
 }

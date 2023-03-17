@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import UserLayout from "./UserLayout"
-import UserDashboard from "./UserDashboard"
+import UserDashboard from "./Dashboard"
 import { USERPAGES } from "./constants"
 import Profile from "./Profile"
 import Settings from "./Settings"

@@ -7,7 +7,7 @@ interface IPagination {
   setPageNo: React.Dispatch<React.SetStateAction<number>>
 }
 
-// const defaultCoinMax = 1000
+// const defaultCoinMax = 1000r
 
 const CoinPagination: React.FC<IPagination> = ({ pageNo, setPageNo }) => {
   const clickHandler = (item: number) => {

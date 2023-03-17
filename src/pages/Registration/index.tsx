@@ -84,7 +84,7 @@ const RegistrationPage = () => {
     } else {
       setIsLoading(true)
       const DataToPost = {
-        fullName: input_FullName,
+        fullname: input_FullName,
         country: select_Country,
         gender: select_Gender,
         email: input_Email,

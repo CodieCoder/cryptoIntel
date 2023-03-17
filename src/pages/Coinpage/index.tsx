@@ -36,11 +36,13 @@ const Coinpage = () => {
             <div className="coin-page-top-chart">
               <AdvancedRealTimeChart
                 theme="light"
-                interval="1"
+                interval="D"
+                // style="5"
                 autosize
                 show_popup_button={true}
                 popup_width="1000"
                 popup_height="600"
+                hide_side_toolbar={true}
                 symbol={`${coin?.symbol}${vs_currency}`}
               ></AdvancedRealTimeChart>
             </div>

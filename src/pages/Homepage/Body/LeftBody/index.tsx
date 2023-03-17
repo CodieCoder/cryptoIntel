@@ -1,16 +1,20 @@
-import React from "react";
-import NftList from "./NftList";
-import "./index.scss";
-import Timeline from "./Timeline";
+import React from "react"
+import NftList from "./NftList"
+import "./index.scss"
+import NewsBrief from "../../../../Widgets/Briefs"
 
 const LeftBody = () => {
   return (
     <div className="left-body">
-      <Timeline />
-      <hr />
-      <NftList />
+      <div className="">
+        <NftList />
+        <hr />
+      </div>
+      <div className="news-brief">
+        <NewsBrief />
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default LeftBody;
+export default LeftBody

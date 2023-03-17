@@ -24,7 +24,6 @@ const CryptoFavourite = ({ coin }: { coin: any }) => {
       const updatedFav = await updateFavourite(userDetails?.userKey, coin?.id)
       if (updatedFav?.error === false) {
         updateFavouriteCoinsHandler(updatedFav?.msg)
-        console.log(`Testing Resposne : ${updatedFav?.msg}`)
         notify.success(
           <span>
             <CoinIcon src={coin?.image} /> &nbsp; {coin?.name}

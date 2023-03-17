@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Accordion } from "react-bootstrap"
-import { getMarketById } from "../../../Apis/coins/getCoins"
-import { updateFavourite } from "../../../Apis/user/favourite"
-import CoinIcon from "../../../components/HtmlElements/CoinIcon"
-import PagesContext from "../../../Context"
+import { getMarketById } from "../../../../Apis/coins/getCoins"
+import { updateFavourite } from "../../../../Apis/user/favourite"
+import CoinIcon from "../../../../components/HtmlElements/CoinIcon"
+import PagesContext from "../../../../Context"
 import EachCoin from "./eachCoin"
 
 const FavouriteDashboard = () => {
@@ -17,14 +17,13 @@ const FavouriteDashboard = () => {
     userDetails,
   } = useContext(PagesContext)
 
-  const [isFavourite, setIsFavourite] = useState(false)
+  // const [isFavourite, setIsFavourite] = useState(false)
   const [coins, setCoins] = useState<any>()
 
   const getFavouriteCoinsPrices = () => {
     getMarketById(favouriteCoins.join(","), currency)
       .then((data) => {
         const coins = data?.data || []
-        // console.log("Testing DATA : ", coins)
         if (coins) {
           setCoins(coins)
         }
@@ -48,7 +47,7 @@ const FavouriteDashboard = () => {
             {coins
               .filter((coin: any) => favouriteCoins.includes(coin?.id))
               .map((coin: any, index: number) => (
-                <div className="col-lg-3" key={index}>
+                <div className="each-coin" key={index}>
                   <EachCoin coin={coin} />
                 </div>
               ))}

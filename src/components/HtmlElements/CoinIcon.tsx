@@ -5,7 +5,7 @@ const CoinIcon = ({ src, className }: { src: string; className?: string }) => {
     <img
       src={src}
       className={`${className ? className : "coinIcon"}`}
-      alt="icon"
+      alt="iconyrn"
     />
   )
 }

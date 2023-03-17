@@ -19,9 +19,9 @@ const FullNewsCard = ({ news }: IFullNewsCard) => {
           <Col xs={10} sm={10} md={4} lg={4}>
             <div className="top-image">
               <Image
-                // fluid
-                width="100%"
-                height="100%"
+                fluid
+                // width="100%"
+                // height="100%"
                 src={news?.news_image}
                 loading="lazy"
                 className="image"
@@ -30,7 +30,7 @@ const FullNewsCard = ({ news }: IFullNewsCard) => {
           </Col>
           <Col>
             <div className="share">
-              <div>Share : </div>
+              {/* <div>Share : </div> */}
               <div>
                 <ShareButtons link="" />
               </div>

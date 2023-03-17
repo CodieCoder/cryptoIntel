@@ -9,8 +9,15 @@ $fontFamily: raleway, roboto, Helvetica, sans-serif;
 //text colors
 $green: rgb(3, 126, 3);
 $red: rgb(126, 7, 3);
-$primaryColor: #149;
-$primaryColor_light: #11449980;
+$primaryColor: rgba(60, 199, 198, 1);
+$primaryColor_light: rgba(60, 199, 198, 0.3);
+
+//LINKS
+a {
+  &:hover {
+    color: $primaryColor;
+  }
+}
 
 //COIN ICONS
 .coinIcon {
@@ -22,7 +29,7 @@ $primaryColor_light: #11449980;
   font-size: larger;
 }
 .isFavourite {
-  color: rgb(247, 81, 108);
+  color: $primaryColor;
 }
 
 // PAGE
@@ -45,8 +52,8 @@ $primaryColor_light: #11449980;
 .general-submit-btn {
   transition: 0.5s;
   padding: 0.5rem;
-  color: #149;
-  border: 1px solid #149;
+  color: $primaryColor;
+  border: 1px solid $primaryColor;
   border-radius: 3px;
   font-weight: bolder;
   width: 5rem;
@@ -65,8 +72,8 @@ $primaryColor_light: #11449980;
 .general-loading-submit-btn {
   transition: 0.5s;
   padding: 0.5rem;
-  color: #149;
-  border: 1px solid #149;
+  color: $primaryColor;
+  border: 1px solid $primaryColor;
   border-radius: 3px;
   font-weight: bolder;
   width: auto;

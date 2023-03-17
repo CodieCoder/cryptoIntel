@@ -2,16 +2,16 @@ import AxiosRequest from "../../Library/axios"
 import { UserDevice } from "../../utils/FormValidator"
 
 interface USERREGISTRATION {
-  fullName: string
+  fullname: string
   gender: string
   email: string
-  // username: string;
+  username?: string
   password: string
 }
 
 const UserRegistration = async (data: USERREGISTRATION) => {
-  const userDevice = UserDevice()
-  const DataToPost = { ...data, userDevice }
+  const registration_device = UserDevice()
+  const DataToPost = { ...data, registration_device }
   //send to server
   try {
     const register = await AxiosRequest.post("/user/new", {

@@ -64,7 +64,7 @@ const LoginPage = () => {
             //redirect to User dashboard page
             //save user data in context
             if (data?.error === false) {
-              loginHandler(data.msg)
+              loginHandler(data.result)
             }
             setLoginResponse(true)
           }

@@ -1,12 +1,10 @@
 @import "../../styles";
 
 .coin-list-div {
-  font-weight: 600;
-  margin-top: 2rem;
-  // box-shadow: 0px 6px 10px rgba(50, 50, 50, 0.2);
-  // border: 1px solid rgba(200, 200, 200, 0.5);
   border-radius: 4px;
+  max-width: 100%;
   padding: 2%;
+  font-size: small;
   .loading-div {
     margin: auto;
     margin-top: 5rem;
@@ -15,29 +13,25 @@
   }
   .coin-list-search-div {
     height: 3rem;
-    // background-color: #000;
     .coin-list-search-input {
       width: 10rem;
       float: right;
       background-color: #eee;
       border: 0;
-      font-style: italic;
     }
   }
   .coin-list {
-    //   width: 90%;
     padding-top: 0rem;
     margin: auto;
-    // margin-top: 4rem;
-    // height: 30rem;
 
     .coinlist-table-name {
       margin-left: 2rem;
-      font-weight: 700;
+      font-weight: 600;
     }
     .coinlist-table-tr {
       border-top: 1px solid rgba(200, 200, 200, 0.5);
       text-align: left;
+      font-weight: 600;
       cursor: pointer;
     }
     .coinlist-table-td {

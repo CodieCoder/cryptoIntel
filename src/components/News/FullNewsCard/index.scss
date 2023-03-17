@@ -17,11 +17,11 @@
       font-weight: 600;
     }
     .share {
-      display: flex;
+      // display: flex;
       padding: 0.5rem;
-      // width: 99%;
+      max-width: 60%;
       div {
-        margin-left: 0.3rem;
+        // margin-left: 0.3rem;
       }
     }
   }
