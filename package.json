@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
+    "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -46,9 +46,7 @@
       "react-app",
       "react-app/jest"
     ]
-  },
-  "homepage": "https://codiecoder.github.io/",
-  "browserslist": {
+  },"browserslist": {
     "production": [
       ">0.2%",
       "not dead",
