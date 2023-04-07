@@ -1,17 +1,14 @@
-import React, { useEffect } from "react"
-import { Col, Image, Row } from "react-bootstrap"
-import { TNews } from "../../../Constants"
-import ShareButtons from "../../Share/ShareButtons"
-import "./index.scss"
+import React, { useEffect } from "react";
+import { Col, Image, Row } from "react-bootstrap";
+import { TNews } from "../../../Constants";
+import ShareButtons from "../../Share/ShareButtons";
+import "./index.scss";
 
 interface IFullNewsCard {
-  news: TNews
+  news: TNews;
 }
 
 const FullNewsCard = ({ news }: IFullNewsCard) => {
-  useEffect(() => {
-    console.log("Testing News : ", news)
-  }, [])
   return (
     <div className="FullNewsCard">
       <div className="header">
@@ -41,7 +38,7 @@ const FullNewsCard = ({ news }: IFullNewsCard) => {
         <div className="body">{news.news_body}</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FullNewsCard
+export default FullNewsCard;

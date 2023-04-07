@@ -1,35 +1,37 @@
-import React, { useContext, useEffect, useState } from "react"
-import { AxiosRequest } from "../../../Library/axios"
-import UserContext from "../context"
-import { useQuery, useMutation } from "react-query"
-import { Spinner } from "react-bootstrap"
-import PagesContext from "../../../Context"
-import ProfileForm from "./ProfileForm"
-import ServerError from "../../../components/Errors/ServerError"
-import NoData from "../../../components/Errors/NoData"
+import React, { useContext, useEffect, useState } from "react";
+import { AxiosRequest } from "../../../Library/axios";
+import UserContext from "../context";
+import { useQuery, useMutation } from "react-query";
+import { Spinner } from "react-bootstrap";
+import PagesContext from "../../../Context";
+import ProfileForm from "./ProfileForm";
+import ServerError from "components/Errors/ServerError";
+import NoData from "components/Errors/NoData";
 
 const Profile = () => {
-  const { userDetails, logOut } = useContext(UserContext)
-  const { notify } = useContext(PagesContext)
-  const [isFormDisabled, setIsFormDisabled] = useState(true)
-
+  const { userDetails, logOut } = useContext(UserContext);
+  const { notify } = useContext(PagesContext);
+  const [isFormDisabled, setIsFormDisabled] = useState(true);
   const getUserProfile = async () => {
     // const userToken = userRequesToken(userDetails?.key, userDetails?.email)
+    if (!userDetails) {
+      return;
+    }
     return AxiosRequest.get(`user/profile/${userDetails.userKey}`)
       .then((data) => {
         if (data?.data?.error === false) {
-          return data?.data?.msg
+          return data?.data?.msg;
         } else {
-          logOut()
+          logOut();
         }
 
-        console.log("Testing profileData : ", data)
+        console.log("Testing profileData : ", data);
       })
       .catch((error) => {
-        console.error(error)
-        return error
-      })
-  }
+        console.error(error);
+        return error;
+      });
+  };
 
   const updateUserProfile = async (data: any) => {
     // const userToken = userRequesToken(userDetails?.key, userDetails?.email)
@@ -40,27 +42,27 @@ const Profile = () => {
       )
         .then((data) => {
           if (data?.data?.error) {
-            notify.warning(data.data.msg)
-            return data?.data?.msg
+            notify.warning(data.data.msg);
+            return data?.data?.msg;
           } else {
-            notify.success(data.data.msg)
-            return data?.data?.msg
+            notify.success(data.data.msg);
+            return data?.data?.msg;
           }
         })
         .catch((error) => {
-          console.error(error)
-          notify.error("An error occured")
-          return false
+          console.error(error);
+          notify.error("An error occured");
+          return false;
         })
         .finally(() => {
-          refetchProfile()
-        })
+          refetchProfile();
+        });
     } catch (error) {
-      console.error(error)
-      notify.error("An error occured.")
-      return error
+      console.error(error);
+      notify.error("An error occured.");
+      return error;
     }
-  }
+  };
 
   const {
     data: profileData,
@@ -69,8 +71,9 @@ const Profile = () => {
   } = useQuery("user-profile", () => getUserProfile(), {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
+    enabled: !!userDetails,
     // onSuccess(data) {},
-  })
+  });
 
   const { mutate: updateUserProfileMutation, isLoading: isUpdating } =
     useMutation(updateUserProfile, {
@@ -81,20 +84,20 @@ const Profile = () => {
         // notify.error("error")
       },
       // onSettled: () => refetchProfile(),
-    })
+    });
   const UpdateUserProfile = (e: any) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setIsFormDisabled(true)
-    const formData = new FormData(e.target)
+    e.preventDefault();
+    e.stopPropagation();
+    setIsFormDisabled(true);
+    const formData = new FormData(e.target);
     // formDataObj = Object.fromEntries(formData.entries())
-    updateUserProfileMutation(formData)
-  }
+    updateUserProfileMutation(formData);
+  };
 
   const editHandler = () => {
-    setIsFormDisabled((prev) => !prev)
-    refetchProfile()
-  }
+    setIsFormDisabled((prev) => !prev);
+    refetchProfile();
+  };
 
   return (
     <div className="user-profile">
@@ -122,7 +125,7 @@ const Profile = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

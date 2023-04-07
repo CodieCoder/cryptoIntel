@@ -1,34 +1,39 @@
-import React, { useEffect, useMemo, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { USERDETAILS } from "../../Constants"
+import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ICoin, USERDETAILS } from "../../Constants";
 import {
   getUserDetails,
   isUserLogin,
   logoutUser,
-} from "../../utils/localStorage"
-import UserContext from "./context"
+} from "../../utils/localStorage";
+import UserContext from "./context";
 
 const UserProvider = (props: { children: React.ReactNode }) => {
-  const NavigateTo = useNavigate()
-  const { children } = props
-  const [isLogin, setIsLogin] = useState(false)
-  const [userDetails, setUserDetails] = useState<USERDETAILS>()
+  const NavigateTo = useNavigate();
+  const { children } = props;
+  const [isLogin, setIsLogin] = useState(false);
+  const [userDetails, setUserDetails] = useState<USERDETAILS>();
+  const [selectedCoin, setSelectedCoin] = useState<ICoin>();
+
+  const getLogin = async () => {
+    const checkLogin = isUserLogin();
+    const userData = await getUserDetails();
+    if (checkLogin === true && userData !== false) {
+      setIsLogin(checkLogin);
+      setUserDetails(userData);
+    } else {
+      NavigateTo("/login");
+    }
+  };
 
   useEffect(() => {
-    const checkLogin = isUserLogin()
-    const userData = getUserDetails()
-    if (checkLogin === true && userData) {
-      setIsLogin(checkLogin)
-      setUserDetails(userData)
-    } else {
-      NavigateTo("/login")
-    }
-  }, [])
+    getLogin();
+  }, []);
 
   const logOut = () => {
-    logoutUser()
-    NavigateTo("/login")
-  }
+    logoutUser();
+    NavigateTo("/login");
+  };
 
   const dataState = useMemo(
     () => ({
@@ -36,12 +41,21 @@ const UserProvider = (props: { children: React.ReactNode }) => {
       logOut,
       userDetails,
       setUserDetails,
+      selectedCoin,
+      setSelectedCoin,
     }),
-    [isLogin, logOut, userDetails, setUserDetails]
-  )
+    [
+      isLogin,
+      logOut,
+      userDetails,
+      setUserDetails,
+      selectedCoin,
+      setSelectedCoin,
+    ]
+  );
   return (
     <UserContext.Provider value={dataState}>{children}</UserContext.Provider>
-  )
-}
+  );
+};
 
-export default UserProvider
+export default UserProvider;

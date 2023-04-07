@@ -1,16 +1,14 @@
-import { useEffect } from "react"
-import { Col, Container, Row } from "react-bootstrap"
+import { useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 
 interface IDefaultBody {
-  center: React.ReactNode
-  left?: React.ReactNode
+  center: React.ReactNode;
+  left?: React.ReactNode;
 }
 
 const DefaultBody: React.FC<IDefaultBody> = ({ center, left }) => {
   //if there's no left element then the center should occupy all
-  useEffect(() => {
-    console.log("Testing Left JSX", left)
-  }, [])
+
   return (
     <Container>
       {left ? (
@@ -28,7 +26,7 @@ const DefaultBody: React.FC<IDefaultBody> = ({ center, left }) => {
         </Row>
       )}
     </Container>
-  )
-}
+  );
+};
 
-export default DefaultBody
+export default DefaultBody;

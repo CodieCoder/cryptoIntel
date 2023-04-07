@@ -1,20 +1,31 @@
 @import "/src/styles";
 
 .favourites-pane {
+  // width: 90%;
   margin: auto;
+  margin-top: 1rem;
+  min-height: 10rem;
+  background-color: rgba(200, 200, 200, 0.3);
   .favouriteDashboard-head {
     .title {
+      font-weight: 600;
+      height: 2rem;
     }
   }
-  .each-coin {
-    // min-width: 20rem;
-    padding-top: 0.2rem;
-    height: 3rem;
-    width: 100%;
+  .coin-list {
+    max-height: 25rem;
+    overflow-y: auto;
     margin: auto;
-    margin-top: 0.6rem;
+    // margin-top: -1rem;
+    padding: 1rem;
+  }
+  .each-coin {
+    height: auto;
+    margin: auto;
+    margin-top: 0.8rem;
     transition: 1s;
-    border: 1px solid #eee;
+    // background-color: #ddd;
+    padding: 0;
     cursor: pointer;
     border-radius: 5px;
     &:hover {
@@ -22,51 +33,70 @@
       border-color: 1px solid $primaryColor_light;
     }
     .fovourite-eachCoin {
-      width: 100%;
       display: flex;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      .eachCoin-favourite-btn {
-        font-size: 0.8rem;
-        margin-top: 0.5rem;
-        width: 1.5rem;
-        border-right: 1px solid #eee;
-      }
+      width: 100%;
       .eachCoin-body {
         display: flex;
         width: 100%;
-      }
-      .eachCoin-header-icon {
-        width: 10%;
-        text-align: center;
-        margin-top: 0.5rem;
-        .icon {
-          width: 20px;
+        .eachCoin-body-left {
+          display: flex;
+          background-color: #fff;
+          padding: 0.2rem;
+          width: 70%;
+          box-shadow: 0px 0px 5px #ddd;
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+          .eachCoin-favourite-btn {
+            font-size: 0.8rem;
+            width: 1.9rem;
+            border-right: 1px solid #eee;
+            background-color: #fff;
+            padding: 0.3rem;
+            padding-bottom: 0.2rem;
+          }
+          .eachCoin-header-icon {
+            width: 14%;
+            text-align: center;
+            margin-top: 0.5rem;
+            .icon {
+              width: 20px;
+            }
+          }
+          .eachCoin-header-body {
+            display: flex;
+            padding-left: 0.4rem;
+            width: 100%;
+            .name-symbol {
+              display: inline;
+              color: #777;
+              font-weight: 600;
+              width: 50%;
+              margin-top: 0.5rem;
+            }
+            .price {
+              margin-left: 1rem;
+              font-size: 0.8rem;
+              text-align: center;
+              .price-div-price {
+                font-weight: 500;
+                font-size: 0.7rem;
+              }
+            }
+          }
         }
-      }
-      .eachCoin-header-body {
-        display: flex;
-        padding-left: 0.4rem;
-        width: 90%;
-        .name-symbol {
-          display: inline;
-          color: #777;
-          font-weight: 600;
-          width: 20%;
-          margin-top: 0.5rem;
-        }
-        .price {
-          margin-top: 0.5rem;
-          display: inline;
-          width: 35%;
-          font-size: 0.8rem;
-          font-weight: 600;
-        }
-        .sparkline {
-          display: inline;
-          margin-top: 0.3rem;
-          margin-left: 1.5rem;
-          width: 44%;
+        .eachCoin-body-right {
+          margin-left: 0.8rem;
+          width: 30%;
+          // background-color: #fff;
+          padding: 0.2rem;
+          // box-shadow: 0px 0px 5px #ccc;
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+          .sparkline {
+            // margin-top: 1rem;
+          }
         }
       }
     }

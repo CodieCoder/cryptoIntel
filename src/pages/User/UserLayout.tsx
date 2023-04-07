@@ -60,14 +60,13 @@ const UserLayout = (props: {
     //   </div>
     //   <div className="user-layout-body">{children}</div>
     // </section>
-    <Container className="justify-content-md-center">
+    <Container className="user-layout justify-content-md-center">
       <Tabs
-        id="controlled-tab-example"
         // activeKey={key}
         // onSelect={(k) => setKey(k)}
-        className="mb-3"
+        className="user-layout-menu mb-3"
       >
-        <Tab eventKey={USERPAGES.home} title="Home">
+        <Tab eventKey={USERPAGES.home} title="Home" className="user-layout-body">
           <UserDashboard />
         </Tab>
         <Tab eventKey={USERPAGES.profile} title="Profile">
