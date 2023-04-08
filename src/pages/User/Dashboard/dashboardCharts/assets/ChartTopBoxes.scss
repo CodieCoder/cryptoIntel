@@ -1,0 +1,20 @@
+.ChartTopBoxes {
+  margin-top: 1rem;
+  padding: 1rem;
+  //   background-color: #ddd;
+  .ChartTopBoxes-boxes {
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #ddd;
+    border-radius: 3px;
+    margin: auto;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    // min-width: 10rem;
+    .ChartTopBoxes-title {
+      font-weight: 600;
+      color: #555;
+    }
+    .ChartTopBoxes-content {
+    }
+  }
+}

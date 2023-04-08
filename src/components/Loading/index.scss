@@ -1,0 +1,59 @@
+@import "/src/styles";
+
+.loading-component {
+  position: relative;
+  .loading-component-content-div {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3);
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    top: 0;
+    left: 0;
+    .loading-component-content {
+      .spinner {
+        display: flex;
+        justify-content: center;
+        &::after {
+          transition: 1s;
+          content: "";
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: inline-block;
+          border-top: 4px solid $primaryColor;
+          border-right: 4px solid transparent;
+          box-sizing: border-box;
+          animation: rotation 1.5s linear infinite;
+        }
+      }
+      .content {
+        // display: block;
+      }
+    }
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+    border-top: 4px dotted $primaryColor;
+  }
+  50% {
+    transform: rotate(200deg);
+    border-top: 7px dotted $primaryColor;
+    border-right: 10px dotted transparent;
+  }
+  80% {
+    transform: rotate(300deg);
+    border-top: 3px solid $primaryColor;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-top: 3px solid $primaryColor;
+    border-right: 3px dotted transparent;
+  }
+}
