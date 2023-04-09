@@ -13,16 +13,16 @@ export type USERDETAILS = {
 };
 
 export type TNews = {
-  news_body: string;
-  news_categories: string;
-  news_date: string;
-  news_image: string;
-  news_language: string;
-  news_randkey: string;
-  news_source_info: string;
-  news_title: string;
-  news_url: string;
-  news_tags: string;
+  body: string;
+  categories: string;
+  date: string;
+  image: string;
+  language: string;
+  randkey: string;
+  source_info: string;
+  title: string;
+  url: string;
+  tags: string;
 };
 
 export enum LOCALSTORAGE {

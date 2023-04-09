@@ -8,7 +8,7 @@ interface IFullNewsCard {
   news: TNews;
 }
 
-const FullNewsCard = ({ news }: IFullNewsCard) => {
+const FullNewsCard: React.FC<IFullNewsCard> = ({ news }) => {
   return (
     <div className="FullNewsCard">
       <div className="header">
@@ -19,7 +19,7 @@ const FullNewsCard = ({ news }: IFullNewsCard) => {
                 fluid
                 // width="100%"
                 // height="100%"
-                src={news?.news_image}
+                src={news?.image}
                 loading="lazy"
                 className="image"
               />
@@ -32,10 +32,10 @@ const FullNewsCard = ({ news }: IFullNewsCard) => {
                 <ShareButtons link="" />
               </div>
             </div>
-            <div className="title">{news?.news_title}</div>
+            <div className="title">{news?.title}</div>
           </Col>
         </Row>
-        <div className="body">{news.news_body}</div>
+        <div className="body">{news.body}</div>
       </div>
     </div>
   );

@@ -1,39 +1,45 @@
-import React, { useEffect, useState } from "react"
-import Headlines from "../../../components/Headlines"
-import { useQuery } from "react-query"
-import { getNewsHeadlines } from "../../../Apis/news"
-import "./index.scss"
-import { Row, Col, Spinner } from "react-bootstrap"
-import LandscapeCards from "../../../components/News/LandsscapeNewsCard/landscapeCard"
-import NewsBrief from "../../../Widgets/Briefs"
+import React, { useEffect, useState } from "react";
+import Headlines from "../../../components/Headlines";
+import { useQuery } from "react-query";
+import { getNews } from "../../../Apis/news";
+import "./index.scss";
+import { Row, Col, Spinner } from "react-bootstrap";
+import LandscapeCards from "../../../components/News/LandsscapeNewsCard/landscapeCard";
+import NewsBrief from "../../../Widgets/Briefs";
+import { TNews } from "Constants";
 
-const NewsPage = () => {
-  const [newsData, setNewsData] = useState<string[]>()
-  const [loading, setLoading] = useState(true)
+const NewsPage: React.FC = () => {
+  const [newsData, setNewsData] = useState<TNews[]>();
+  const [error, setError] = useState(false);
+  // const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
 
   const {
     data: allNewsData,
     isLoading,
     isFetching,
     // refetch: refetchNews,
-  } = useQuery("all-news", () => getNewsHeadlines(), {
+  } = useQuery("all-news", () => getNews(page, pageSize), {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-  })
+  });
 
   //const
   useEffect(() => {
     if (allNewsData?.data?.error === false) {
       setNewsData(
-        allNewsData.data.result.filter((news: any) => news?.news_image)
-      )
-      setLoading(false)
+        allNewsData.data?.result?.data?.filter((news: any) => news?.image)
+      );
+      // setLoading(false);
+    } else {
+      setError(true);
     }
-  }, [allNewsData])
+  }, [allNewsData]);
 
   return (
     <div className="container news-page">
-      {loading && (
+      {isLoading && (
         <div className="loading-div">
           <Spinner
             as="span"
@@ -71,7 +77,7 @@ const NewsPage = () => {
         </Row>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NewsPage
+export default NewsPage;
