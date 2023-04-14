@@ -1,5 +1,8 @@
+@import "../../styles";
+
 .widget-news-brief {
-  border: 1px solid #eee;
+  width: 80%;
+  // border: 1px solid #eee;
   border-radius: 3px;
   padding: 0.8rem;
   text-align: left;
@@ -11,12 +14,12 @@
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
       .date {
-        background-color: #eee;
+        background-color: $primaryColor;
         padding: 0.3rem;
-        color: #555;
+        color: #fff;
       }
       .title {
-        font-weight: 600;
+        // font-weight: 600;
         margin-top: 0.3rem;
       }
       .tags {

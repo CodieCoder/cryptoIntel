@@ -12,8 +12,8 @@ const UserProvider = (props: { children: React.ReactNode }) => {
   const NavigateTo = useNavigate();
   const { children } = props;
   const [isLogin, setIsLogin] = useState(false);
-  const [userDetails, setUserDetails] = useState<USERDETAILS>();
-  const [selectedCoin, setSelectedCoin] = useState<ICoin>();
+  const [userDetails, setUserDetails] = useState<USERDETAILS | undefined>();
+  const [selectedCoin, setSelectedCoin] = useState<ICoin | undefined>();
 
   const getLogin = async () => {
     const checkLogin = isUserLogin();
@@ -40,18 +40,10 @@ const UserProvider = (props: { children: React.ReactNode }) => {
       isLogin,
       logOut,
       userDetails,
-      setUserDetails,
       selectedCoin,
       setSelectedCoin,
     }),
-    [
-      isLogin,
-      logOut,
-      userDetails,
-      setUserDetails,
-      selectedCoin,
-      setSelectedCoin,
-    ]
+    [isLogin, logOut, userDetails, selectedCoin, setSelectedCoin]
   );
   return (
     <UserContext.Provider value={dataState}>{children}</UserContext.Provider>

@@ -7,6 +7,8 @@ import EachCoin from "./eachCoin";
 import UserContext from "pages/User/context";
 import { useQuery } from "react-query";
 import Loading from "components/Loading";
+import ContainerBox from "components/Container";
+import "./asset/index.scss";
 
 const FavouriteDashboard = () => {
   const {
@@ -58,28 +60,33 @@ const FavouriteDashboard = () => {
   }, [favouriteCoins]);
 
   return (
-    <Loading loading={isLoading || isFetching}>
-      <div className="container favourites-pane">
-        <div className="favouriteDashboard-head">
-          <div className="title">Favourite Coins</div>
-          {coins && (
-            <div className="coin-list">
-              {coins
-                .filter((coin: any) => favouriteCoins.includes(coin?.id))
-                .map((coin: any, index: number) => (
-                  <div className="each-coin" key={index}>
-                    <EachCoin
-                      coin={coin}
-                      setSelectedCoin={setSelectedCoin}
-                      currency={currency}
-                    />
-                  </div>
-                ))}
+    <>
+      <br />
+      <ContainerBox title="Favourite Coins">
+        <Loading loading={isLoading || isFetching}>
+          <div className="container favourites-pane">
+            <div className="favouriteDashboard-head">
+              {/* <div className="title">Favourite Coins</div> */}
+              {coins && (
+                <div className="coin-list">
+                  {coins
+                    .filter((coin: any) => favouriteCoins.includes(coin?.id))
+                    .map((coin: any, index: number) => (
+                      <div className="each-coin" key={index}>
+                        <EachCoin
+                          coin={coin}
+                          setSelectedCoin={setSelectedCoin}
+                          currency={currency}
+                        />
+                      </div>
+                    ))}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </div>
-    </Loading>
+          </div>
+        </Loading>
+      </ContainerBox>
+    </>
   );
 };
 

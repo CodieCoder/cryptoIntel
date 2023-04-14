@@ -4,7 +4,7 @@ import { Sparklines, SparklinesLine } from "react-sparklines";
 import CoinIcon from "components/HtmlElements/CoinIcon";
 import CryptoFavourite from "components/HtmlElements/CryptoFavourite";
 import NumberType from "components/NumberType";
-import "./index.scss";
+import "./asset/index.scss";
 import { ICoin } from "Constants";
 
 interface IEachCoin {

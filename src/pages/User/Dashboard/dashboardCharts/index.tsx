@@ -14,6 +14,15 @@ import React, { useContext, useEffect, useState } from "react";
 import BarChart from "./barChart";
 import ChartTopBoxes from "./topBoxes";
 import { useQuery } from "react-query";
+import LineChart from "./lineChart";
+import { ILinearChartData } from "./constants";
+import {
+  DateFormatter,
+  DateIntervalEnum,
+  dateTimeInterval,
+  DateTypeEnum,
+} from "utils/dateFormatter";
+import ContainerBox from "components/Container";
 
 interface IDashboardChart {
   coin: ICoin;
@@ -46,31 +55,19 @@ const DashboardChart: React.FC = () => {
     ];
   };
 
-  // [(1499040000000, // Kline open time
-  // "0.01634790", // Open price
-  // "0.80000000", // High price
-  // "0.01575800", // Low price
-  // "0.01577100", // Close price
-  // "148976.11427815", // Volume
-  // 1499644799999, // Kline Close time
-  // "2434.19055334", // Quote asset volume
-  // 308, // Number of trades
-  // "1756.87402397", // Taker buy base asset volume
-  // "28.46694368", // Taker buy quote asset volume
-  // "0")]; // Unused field, ignore.
+  const currentDateTime = new Date().toString();
 
   const getCoinKline = async () => {
     const symbol: string = selectedCoin?.symbol || "USDT";
     const parameter = {
       symbol: `${symbol.toUpperCase()}USDT`,
-      // symbol: `BTCUSDT`,
       interval: klineInterval.OneDay,
-      startTime: "",
-      endTime: "",
+      startTime: dateTimeInterval(7, "days", DateTypeEnum.unix),
+      endTime: DateFormatter(DateTypeEnum.unix, currentDateTime),
       limit: 500,
     };
 
-    const url = `https://api.binance.com/api/v3/klines?symbol=${parameter.symbol}&interval=${parameter.interval}`;
+    const url = `https://api.binance.com/api/v3/klines?symbol=${parameter.symbol}&interval=${parameter.interval}&startTime=${parameter.startTime}&endTime=${parameter.endTime}`;
     return await AxiosClient.get(`${url}`);
   };
 
@@ -129,10 +126,13 @@ const DashboardChart: React.FC = () => {
   };
 
   const covertDateTime = (value: string) => {
-    return moment(value).format("lll");
+    return moment(value).format("l");
   };
 
-  const getLinearChartData = (rawData: any, selectedCoin: any) => {
+  const getLinearChartData = (
+    rawData: any,
+    selectedCoin: any
+  ): ILinearChartData => {
     const klineData = arrangeKlineData(rawData);
     const linearData = linearDatasetsFromKlineData(
       klineData,
@@ -147,7 +147,10 @@ const DashboardChart: React.FC = () => {
         {
           label: selectedCoin.name,
           data: linearData?.data,
-          backgroundColor: "rgba(155, 219, 132, 0.5)",
+          fill: true,
+          borderColor: "rgba(10, 136, 48, 1)",
+          backgroundColor: "rgba(10, 136, 48, 0.2)",
+          tension: 0.1,
         },
       ],
     };
@@ -160,22 +163,32 @@ const DashboardChart: React.FC = () => {
   useEffect(() => {}, [coinKlineData]);
 
   return (
-    <div className="dashboard-chart">
-      {selectedCoin ? (
-        <Loading loading={isLoading || isFetching}>
-          {coinKlineData && (
-            <>
-              <ChartTopBoxes info={createTopChartInfo(selectedCoin)} />
-              <BarChart
-                coinData={getLinearChartData(coinKlineData, selectedCoin)}
-              />
-            </>
+    <>
+      <br />
+      <ContainerBox title={"Chart"}>
+        <div className="dashboard-chart">
+          {selectedCoin ? (
+            <Loading loading={isLoading || isFetching}>
+              {coinKlineData && (
+                <div className="dashboard-chart-div">
+                  <div className="dashboard-chart-top">
+                    <ChartTopBoxes info={createTopChartInfo(selectedCoin)} />
+                  </div>
+                  <div className="dashboard-chart-bdoy">
+                    <div className="dashboard-chart-body-options"></div>
+                    <LineChart
+                      coinData={getLinearChartData(coinKlineData, selectedCoin)}
+                    />
+                  </div>
+                </div>
+              )}
+            </Loading>
+          ) : (
+            <div>Nothing to show</div>
           )}
-        </Loading>
-      ) : (
-        <div>Nothing to show</div>
-      )}
-    </div>
+        </div>
+      </ContainerBox>
+    </>
   );
 };
 

@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react"
-import TrendingCoins from "./TrendingCoins"
-import "./index.scss"
-import axios from "axios"
-import { Link } from "react-router-dom"
-import { getTrendingCoins } from "../../Apis/coins/getCoins"
-import { useQuery } from "react-query"
-import { Spinner } from "react-bootstrap"
-const url: string = "https://api.coingecko.com/api/v3/search/trending"
-
-const client = axios.create({
-  baseURL: url,
-})
+import React, { useEffect, useState } from "react";
+import TrendingCoins from "./TrendingCoins";
+import "./index.scss";
+import { Link } from "react-router-dom";
+import { getTrendingCoins } from "../../Apis/coins/getCoins";
+import { useQuery } from "react-query";
+import { Spinner, Container } from "react-bootstrap";
 
 const Trending = () => {
-  const [trendData, setTrendData] = useState<any>()
+  const [trendData, setTrendData] = useState<any>();
 
   const { data, isLoading, isFetching } = useQuery(
     "trending-coins",
@@ -22,11 +16,11 @@ const Trending = () => {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
     }
-  )
+  );
 
   useEffect(() => {
-    setTrendData(data?.data?.coins)
-  }, [data])
+    setTrendData(data?.data?.coins);
+  }, [data]);
 
   const getTrends = () => {
     if (trendData?.length > 0) {
@@ -44,13 +38,12 @@ const Trending = () => {
               </Link>
             </div>
           )
-      )
+      );
     }
-  }
+  };
 
   return (
-    <div className="container">
-      <br />
+    <Container>
       <div className="trending-coins">
         <h3>Trending Coins</h3>
         {isLoading || isFetching ? (
@@ -69,8 +62,8 @@ const Trending = () => {
           <div className="row">{getTrends()}</div>
         )}
       </div>
-    </div>
-  )
-}
+    </Container>
+  );
+};
 
-export default Trending
+export default Trending;

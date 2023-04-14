@@ -15,7 +15,7 @@ const UserDashboard = () => {
             xs={12}
             sm={12}
             md={10}
-            lg={5}
+            lg={4}
             className="userDashboard-pane-fav"
           >
             <FavouriteDashboard />
@@ -24,7 +24,7 @@ const UserDashboard = () => {
             xs={12}
             sm={12}
             md={12}
-            lg={7}
+            lg={8}
             className="userDashboard-pane-fav"
           >
             {selectedCoin && <DashboardChart />}

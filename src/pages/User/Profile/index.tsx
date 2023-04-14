@@ -37,7 +37,7 @@ const Profile = () => {
     // const userToken = userRequesToken(userDetails?.key, userDetails?.email)
     try {
       return await AxiosRequest.patch(
-        `user/profile/${userDetails.userKey}`,
+        `user/profile/${userDetails?.userKey}`,
         data
       )
         .then((data) => {

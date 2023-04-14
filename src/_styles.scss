@@ -4,6 +4,8 @@ $border: 1px solid rgba(200, 200, 200, 0.5);
 $borderRadius: 3px;
 $boxShadow: 0px 1px 2px #ddd;
 $fontFamily: raleway, roboto, Helvetica, sans-serif;
+// $mainPageBackground: rgba(240, 240, 240, 0.9);
+$mainPageBackground: rgba(255, 255, 255, 0.9);
 
 //colors
 //text colors
@@ -31,6 +33,9 @@ a {
 .isFavourite {
   color: $primaryColor;
 }
+
+//TRENDING COINS
+$trendingBackgroundColor: #fff;
 
 // PAGE
 .page-section {

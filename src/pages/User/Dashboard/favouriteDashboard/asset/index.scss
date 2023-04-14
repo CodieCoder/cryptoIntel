@@ -1,11 +1,9 @@
 @import "/src/styles";
 
 .favourites-pane {
-  // width: 90%;
   margin: auto;
   margin-top: 1rem;
   min-height: 10rem;
-  background-color: rgba(200, 200, 200, 0.3);
   .favouriteDashboard-head {
     .title {
       font-weight: 600;
@@ -16,15 +14,12 @@
     max-height: 25rem;
     overflow-y: auto;
     margin: auto;
-    // margin-top: -1rem;
-    padding: 1rem;
   }
   .each-coin {
     height: auto;
     margin: auto;
     margin-top: 0.8rem;
     transition: 1s;
-    // background-color: #ddd;
     padding: 0;
     cursor: pointer;
     border-radius: 5px;
