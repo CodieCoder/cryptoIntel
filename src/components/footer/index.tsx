@@ -13,7 +13,7 @@ const Footer = () => {
         <br />
         <div className="row footer-div">
           <div className="col-4">
-            <div className="footer-hd">Pages</div>
+            <div className="footer-hd">Cryptowise</div>
           </div>
           <div className="col-lg-6 col-md-4 col-sm-10">
             <div className="footer-links">

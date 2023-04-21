@@ -45,7 +45,7 @@ const Trending = () => {
   return (
     <Container>
       <div className="trending-coins">
-        <h3>Trending Coins</h3>
+        <h4>Trending Coins</h4>
         {isLoading || isFetching ? (
           <div className="loading-div">
             <Spinner

@@ -8,6 +8,7 @@ import PagesContext from "../../Context";
 import CoinPagination from "../Pagination/Pagination";
 import { useQuery } from "react-query";
 import { getAllCoinsMarket } from "../../Apis/coins/getCoins";
+import ContainerBox from "components/Container";
 
 interface ICoinListist {
   pagination?: boolean;
@@ -71,7 +72,7 @@ const CoinsListing: React.FC<ICoinListist> = ({
   return (
     <>
       <CoinModal coin={selectedCoin} show={modalOn} toggler={handleClose} />
-      <Container>
+      <ContainerBox loading={isLoading || isFetching} title="Coin list">
         <div className="container coin-list-div">
           <div className="coin-list-search-div">
             <input
@@ -81,79 +82,57 @@ const CoinsListing: React.FC<ICoinListist> = ({
               onChange={(e) => setCoinSearch(e.target.value)}
             />
           </div>
-          {isLoading || isFetching ? (
-            <div className="loading-div">
-              <Spinner
-                as="span"
-                animation="border"
-                role="status"
-                variant="dark"
-                aria-hidden="true"
-              />
-              <br />
-              Loading...
-            </div>
-          ) : (
-            <>
-              <div className="coin-list d-none d-md-block">
-                {/* <h3>Top 50 coins</h3> */}
-
-                <Table hover responsive>
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col">#</th>
-                      <th scope="col">Coin</th>
-                      <th scope="col"></th>
-                      <th scope="col">Price</th>
-                      <th scope="col">24h</th>
-                      <th scope="col">24h Volume</th>
-                      <th scope="col">Market cap</th>
-                      <th scope="col">Last 7 days</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {coinListData &&
-                      filterBySearch().map((coin: any, index: number) => (
-                        <CoinList
-                          coin={coin}
-                          key={index}
-                          showModal={modalShow}
-                        />
-                      ))}
-                  </tbody>
-                </Table>
-              </div>
-              <div className="coin-list d-block d-md-none">
-                {/* for mobile view */}
-                {/* <h3>Top 50 coins</h3> */}
-                <table className="table table-borderless table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col">#</th>
-                      <th scope="col">Coin</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Last 7 days</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {coinListData &&
-                      filterBySearch().map((coin: any, index: number) => (
-                        <CoinListMobile
-                          coin={coin}
-                          key={index}
-                          showModal={modalShow}
-                        />
-                      ))}
-                  </tbody>
-                </table>
-              </div>
-            </>
-          )}
+          <div className="coin-list d-none d-md-block">
+            <Table hover responsive>
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">#</th>
+                  <th scope="col">Coin</th>
+                  <th scope="col"></th>
+                  <th scope="col">Price</th>
+                  <th scope="col">24h</th>
+                  <th scope="col">24h Volume</th>
+                  <th scope="col">Market cap</th>
+                  <th scope="col">Last 7 days</th>
+                </tr>
+              </thead>
+              <tbody>
+                {coinListData &&
+                  filterBySearch().map((coin: any, index: number) => (
+                    <CoinList coin={coin} key={index} showModal={modalShow} />
+                  ))}
+              </tbody>
+            </Table>
+          </div>
+          <div className="coin-list d-block d-md-none">
+            {/* for mobile view */}
+            {/* <h3>Top 50 coins</h3> */}
+            <table className="table table-borderless table-hover">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">#</th>
+                  <th scope="col">Coin</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Last 7 days</th>
+                </tr>
+              </thead>
+              <tbody>
+                {coinListData &&
+                  filterBySearch().map((coin: any, index: number) => (
+                    <CoinListMobile
+                      coin={coin}
+                      key={index}
+                      showModal={modalShow}
+                    />
+                  ))}
+              </tbody>
+            </table>
+          </div>
         </div>
         {pagination && <CoinPagination pageNo={pageNo} setPageNo={setPageNo} />}
-      </Container>
+      </ContainerBox>
     </>
   );
 };

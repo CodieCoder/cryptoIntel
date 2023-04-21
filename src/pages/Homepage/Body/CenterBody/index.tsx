@@ -7,6 +7,7 @@ const CenterBody = () => {
   return (
     <div className="center-body">
       <TopStories />
+      <br />
       <CoinsListing />
     </div>
   );

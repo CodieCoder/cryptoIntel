@@ -9,7 +9,7 @@ const TopStories = () => {
   const {
     data: allNewsData,
     // refetch: refetchNews,
-  } = useQuery("user-profile", () => getNewsHeadlines(), {
+  } = useQuery("user-profile", () => getNewsHeadlines(1, 3), {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
@@ -17,15 +17,15 @@ const TopStories = () => {
   //   const
   useEffect(() => {
     if (allNewsData?.data?.error === false) {
-      const numberOfNews = allNewsData.data.result.slice(0, 3);
-      setNewsData(numberOfNews);
+      // const numberOfNews = allNewsData.data.result.slice(0, 3);
+      setNewsData(allNewsData.data?.result.data);
     }
   }, [allNewsData]);
 
   return (
     <div>
       <br />
-      <h3>Top stories</h3>
+      <h4>Top stories</h4>
       {newsData && <Headlines news={newsData} />}
     </div>
   );

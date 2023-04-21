@@ -6,7 +6,8 @@ const LeftBody = () => {
     <div className="left-body">
       <div className="">
         {/* <NftList /> */}
-        <hr />
+        <br />
+        <br />
       </div>
       <div className="news-brief">
         <NewsBrief />
