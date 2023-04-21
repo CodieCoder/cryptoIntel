@@ -1,13 +1,12 @@
-import moment from "moment"
-import React from "react"
-import { Col, Row } from "react-bootstrap"
-import { BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs"
-import { FaFacebookF } from "react-icons/fa"
-import { IoShareSocialSharp } from "react-icons/io5"
+import React from "react";
+import { Col, Row } from "react-bootstrap";
+import { BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
+import { FaFacebookF } from "react-icons/fa";
+import { IoShareSocialSharp } from "react-icons/io5";
 
 type TShareButtons = {
-  link: string
-}
+  link: string;
+};
 
 const ShareButtons: React.FC<TShareButtons> = ({ link }) => {
   return (
@@ -30,7 +29,7 @@ const ShareButtons: React.FC<TShareButtons> = ({ link }) => {
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default ShareButtons
+export default ShareButtons;

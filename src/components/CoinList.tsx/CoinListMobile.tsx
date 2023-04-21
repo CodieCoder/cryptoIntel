@@ -1,5 +1,4 @@
-import React from "react"
-import { Sparklines, SparklinesLine } from "react-sparklines"
+import { Sparklines, SparklinesLine } from "react-sparklines";
 
 const CoinList = ({ coin, showModal }: { coin: any; showModal: any }) => {
   return (
@@ -34,7 +33,7 @@ const CoinList = ({ coin, showModal }: { coin: any; showModal: any }) => {
         </Sparklines>
       </td>
     </tr>
-  )
-}
+  );
+};
 
-export default CoinList
+export default CoinList;

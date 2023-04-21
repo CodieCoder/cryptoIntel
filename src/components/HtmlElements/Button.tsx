@@ -1,12 +1,12 @@
-import { ReactNode } from "react"
-import { Spinner } from "react-bootstrap"
+import { ReactNode } from "react";
+import { Spinner } from "react-bootstrap";
 
 interface ILoadingButton {
-  children: ReactNode
-  onClick?: () => {}
-  className?: string | undefined | null
-  style?: any
-  loading?: boolean
+  children: ReactNode;
+  onClick?: () => {};
+  className?: string | undefined | null;
+  style?: any;
+  loading?: boolean;
 }
 
 export const MyButton = ({
@@ -24,8 +24,8 @@ export const MyButton = ({
     >
       {children}
     </button>
-  )
-}
+  );
+};
 
 export const LoadingButton: React.FC<ILoadingButton> = ({
   children,
@@ -54,5 +54,5 @@ export const LoadingButton: React.FC<ILoadingButton> = ({
         children
       )}
     </button>
-  )
-}
+  );
+};

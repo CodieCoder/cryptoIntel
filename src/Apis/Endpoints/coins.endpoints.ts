@@ -3,3 +3,7 @@ export enum getCoins_CoinGecko {
   MarketData = "https://api.coingecko.com/api/v3/coins/markets",
   Trending = "https://api.coingecko.com/api/v3/search/trending",
 }
+
+export enum BinanceEndpointEnum {
+  Kline = "https://api.binance.com/api/v3/klines",
+}

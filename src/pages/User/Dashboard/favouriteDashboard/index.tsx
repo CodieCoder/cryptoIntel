@@ -1,45 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getMarketById } from "Apis/coins/getCoins";
-import { updateFavourite } from "Apis/user/favourite";
-import CoinIcon from "components/HtmlElements/CoinIcon";
-import PagesContext from "Context";
 import EachCoin from "./eachCoin";
-import UserContext from "pages/User/context";
 import { useQuery } from "react-query";
-import Loading from "components/Loading";
 import ContainerBox from "components/Container";
 import "./asset/index.scss";
+import { IconTypesEnum } from "components/Container/constants";
+import NoData from "components/Errors/NoData";
+import usePagesProvider from "usePagesProvider";
+import useUserProvider from "pages/User/useUserContext";
 
 const FavouriteDashboard = () => {
-  const {
-    currency,
-    favouriteCoins,
-    updateFavouriteCoinsHandler,
-    notify,
-    login,
-    setShowLoginModal,
-  } = useContext(PagesContext);
+  const { currency, favouriteCoins } = usePagesProvider();
 
-  const { userDetails, setSelectedCoin } = useContext(UserContext);
-  // const [isFavourite, setIsFavourite] = useState(false)
+  const { setSelectedCoin } = useUserProvider();
   const [coins, setCoins] = useState<any>();
 
   const getFavouriteCoinsPrices = () => {
-    // getMarketById(favouriteCoins.join(","), currency)
-    //   .then((data) => {
-    //     const coins = data?.data || [];
-    //     if (coins) {
-    //       setCoins(coins);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     notify.error("Error getting favourite coins.");
-    //     console.error(error);
-    //   });
-    return getMarketById(favouriteCoins.join(","), currency);
+    return favouriteCoins && getMarketById(favouriteCoins.join(","), currency);
   };
 
-  const { data, isLoading, isFetching, refetch } = useQuery(
+  const { isLoading, isFetching, refetch } = useQuery(
     "get-favourite-coins-marketData",
     getFavouriteCoinsPrices,
     {
@@ -52,39 +32,46 @@ const FavouriteDashboard = () => {
       onError(error) {
         console.error(error);
       },
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
     }
   );
 
   useEffect(() => {
     favouriteCoins?.length > 0 && refetch();
+    // eslint-disable-next-line
   }, [favouriteCoins]);
 
   return (
     <>
       <br />
-      <ContainerBox title="Favourite Coins">
-        <Loading loading={isLoading || isFetching}>
-          <div className="container favourites-pane">
-            <div className="favouriteDashboard-head">
-              {/* <div className="title">Favourite Coins</div> */}
-              {coins && (
-                <div className="coin-list">
-                  {coins
-                    .filter((coin: any) => favouriteCoins.includes(coin?.id))
-                    .map((coin: any, index: number) => (
-                      <div className="each-coin" key={index}>
-                        <EachCoin
-                          coin={coin}
-                          setSelectedCoin={setSelectedCoin}
-                          currency={currency}
-                        />
-                      </div>
-                    ))}
-                </div>
-              )}
-            </div>
+      <ContainerBox
+        title="Favourite Coins"
+        loading={isLoading || isFetching}
+        icon={IconTypesEnum.favourite}
+      >
+        <div className="favourites-pane">
+          <div className="favouriteDashboard-head">
+            {coins ? (
+              <div className="coin-list">
+                {coins
+                  .filter((coin: any) => favouriteCoins?.includes(coin?.id))
+                  .map((coin: any, index: number) => (
+                    <div className="each-coin" key={index}>
+                      <EachCoin
+                        coin={coin}
+                        setSelectedCoin={setSelectedCoin}
+                        currency={currency}
+                      />
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              <NoData />
+            )}
           </div>
-        </Loading>
+        </div>
       </ContainerBox>
     </>
   );

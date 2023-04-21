@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
 interface IDefaultBody {

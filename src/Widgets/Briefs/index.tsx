@@ -5,19 +5,11 @@ import { IBriefObject } from "./constants";
 import EachBrief from "./eachBrief";
 import "./index.scss";
 
-interface ISocialTrends {
-  count?: number;
-}
 const NewsBrief = () => {
   const [briefData, setBriefData] = useState<any>();
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
-  const {
-    data,
-    isLoading,
-    isFetching,
-    // refetch: refetchNews,
-  } = useQuery("news-brief", () => getNewsBrief(page, pageSize), {
+  // const [page, setPage] = useState(1);
+  // const [pageSize, setPageSize] = useState(20);
+  const { data } = useQuery("news-brief", () => getNewsBrief(1, 20), {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });

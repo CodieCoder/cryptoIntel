@@ -1,6 +1,6 @@
-import React from "react"
-import "./index.scss"
-import { BsDatabaseSlash } from "react-icons/bs"
+import React from "react";
+import "./index.scss";
+import { BsDatabaseSlash } from "react-icons/bs";
 
 const NoData = () => {
   return (
@@ -12,7 +12,7 @@ const NoData = () => {
         <div className="noData-text">No data found</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NoData
+export default NoData;

@@ -15,36 +15,37 @@ const UserProvider = (props: { children: React.ReactNode }) => {
   const [userDetails, setUserDetails] = useState<USERDETAILS | undefined>();
   const [selectedCoin, setSelectedCoin] = useState<ICoin | undefined>();
 
-  const getLogin = async () => {
-    const checkLogin = isUserLogin();
-    const userData = await getUserDetails();
-    if (checkLogin === true && userData !== false) {
-      setIsLogin(checkLogin);
-      setUserDetails(userData);
-    } else {
-      NavigateTo("/login");
-    }
-  };
-
   useEffect(() => {
+    const getLogin = async () => {
+      const checkLogin = isUserLogin();
+      const userData = await getUserDetails();
+      if (checkLogin === true && userData !== false) {
+        setIsLogin(checkLogin);
+        setUserDetails(userData);
+      } else {
+        NavigateTo("/login");
+      }
+    };
     getLogin();
+    // eslint-disable-next-line
   }, []);
 
-  const logOut = () => {
-    logoutUser();
-    NavigateTo("/login");
-  };
+  const dataState = useMemo(() => {
+    const logOut = () => {
+      logoutUser();
+      NavigateTo("/login");
+    };
 
-  const dataState = useMemo(
-    () => ({
+    return {
       isLogin,
       logOut,
       userDetails,
       selectedCoin,
       setSelectedCoin,
-    }),
-    [isLogin, logOut, userDetails, selectedCoin, setSelectedCoin]
-  );
+    };
+
+    // eslint-disable-next-line
+  }, [isLogin, userDetails, selectedCoin, setSelectedCoin]);
   return (
     <UserContext.Provider value={dataState}>{children}</UserContext.Provider>
   );

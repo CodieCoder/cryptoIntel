@@ -1,23 +1,23 @@
-import moment from "moment"
-import React, { useState } from "react"
-import { Form } from "react-bootstrap"
-import { CountryList } from "../../../Assets/CountryList"
-import { GenderList } from "../../../Assets/GenderList"
-import { MyButton } from "../../../components/HtmlElements/Button"
+import moment from "moment";
+import React from "react";
+import { Form } from "react-bootstrap";
+import { CountryList } from "Assets/CountryList";
+import { GenderList } from "Assets/GenderList";
+import { MyButton } from "components/HtmlElements/Button";
 
 interface IProfileForm {
-  profileData: any
-  editHandler: () => void
-  UpdateUserProfile: (e: any) => void
+  profileData: any;
+  editHandler: () => void;
+  isFormDisabled: boolean;
+  UpdateUserProfile: (e: any) => void;
 }
 
 const ProfileForm: React.FC<IProfileForm> = ({
   profileData,
   editHandler,
+  isFormDisabled,
   UpdateUserProfile,
 }) => {
-  const [isFormDisabled, setIsFormDisabled] = useState(true)
-
   return (
     <>
       <br />
@@ -35,7 +35,7 @@ const ProfileForm: React.FC<IProfileForm> = ({
             <Form.Group className="mb-3">
               <Form.Label htmlFor="disabledTextInput">Name</Form.Label>
               <Form.Control
-                name="fullName"
+                name="fullname"
                 defaultValue={profileData?.fullname}
                 className="profile-inputs"
               />
@@ -77,7 +77,7 @@ const ProfileForm: React.FC<IProfileForm> = ({
                     >
                       {country.name}
                     </option>
-                  )
+                  );
                 })}
               </Form.Select>
             </Form.Group>
@@ -100,7 +100,7 @@ const ProfileForm: React.FC<IProfileForm> = ({
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ProfileForm
+export default ProfileForm;

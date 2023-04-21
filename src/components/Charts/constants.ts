@@ -1,4 +1,4 @@
-export enum klineInterval {
+export enum KlineIntervalEnum {
   OneSecod = "1s",
   OneMinute = "1m",
   ThreeMinute = "3m",
@@ -14,12 +14,48 @@ export enum klineInterval {
   OneDay = "1d",
   ThreeDay = "3d",
   OneWeek = "1w",
-  OneMillion = "1M",
+  OneMonth = "1M",
+  threeMonths = "3M",
+  sixMonths = "6M",
+  oneYear = "1Y",
 }
+
+export const ChartIntervalsObject = [
+  {
+    title: "One day",
+    short: KlineIntervalEnum.OneDay,
+    interval: KlineIntervalEnum.FourHour,
+  },
+  {
+    title: "One week",
+    short: KlineIntervalEnum.OneWeek,
+    interval: KlineIntervalEnum.OneDay,
+  },
+  {
+    title: "one month",
+    short: KlineIntervalEnum.OneMonth,
+    interval: KlineIntervalEnum.OneWeek,
+  },
+  {
+    title: "three months",
+    short: KlineIntervalEnum.threeMonths,
+    interval: KlineIntervalEnum.OneMonth,
+  },
+  {
+    title: "six months",
+    short: KlineIntervalEnum.sixMonths,
+    interval: KlineIntervalEnum.OneMonth,
+  },
+  {
+    title: "One year",
+    short: KlineIntervalEnum.oneYear,
+    interval: KlineIntervalEnum.OneMonth,
+  },
+];
 
 export interface IKlineParams {
   symbol?: string;
-  interval?: klineInterval;
+  interval?: KlineIntervalEnum;
   startTime?: string;
   endTime?: string;
   limit?: number;

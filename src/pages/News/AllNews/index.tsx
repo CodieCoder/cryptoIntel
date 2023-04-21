@@ -10,17 +10,16 @@ import { TNews } from "Constants";
 
 const NewsPage: React.FC = () => {
   const [newsData, setNewsData] = useState<TNews[]>();
-  const [error, setError] = useState(false);
-  // const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
+  // const [error, setError] = useState(false);
+  // const [page, setPage] = useState(1);
+  // const [pageSize, setPageSize] = useState(20);
 
   const {
     data: allNewsData,
     isLoading,
-    isFetching,
+    // isFetching,
     // refetch: refetchNews,
-  } = useQuery("all-news", () => getNews(page, pageSize), {
+  } = useQuery("all-news", () => getNews(1, 20), {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
@@ -33,8 +32,8 @@ const NewsPage: React.FC = () => {
       );
       // setLoading(false);
     } else {
-      setError(true);
-    }
+      // setError(true);
+    } // eslint-disable-next-line
   }, [allNewsData]);
 
   return (

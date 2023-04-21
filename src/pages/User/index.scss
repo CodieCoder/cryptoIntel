@@ -7,7 +7,6 @@
   }
   .user-layout-body {
     margin-top: -1rem;
-    // background-color: rgba(220, 220, 220, 0.5);
     padding-bottom: 1rem;
   }
 }
@@ -17,8 +16,11 @@
 }
 
 .user-profile {
+  max-width: 30rem;
+  margin: auto;
+  margin-top: 1rem;
   .profile-inputs {
-    width: 20rem;
+    max-width: 20rem;
   }
   .profile-update-btn {
     text-align: right;

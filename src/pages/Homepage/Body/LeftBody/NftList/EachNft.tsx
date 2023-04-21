@@ -1,5 +1,3 @@
-import React from "react";
-
 // asset_platform_id: "ethereum";
 // contract_address: "0xd433a216266d998c557441ce722c13307be3597f";
 // id: "villa-devendome-paris-elk";

@@ -5,7 +5,8 @@ $borderRadius: 3px;
 $boxShadow: 0px 1px 2px #ddd;
 $fontFamily: raleway, roboto, Helvetica, sans-serif;
 // $mainPageBackground: rgba(240, 240, 240, 0.9);
-$mainPageBackground: rgba(255, 255, 255, 0.9);
+$mainPageBackground: rgba(240, 240, 240, 0.7);
+$containerBoxBackground: #fff;
 
 //colors
 //text colors
@@ -13,6 +14,7 @@ $green: rgb(3, 126, 3);
 $red: rgb(126, 7, 3);
 $primaryColor: rgba(60, 199, 198, 1);
 $primaryColor_light: rgba(60, 199, 198, 0.3);
+$primaryColor_dark: rgba(40, 179, 178, 1);
 
 //LINKS
 a {

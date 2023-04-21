@@ -2,14 +2,33 @@
 
 .containerBox {
   padding: 0.2rem;
-  .add-shadow {
+  overflow: auto;
+  .containerBox-body {
     padding: 1rem;
     border-radius: 5px;
+    background-color: $containerBoxBackground;
+  }
+  .add-shadow {
     box-shadow: 0px 0px 5px #ccc;
   }
-  .containerBox-title {
-    font-weight: 600;
+  .containerBox-header {
+    display: flex;
+    .containerBox-icon {
+      width: 2rem;
+      border-right: 1px solid #ccc;
+      text-align: center;
+      .icon-component {
+        font-size: larger;
+        color: $primaryColor;
+      }
+    }
+    .containerBox-title {
+      margin-left: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
   }
   .containerBox-content {
+    // background-color: $containerBoxBackground;
   }
 }

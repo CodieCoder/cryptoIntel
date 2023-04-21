@@ -1,33 +1,33 @@
-import React, { useContext, useEffect, useState } from "react"
-import CoinList from "./CoinsList"
-import "./index.scss"
-import CoinListMobile from "./CoinListMobile"
-import CoinModal from "./CoinModal"
-import { Container, Spinner, Table } from "react-bootstrap"
-import PagesContext from "../../Context"
-import CoinPagination from "../Pagination/Pagination"
-import { useQuery } from "react-query"
-import { getAllCoinsMarket } from "../../Apis/coins/getCoins"
+import React, { useContext, useEffect, useState } from "react";
+import CoinList from "./CoinsList";
+import "./index.scss";
+import CoinListMobile from "./CoinListMobile";
+import CoinModal from "./CoinModal";
+import { Container, Spinner, Table } from "react-bootstrap";
+import PagesContext from "../../Context";
+import CoinPagination from "../Pagination/Pagination";
+import { useQuery } from "react-query";
+import { getAllCoinsMarket } from "../../Apis/coins/getCoins";
 
 interface ICoinListist {
-  pagination?: boolean
-  count?: number
+  pagination?: boolean;
+  count?: number;
 }
 const CoinsListing: React.FC<ICoinListist> = ({
   pagination = false,
   count = 20,
 }) => {
-  const { currency } = useContext(PagesContext)
+  const { currency } = useContext(PagesContext);
 
-  const [coinListData, setCoinListData] = useState<any>()
-  const [coinSearch, setCoinSearch] = useState<string>("")
-  const [modalOn, setModalOn] = useState<boolean>(false)
-  const [selectedCoin, setSelectedCoin] = useState<any>()
-  const [pageNo, setPageNo] = useState(1)
+  const [coinListData, setCoinListData] = useState<any>();
+  const [coinSearch, setCoinSearch] = useState<string>("");
+  const [modalOn, setModalOn] = useState<boolean>(false);
+  const [selectedCoin, setSelectedCoin] = useState<any>();
+  const [pageNo, setPageNo] = useState(1);
 
   const getCoins = () => {
-    return getAllCoinsMarket(currency, count, pageNo)
-  }
+    return getAllCoinsMarket(currency, count, pageNo);
+  };
 
   const { data, isLoading, isFetching, refetch } = useQuery(
     "all-coins",
@@ -36,36 +36,37 @@ const CoinsListing: React.FC<ICoinListist> = ({
       refetchOnMount: false,
       refetchOnWindowFocus: false,
     }
-  )
+  );
 
   useEffect(() => {
-    refetch()
-  }, [currency, pageNo])
+    refetch();
+    // eslint-disable-next-line
+  }, [currency, pageNo]);
 
   useEffect(() => {
-    data && setCoinListData(data?.data)
-  }, [data])
+    data && setCoinListData(data?.data);
+  }, [data]);
 
   const filterBySearch = () => {
-    const searchResult = coinListData
-    const searchTerm = coinSearch.toLocaleLowerCase()
+    const searchResult = coinListData;
+    const searchTerm = coinSearch.toLocaleLowerCase();
     if (searchResult) {
       return searchResult?.filter(
         (coin: any) =>
           coin?.name?.toLocaleLowerCase().includes(searchTerm) ||
           coin?.symbol?.toLocaleLowerCase().includes(searchTerm)
-      )
+      );
     }
 
-    return searchResult
-  }
+    return searchResult;
+  };
 
   const modalShow = (coin: any) => {
-    setSelectedCoin(coin)
-    setModalOn(true)
-  }
+    setSelectedCoin(coin);
+    setModalOn(true);
+  };
 
-  const handleClose = () => setModalOn(false)
+  const handleClose = () => setModalOn(false);
 
   return (
     <>
@@ -154,7 +155,7 @@ const CoinsListing: React.FC<ICoinListist> = ({
         {pagination && <CoinPagination pageNo={pageNo} setPageNo={setPageNo} />}
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default CoinsListing
+export default CoinsListing;

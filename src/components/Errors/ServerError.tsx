@@ -1,9 +1,5 @@
-import React from "react"
-import { AiOutlineCloudServer } from "react-icons/ai"
-import { CiWarning } from "react-icons/ci"
-import { VscServerProcess } from "react-icons/vsc"
-import { WiStormWarning } from "react-icons/wi"
-import "./index.scss"
+import { CiWarning } from "react-icons/ci";
+import "./index.scss";
 
 const ServerError = () => {
   return (
@@ -19,7 +15,7 @@ const ServerError = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ServerError
+export default ServerError;

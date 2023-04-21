@@ -1,32 +1,33 @@
-import React, { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import axios from "axios"
-import "./index.scss"
-import Spinner from "react-bootstrap/esm/Spinner"
-import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets-fixed"
-import LivePrice from "../../components/LivePrice"
-import { Sparklines, SparklinesLine } from "react-sparklines"
-import PagesContext from "../../Context"
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import "./index.scss";
+import Spinner from "react-bootstrap/esm/Spinner";
+import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets-fixed";
+import LivePrice from "../../components/LivePrice";
+import { Sparklines, SparklinesLine } from "react-sparklines";
+import PagesContext from "../../Context";
 
 const Coinpage = () => {
-  const { vs_currency } = useContext(PagesContext)
-  const { coinId } = useParams()
-  const [coinData, setCoinData] = useState<any>([])
-  const [coinLoading, setCoinLoading] = useState<boolean>(true)
+  const { vs_currency } = useContext(PagesContext);
+  const { coinId } = useParams();
+  const [coinData, setCoinData] = useState<any>([]);
+  const [coinLoading, setCoinLoading] = useState<boolean>(true);
 
   const getCoinData = async () => {
-    const url = `https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&sparkline=true`
+    const url = `https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&sparkline=true`;
     try {
       await axios.get(url).then((response) => {
-        setCoinData(response.data)
-      })
-      setCoinLoading(false)
+        setCoinData(response.data);
+      });
+      setCoinLoading(false);
     } catch (err) {}
-  }
+  };
 
   useEffect(() => {
-    getCoinData()
-  }, [vs_currency])
+    getCoinData();
+    // eslint-disable-next-line
+  }, [vs_currency]);
 
   const displayData = (coin: any) => {
     if (coin) {
@@ -237,9 +238,9 @@ const Coinpage = () => {
             ></div>
           </div>
         </div>
-      )
+      );
     }
-  }
+  };
 
   return (
     <div className="container">
@@ -266,7 +267,7 @@ const Coinpage = () => {
         {/* <div className="col-lg-3"></div> */}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Coinpage
+export default Coinpage;

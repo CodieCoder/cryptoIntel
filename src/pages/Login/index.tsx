@@ -1,39 +1,38 @@
-import React, { useContext, useState } from "react"
-import { Alert, Fade, FloatingLabel, Form } from "react-bootstrap"
-import { LoadingButton } from "../../components/HtmlElements/Button"
-import { formValidator, ValidatorEnum } from "../../utils/FormValidator"
-import UserLogin from "../../Apis/user/login"
-import "./index.scss"
-import PagesContext from "../../Context"
+import React, { useContext, useState } from "react";
+import { Alert, Fade, FloatingLabel, Form } from "react-bootstrap";
+import { LoadingButton } from "../../components/HtmlElements/Button";
+import { formValidator, ValidatorEnum } from "../../utils/FormValidator";
+import UserLogin from "../../Apis/user/login";
+import "./index.scss";
+import PagesContext from "../../Context";
 
 const LoginPage = () => {
-  const { notify, loginHandler } = useContext(PagesContext)
-  const [input_Email, setInput_Email] = useState("")
-  const [err_Email, setErr_Email] = useState(false)
-  const [input_Password, setInput_Password] = useState("")
-  const [loginResponse, setLoginResponse] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const { notify, loginHandler } = useContext(PagesContext);
+  const [input_Email, setInput_Email] = useState("");
+  const [err_Email, setErr_Email] = useState(false);
+  const [input_Password, setInput_Password] = useState("");
+  const [loginResponse, setLoginResponse] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const checkEmailTyping = (text: string) => {
-    setErr_Email(false)
+    setErr_Email(false);
     const form_data = {
       formField: text,
       type: ValidatorEnum.EMAIL,
       range: "5-50",
       errCheck: setErr_Email,
-    }
+    };
 
     if (text.length > 4) {
-      formValidator(form_data)
+      formValidator(form_data);
     }
-    setInput_Email(text)
-  }
+    setInput_Email(text);
+  };
 
   const LoginFn = (e: React.FormEvent<HTMLFormElement>) => {
-    // const form = e.currentTarget;
-    e.preventDefault()
-    e.stopPropagation()
-    setLoginResponse(false)
+    e.preventDefault();
+    e.stopPropagation();
+    setLoginResponse(false);
 
     const formFIelds = [
       {
@@ -42,41 +41,41 @@ const LoginPage = () => {
         range: "5-50",
         errCheck: setErr_Email,
       },
-    ]
+    ];
 
     const errCheck = formFIelds.filter(
       (field) => formValidator(field) === false
-    )
+    );
     if (errCheck.length > 0) {
-      return
+      return;
     } else {
-      setIsLoading(true)
+      setIsLoading(true);
       const DataToPost = {
         email: input_Email,
         password: input_Password,
-      }
+      };
       UserLogin(DataToPost)
         .then((data) => {
           if (data === false) {
-            setLoginResponse(true)
-            notify.error("Network Error.")
+            setLoginResponse(true);
+            notify.error("Network Error.");
           } else {
             //redirect to User dashboard page
             //save user data in context
             if (data?.error === false) {
-              loginHandler(data.result)
+              loginHandler(data.result);
             }
-            setLoginResponse(true)
+            setLoginResponse(true);
           }
         })
         .catch((error) => {
-          console.error(error)
+          console.error(error);
         })
         .finally(() => {
-          setIsLoading(false)
-        })
+          setIsLoading(false);
+        });
     }
-  }
+  };
 
   return (
     <div className="container page-section">
@@ -142,7 +141,7 @@ const LoginPage = () => {
         </Form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

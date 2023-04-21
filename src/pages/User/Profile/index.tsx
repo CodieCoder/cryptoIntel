@@ -1,96 +1,58 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AxiosRequest } from "../../../Library/axios";
-import UserContext from "../context";
+import { useState } from "react";
 import { useQuery, useMutation } from "react-query";
-import { Spinner } from "react-bootstrap";
-import PagesContext from "../../../Context";
 import ProfileForm from "./ProfileForm";
-import ServerError from "components/Errors/ServerError";
 import NoData from "components/Errors/NoData";
+import { getUserProfile, updateUserProfile } from "Apis/user/profile";
+import useUserProvider from "../useUserContext";
+import ContainerBox from "components/Container";
+import { IconTypesEnum } from "components/Container/constants";
+import usePagesProvider from "usePagesProvider";
 
 const Profile = () => {
-  const { userDetails, logOut } = useContext(UserContext);
-  const { notify } = useContext(PagesContext);
+  const { userDetails } = useUserProvider();
+  const { notify } = usePagesProvider();
   const [isFormDisabled, setIsFormDisabled] = useState(true);
-  const getUserProfile = async () => {
-    // const userToken = userRequesToken(userDetails?.key, userDetails?.email)
-    if (!userDetails) {
-      return;
-    }
-    return AxiosRequest.get(`user/profile/${userDetails.userKey}`)
-      .then((data) => {
-        if (data?.data?.error === false) {
-          return data?.data?.msg;
-        } else {
-          logOut();
-        }
 
-        console.log("Testing profileData : ", data);
-      })
-      .catch((error) => {
-        console.error(error);
-        return error;
-      });
-  };
-
-  const updateUserProfile = async (data: any) => {
-    // const userToken = userRequesToken(userDetails?.key, userDetails?.email)
-    try {
-      return await AxiosRequest.patch(
-        `user/profile/${userDetails?.userKey}`,
-        data
-      )
-        .then((data) => {
-          if (data?.data?.error) {
-            notify.warning(data.data.msg);
-            return data?.data?.msg;
-          } else {
-            notify.success(data.data.msg);
-            return data?.data?.msg;
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-          notify.error("An error occured");
-          return false;
-        })
-        .finally(() => {
-          refetchProfile();
-        });
-    } catch (error) {
-      console.error(error);
-      notify.error("An error occured.");
-      return error;
-    }
+  const updateProfile = async (data: any) => {
+    return userDetails && (await updateUserProfile(userDetails.userKey, data));
   };
 
   const {
     data: profileData,
     isLoading,
+    isFetching,
     refetch: refetchProfile,
-  } = useQuery("user-profile", () => getUserProfile(), {
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    enabled: !!userDetails,
-    // onSuccess(data) {},
-  });
+  } = useQuery(
+    "user-profile",
+    () => userDetails && getUserProfile(userDetails?.userKey),
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      enabled: !!userDetails,
+    }
+  );
 
   const { mutate: updateUserProfileMutation, isLoading: isUpdating } =
-    useMutation(updateUserProfile, {
+    useMutation(updateProfile, {
       onSuccess: (data) => {
-        // notify.success(data)
+        if (data?.error) {
+          notify.warning(data.result);
+        } else {
+          notify.success("Profile updated");
+        }
       },
-      onError: (error) => {
-        // notify.error("error")
+      onError: () => {
+        notify.error("Error updating profile");
       },
-      // onSettled: () => refetchProfile(),
+      onSettled: () => refetchProfile(),
     });
+
   const UpdateUserProfile = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     setIsFormDisabled(true);
     const formData = new FormData(e.target);
-    // formDataObj = Object.fromEntries(formData.entries())
     updateUserProfileMutation(formData);
   };
 
@@ -101,29 +63,24 @@ const Profile = () => {
 
   return (
     <div className="user-profile">
-      {isLoading || isUpdating ? (
-        <div className="user-layout-body-loading">
-          <Spinner
-            as="span"
-            animation="border"
-            role="status"
-            variant="dark"
-            aria-hidden="true"
-          />
-        </div>
-      ) : (
+      <ContainerBox
+        title="User profile"
+        loading={isLoading || isFetching || isUpdating}
+        icon={IconTypesEnum.userProfile}
+      >
         <div className="profile-form">
-          {profileData ? (
+          {profileData?.result ? (
             <ProfileForm
-              profileData={profileData}
+              profileData={profileData?.result}
               editHandler={editHandler}
+              isFormDisabled={isFormDisabled}
               UpdateUserProfile={UpdateUserProfile}
             />
           ) : (
             <NoData />
           )}
         </div>
-      )}
+      </ContainerBox>
     </div>
   );
 };

@@ -1,7 +1,5 @@
-import React from "react";
-import NftList from "./NftList";
 import "./index.scss";
-import NewsBrief from "../../../../Widgets/Briefs";
+import NewsBrief from "Widgets/Briefs";
 
 const LeftBody = () => {
   return (

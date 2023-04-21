@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import UserContext from "../context";
 import DashboardChart from "./dashboardCharts/";
 import FavouriteDashboard from "./favouriteDashboard";
 import "./index.scss";
 
 const UserDashboard = () => {
-  const { selectedCoin } = useContext(UserContext);
   return (
     <Container>
       <div className="userDashboard">
@@ -27,7 +24,7 @@ const UserDashboard = () => {
             lg={8}
             className="userDashboard-pane-fav"
           >
-            {selectedCoin && <DashboardChart />}
+            <DashboardChart />
           </Col>
         </Row>
       </div>

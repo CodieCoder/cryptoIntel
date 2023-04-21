@@ -1,8 +1,7 @@
-import moment from "moment"
-import React from "react"
-import Card from "react-bootstrap/Card"
-import { TruncateText } from "../../../utils/TruncateText"
-import "../asset/index.scss"
+import moment from "moment";
+import Card from "react-bootstrap/Card";
+import { TruncateText } from "../../../utils/TruncateText";
+import "../asset/index.scss";
 
 const NewsCard = ({ news }: { news: any }) => {
   return (
@@ -28,8 +27,8 @@ const NewsCard = ({ news }: { news: any }) => {
         </Card.Footer>
       </Card>
     </div>
-  )
-}
+  );
+};
 
 // export const CreateNewsQuery = [
 //   "news_title",
@@ -44,4 +43,4 @@ const NewsCard = ({ news }: { news: any }) => {
 //   "news_randkey",
 // ]
 
-export default NewsCard
+export default NewsCard;

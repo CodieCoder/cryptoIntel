@@ -1,74 +1,48 @@
 import {
-  IKlineData,
-  IKlineParams,
   KlineDataLabelEnum,
   KlineDataTypeEnum,
-  klineInterval,
+  KlineIntervalEnum,
 } from "components/Charts/constants";
-import Loading from "components/Loading";
-import { ICoin } from "Constants";
-import AxiosClient from "Library/axios";
-import moment from "moment";
-import UserContext from "pages/User/context";
-import React, { useContext, useEffect, useState } from "react";
-import BarChart from "./barChart";
-import ChartTopBoxes from "./topBoxes";
+import React, { useEffect, useState } from "react";
+import ChartTopBoxes from "./components/topBoxes";
 import { useQuery } from "react-query";
 import LineChart from "./lineChart";
-import { ILinearChartData } from "./constants";
-import {
-  DateFormatter,
-  DateIntervalEnum,
-  dateTimeInterval,
-  DateTypeEnum,
-} from "utils/dateFormatter";
+import { IChartInterval, simpleIntervals } from "utils/dateFormatter";
 import ContainerBox from "components/Container";
-
-interface IDashboardChart {
-  coin: ICoin;
-}
+import { IconTypesEnum } from "components/Container/constants";
+import ChartTools from "./components/chartOptions";
+import "./assets/index.scss";
+import NoData from "components/Errors/NoData";
+import { createTopChartInfo, getLinearChartData } from "./components/helper";
+import useUserProvider from "pages/User/useUserContext";
+import { getKlineDataFromBinance } from "Apis/chart/getChartData";
+import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets-fixed";
+import { ChartTypeEnum } from "./constants";
+import usePagesProvider from "usePagesProvider";
 
 const DashboardChart: React.FC = () => {
-  const { selectedCoin } = useContext(UserContext);
+  const { selectedCoin } = useUserProvider();
+  const { currency } = usePagesProvider();
   const [coinKlineData, setCoinKlineData] = useState<any>();
-  const [chartDataType, setChartDataType] = useState<KlineDataTypeEnum>(
-    KlineDataTypeEnum.HighPrice
+  const [chartType, setChartType] = useState(ChartTypeEnum.line);
+  // const [chartDataType, setChartDataType] = useState<KlineDataTypeEnum>(
+  //   KlineDataTypeEnum.ClosePrice
+  // );
+  // const [chartLabel, setChartLabel] = useState<KlineDataLabelEnum>(
+  //   KlineDataLabelEnum.CloseTime
+  // );
+  const [intervalType, setIntervalType] = useState<IChartInterval>(
+    simpleIntervals(KlineIntervalEnum.OneDay)
   );
-  const [chartLabel, setChartLabel] = useState<KlineDataLabelEnum>(
-    KlineDataLabelEnum.CloseTime
-  );
-
-  const createTopChartInfo = (selectedCoin: ICoin) => {
-    return [
-      {
-        title: "Market cap",
-        data: selectedCoin.market_cap,
-      },
-      {
-        title: "Total volume",
-        data: selectedCoin.total_volume,
-      },
-      {
-        title: "Circulating supply",
-        data: selectedCoin.circulating_supply,
-      },
-    ];
-  };
-
-  const currentDateTime = new Date().toString();
 
   const getCoinKline = async () => {
-    const symbol: string = selectedCoin?.symbol || "USDT";
-    const parameter = {
-      symbol: `${symbol.toUpperCase()}USDT`,
-      interval: klineInterval.OneDay,
-      startTime: dateTimeInterval(7, "days", DateTypeEnum.unix),
-      endTime: DateFormatter(DateTypeEnum.unix, currentDateTime),
-      limit: 500,
-    };
-
-    const url = `https://api.binance.com/api/v3/klines?symbol=${parameter.symbol}&interval=${parameter.interval}&startTime=${parameter.startTime}&endTime=${parameter.endTime}`;
-    return await AxiosClient.get(`${url}`);
+    if (selectedCoin && intervalType) {
+      const { interval, startTime, endTime } = intervalType;
+      const isSymbol = selectedCoin.symbol;
+      // const limit = 500;
+      const symbol = `${isSymbol.toUpperCase()}USDT`;
+      return getKlineDataFromBinance(symbol, interval, startTime, endTime);
+    }
   };
 
   const {
@@ -77,114 +51,79 @@ const DashboardChart: React.FC = () => {
     isLoading,
     isFetching,
   } = useQuery("get-coin-chart", () => getCoinKline(), {
-    onSuccess(data) {
-      console.log("Testing coinKline :", data);
-      data?.data && setCoinKlineData(data?.data);
-    },
-    onError(err) {},
     refetchOnMount: false,
     refetchOnReconnect: true,
     refetchOnWindowFocus: false,
     enabled: !!selectedCoin,
   });
-  const arrangeKlineData = (klines: any) => {
-    const dataToAdd: IKlineData[] = [];
-    klines.map((kline: number[]) => {
-      const tmp: IKlineData = {
-        OpenTime: kline[0],
-        OpenPrice: kline[1],
-        HighPrice: kline[2],
-        LowPrice: kline[3],
-        ClosePrice: kline[4],
-        Volume: kline[5],
-        CloseTime: kline[6],
-        QuoteAssetVolume: kline[7],
-        NumberOfTrades: kline[8],
-        TakerBuyBaseAssetVolume: kline[9],
-        TakerBuyQuoteAssetVolume: kline[10],
-        UnusedField: kline[11],
-      };
-      dataToAdd.push(tmp);
-    });
-    return dataToAdd;
-  };
 
-  const linearDatasetsFromKlineData = (
-    klines: IKlineData[],
-    type: KlineDataTypeEnum,
-    label: KlineDataLabelEnum,
-    formatLabels: (value: any) => string
-  ) => {
-    const data = klines?.map((kline: IKlineData) => kline[type]);
-    const labels = klines?.map((kline: IKlineData) =>
-      formatLabels(kline[label])
-    );
-    return {
-      labels,
-      data,
-    };
-  };
-
-  const covertDateTime = (value: string) => {
-    return moment(value).format("l");
-  };
-
-  const getLinearChartData = (
-    rawData: any,
-    selectedCoin: any
-  ): ILinearChartData => {
-    const klineData = arrangeKlineData(rawData);
-    const linearData = linearDatasetsFromKlineData(
-      klineData,
-      chartDataType,
-      chartLabel,
-      covertDateTime
-    );
-
-    return {
-      labels: linearData?.labels,
-      datasets: [
-        {
-          label: selectedCoin.name,
-          data: linearData?.data,
-          fill: true,
-          borderColor: "rgba(10, 136, 48, 1)",
-          backgroundColor: "rgba(10, 136, 48, 0.2)",
-          tension: 0.1,
-        },
-      ],
-    };
-  };
+  useEffect(() => {
+    coinData?.data && setCoinKlineData(coinData.data);
+  }, [coinData]);
 
   useEffect(() => {
     refetch();
-  }, [selectedCoin]);
+    //eslint-disable-next-line
+  }, [selectedCoin, intervalType]);
 
-  useEffect(() => {}, [coinKlineData]);
+  const displayChartTYpe = (chartType: ChartTypeEnum) => {
+    switch (chartType) {
+      case ChartTypeEnum.line:
+        return (
+          <LineChart
+            coinData={getLinearChartData(
+              coinKlineData,
+              selectedCoin,
+              KlineDataTypeEnum.ClosePrice,
+              KlineDataLabelEnum.CloseTime
+            )}
+          />
+        );
+      case ChartTypeEnum.advanced:
+        return (
+          <AdvancedRealTimeChart
+            theme="light"
+            interval="D"
+            // style="5"
+            autosize
+            show_popup_button={true}
+            popup_width="1000"
+            popup_height="600"
+            hide_side_toolbar={true}
+            symbol={`${selectedCoin?.symbol}${currency}`}
+          ></AdvancedRealTimeChart>
+        );
+    }
+  };
 
   return (
     <>
       <br />
-      <ContainerBox title={"Chart"}>
+      <ContainerBox
+        title={"Chart"}
+        loading={isLoading || isFetching}
+        icon={IconTypesEnum.chart}
+      >
         <div className="dashboard-chart">
-          {selectedCoin ? (
-            <Loading loading={isLoading || isFetching}>
-              {coinKlineData && (
-                <div className="dashboard-chart-div">
-                  <div className="dashboard-chart-top">
-                    <ChartTopBoxes info={createTopChartInfo(selectedCoin)} />
-                  </div>
-                  <div className="dashboard-chart-bdoy">
-                    <div className="dashboard-chart-body-options"></div>
-                    <LineChart
-                      coinData={getLinearChartData(coinKlineData, selectedCoin)}
-                    />
-                  </div>
-                </div>
-              )}
-            </Loading>
+          {selectedCoin && coinKlineData ? (
+            <div className="dashboard-chart-div">
+              <div className="dashboard-chart-top">
+                <ChartTools
+                  intervalType={intervalType}
+                  setIntervalType={setIntervalType}
+                  setChartType={setChartType}
+                />
+              </div>
+              <div className="dashboard-chart-top">
+                <ChartTopBoxes info={createTopChartInfo(selectedCoin)} />
+              </div>
+              <div className="dashboard-chart-bdoy">
+                <div className="dashboard-chart-body-options"></div>
+                {selectedCoin && displayChartTYpe(chartType)}
+              </div>
+            </div>
           ) : (
-            <div>Nothing to show</div>
+            <NoData />
           )}
         </div>
       </ContainerBox>

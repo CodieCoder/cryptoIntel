@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -37,7 +37,7 @@ const LineChart: React.FC<ILineChart> = ({ coinData }) => {
         position: "top" as const,
       },
       title: {
-        display: true,
+        display: false,
         text: "7 days chart",
       },
 
@@ -54,10 +54,9 @@ const LineChart: React.FC<ILineChart> = ({ coinData }) => {
     },
   };
 
-  useEffect(() => {}, []);
   return (
     <div>
-      <Line options={options} data={coinData} width={100} height={40} />;
+      <Line options={options} data={coinData} width={100} height={40} />
     </div>
   );
 };

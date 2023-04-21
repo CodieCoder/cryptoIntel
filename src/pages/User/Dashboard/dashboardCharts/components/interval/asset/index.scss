@@ -1,0 +1,33 @@
+@import "../../../../../../../_styles";
+
+.chartTools-boxes {
+  margin: auto;
+  .listGroup {
+    margin-top: 1rem;
+    padding: 0 !important;
+    // border: 2px solid $primaryColor_dark;
+    // background-color: $primaryColor_dark;
+    height: 1.8rem;
+    // width: 18.7rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .activeItem {
+    background-color: $primaryColor_dark;
+    padding-top: 0.4rem;
+    color: #fff;
+    &:hover {
+      background-color: $primaryColor_dark;
+    }
+  }
+  .inactiveItem {
+    cursor: pointer;
+    margin: 0;
+    // padding: 0.5rem;
+    padding-top: 0.2rem;
+    &:hover {
+      color: #fff;
+      background-color: $primaryColor_light;
+    }
+  }
+}

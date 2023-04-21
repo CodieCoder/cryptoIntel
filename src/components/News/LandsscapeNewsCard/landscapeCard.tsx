@@ -24,7 +24,7 @@ const LandscapeCards: React.FC<ILandscape> = ({ news }) => {
                 backgroundSize: "cover",
               }}
             ></div> */}
-            <img src={news?.image} width="100%" />
+            <img src={news?.image} width="100%" alt={news?.title} />
           </Link>
         </div>
         <div className="col-lg-8 col-md-8 col-sm-6 news-landscape-right">

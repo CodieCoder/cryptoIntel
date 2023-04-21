@@ -1,5 +1,3 @@
-import React from "react"
-
 const CoinIcon = ({ src, className }: { src: string; className?: string }) => {
   return (
     <img
@@ -7,7 +5,7 @@ const CoinIcon = ({ src, className }: { src: string; className?: string }) => {
       className={`${className ? className : "coinIcon"}`}
       alt="iconyrn"
     />
-  )
-}
+  );
+};
 
-export default CoinIcon
+export default CoinIcon;

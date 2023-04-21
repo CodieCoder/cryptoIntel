@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React from "react";
+import { Container } from "react-bootstrap";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import CoinIcon from "components/HtmlElements/CoinIcon";
 import CryptoFavourite from "components/HtmlElements/CryptoFavourite";
@@ -14,7 +14,6 @@ interface IEachCoin {
 }
 
 const EachCoin: React.FC<IEachCoin> = ({ coin, currency, setSelectedCoin }) => {
-  // useEffect(() => {}, []);
   return (
     <Container onClick={() => setSelectedCoin(coin)}>
       <div className="fovourite-eachCoin">
@@ -33,7 +32,7 @@ const EachCoin: React.FC<IEachCoin> = ({ coin, currency, setSelectedCoin }) => {
               <div className="price">
                 <div className="price-div-percent">
                   <NumberType
-                    type="number"
+                    type="%"
                     number={coin?.price_change_percentage_24h}
                     length={10}
                     checker={coin?.price_change_percentage_24h}
@@ -53,11 +52,7 @@ const EachCoin: React.FC<IEachCoin> = ({ coin, currency, setSelectedCoin }) => {
           </div>
           <div className="eachCoin-body-right">
             <div className="sparkline">
-              <Sparklines
-                // svgHeight={40}
-                // svgWidth={40}
-                data={coin?.sparkline_in_7d?.price}
-              >
+              <Sparklines data={coin?.sparkline_in_7d?.price}>
                 <SparklinesLine
                   color={`${
                     coin?.price_change_percentage_7d_in_currency < 0

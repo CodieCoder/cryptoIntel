@@ -1,4 +1,4 @@
-import { createContext } from "react"
+import { createContext } from "react";
 
-const PagesContext = createContext<any>(undefined)
-export default PagesContext
+const PagesContext = createContext<any>(undefined);
+export default PagesContext;

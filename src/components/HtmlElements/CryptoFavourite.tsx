@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsStar, BsStarFill } from "react-icons/bs";
 import { updateFavourite } from "../../Apis/user/favourite";
 import PagesContext from "../../Context";

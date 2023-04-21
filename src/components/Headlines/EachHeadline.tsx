@@ -1,5 +1,3 @@
-import React from "react";
-
 const EachHeadline = ({ news }: { news: any }) => {
   return (
     <div className="headline-single">

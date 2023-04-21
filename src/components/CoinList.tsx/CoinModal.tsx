@@ -1,35 +1,33 @@
-import React, { useContext, useEffect, useState } from "react"
-import Image from "react-bootstrap/Image"
-import Modal from "react-bootstrap/Modal"
-import NumberType from "../NumberType"
-import moment from "moment"
-import { Sparklines, SparklinesLine } from "react-sparklines"
-import { Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
-import PagesContext from "../../Context"
-import LivePrice from "../LivePrice"
+import React, { useContext, useEffect, useState } from "react";
+import Image from "react-bootstrap/Image";
+import Modal from "react-bootstrap/Modal";
+import NumberType from "../NumberType";
+import moment from "moment";
+import { Sparklines, SparklinesLine } from "react-sparklines";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import PagesContext from "../../Context";
+import LivePrice from "../LivePrice";
 
 const CoinModal = ({
   coin,
   show,
   toggler,
 }: {
-  coin: any
-  show: boolean
-  toggler: any
+  coin: any;
+  show: boolean;
+  toggler: any;
 }) => {
-  const { vs_currency } = useContext(PagesContext)
-  const [modalOn, setModalOn] = useState<boolean>(show)
+  const { vs_currency } = useContext(PagesContext);
+  const [modalOn, setModalOn] = useState<boolean>(show);
 
   useEffect(() => {
-    setModalOn(show)
-  }, [show])
+    setModalOn(show);
+  }, [show]);
 
   const handleClose = () => {
-    toggler()
-  }
-
-  useEffect(() => {}, [])
+    toggler();
+  };
 
   return modalOn === true ? (
     <Modal
@@ -260,7 +258,7 @@ const CoinModal = ({
     </Modal>
   ) : (
     <></>
-  )
-}
+  );
+};
 
-export default CoinModal
+export default CoinModal;

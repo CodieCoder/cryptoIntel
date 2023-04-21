@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -48,14 +48,11 @@ export const data = {
   ],
 };
 
-interface IBarChart {
-  coinData: ICoin;
-}
+// interface IBarChart {
+//   coinData: ICoin;
+// }
 
 const BarChart: React.FC<any> = ({ coinData }) => {
-  useEffect(() => {
-    console.log("Testing CoinData", coinData);
-  }, []);
   return (
     <div>
       <Bar options={options} data={coinData} />;

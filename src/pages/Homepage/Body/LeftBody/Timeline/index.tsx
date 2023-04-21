@@ -1,5 +1,5 @@
 import React from "react";
-import WidgetTimeLine from "../../../../../Widgets/TradingView/Timeline";
+import WidgetTimeLine from "Widgets/TradingView/Timeline";
 
 const Timeline = () => {
   return (

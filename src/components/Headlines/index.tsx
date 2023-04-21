@@ -5,9 +5,9 @@ import EachHeadline from "./EachHeadline";
 import "./index.scss";
 
 const Headlines = ({ news }: { news: any }) => {
-  const goToNews = (link: string): void => {
-    window.open(link, "_blank");
-  };
+  // const goToNews = (link: string): void => {
+  //   window.open(link, "_blank");
+  // };
   return (
     <div className="container">
       <div className="headlines">

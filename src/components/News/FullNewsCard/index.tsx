@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Col, Image, Row } from "react-bootstrap";
 import { TNews } from "../../../Constants";
 import ShareButtons from "../../Share/ShareButtons";
@@ -22,6 +22,7 @@ const FullNewsCard: React.FC<IFullNewsCard> = ({ news }) => {
                 src={news?.image}
                 loading="lazy"
                 className="image"
+                alt={news?.title}
               />
             </div>
           </Col>
