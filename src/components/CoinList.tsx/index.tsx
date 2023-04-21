@@ -3,7 +3,7 @@ import CoinList from "./CoinsList";
 import "./index.scss";
 import CoinListMobile from "./CoinListMobile";
 import CoinModal from "./CoinModal";
-import { Container, Spinner, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import PagesContext from "../../Context";
 import CoinPagination from "../Pagination/Pagination";
 import { useQuery } from "react-query";
