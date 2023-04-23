@@ -1,24 +1,6 @@
-.chartTools {
-  margin-top: 1rem;
-  margin-left: 1rem;
-  .chartTools-boxes {
-    .chartTools-interval {
-      .box-title {
-        font-weight: 600;
-      }
-      .interval-select {
-        width: 8rem;
-      }
-    }
-    .calender {
-      width: 20rem;
-      .calender-date-picker {
-        // display: none;
-        border: 1px solid #ddd;
-      }
-    }
+.dashboard-chart {
+  height: 28rem;
+  .dashboard-chart-bdoy {
+    margin-top: 1rem;
   }
-}
-.calendarClassName {
-  border: 0;
 }

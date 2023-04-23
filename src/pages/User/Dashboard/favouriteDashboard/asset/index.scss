@@ -4,6 +4,7 @@
   margin: auto;
   margin-top: 1rem;
   min-height: 10rem;
+  height: 28rem;
   .favouriteDashboard-head {
     .title {
       font-weight: 600;
@@ -11,7 +12,7 @@
     }
   }
   .coin-list {
-    max-height: 25rem;
+    max-height: 27rem;
     overflow-y: auto;
     margin: auto;
   }

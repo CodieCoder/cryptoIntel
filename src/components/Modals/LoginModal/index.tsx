@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-import { LOGINMODAL } from "../../Constants";
-import PagesContext from "../../Context";
-import LoginPage from "../../pages/Login";
-import RegistrationPage from "../../pages/Registration";
+import { LOGINMODAL } from "../../../Constants";
+import PagesContext from "../../../Context";
+import LoginPage from "../../../pages/Login";
+import RegistrationPage from "../../../pages/Registration";
 import "./index.scss";
 
 const LoginModal = () => {

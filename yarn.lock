@@ -1089,6 +1089,11 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@coingecko/cryptoformat@^0.5.4":
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@coingecko/cryptoformat/-/cryptoformat-0.5.4.tgz#b105b44e48466f480ef72b720c40618c723752b9"
+  integrity sha512-qAHbG/TjKbyPE0hRCeET1+8qBs4dtpXVyXDeSj0xhENLPBFW9tNTY2OOYr9Fw5fAylHJkCdhdn7Htk18ZSyxFw==
+
 "@csstools/normalize.css@*":
   version "12.0.0"
   resolved "https://registry.npmjs.org/@csstools/normalize.css/-/normalize.css-12.0.0.tgz"

@@ -33,6 +33,8 @@ const CoinList: React.FC<ICoinList> = ({ coin, showModal }) => {
       <td className="coinlist-table-td">{coin?.symbol.toUpperCase()}</td>
       <td className="coinlist-table-td">
         {coin?.current_price.toLocaleString()}
+
+        {/* {priceFormat(coin?.current_price.toLocaleString())} */}
       </td>
       <td className="coinlist-table-td">
         <NumberType

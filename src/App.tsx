@@ -14,7 +14,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Notify from "./components/Notification/notify";
 import CoinsPage from "./pages/Coins";
 import NewsPage from "./pages/News/AllNews";
-import LoginModal from "./components/LoginModal";
+import LoginModal from "./components/Modals/LoginModal";
 import FullNews from "./pages/News/FullNews";
 
 const queryClient = new QueryClient();

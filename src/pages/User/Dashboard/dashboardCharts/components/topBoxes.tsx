@@ -12,19 +12,10 @@ const ChartTopBoxes: React.FC<IChartTopBoxes> = ({ info }) => {
       <div className="ChartTopBoxes-row">
         {info.map((coin: IChartBox, index: number) => {
           return (
-            // <Col
-            //   key={index}
-            //   xs={12}
-            //   sm={12}
-            //   md={10}
-            //   lg={3}
-            //   className="ChartTopBoxes-boxes"
-            // >
             <div className="ChartTopBoxes-boxes" key={index}>
               <div className="ChartTopBoxes-title">{coin.title}</div>
               <div className="ChartTopBoxes-content">{coin.data}</div>
             </div>
-            // </Col>
           );
         })}
       </div>

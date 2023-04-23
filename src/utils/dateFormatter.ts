@@ -8,7 +8,10 @@ export enum DateTypeEnum {
   unix = "x",
 }
 
-export const DateFormatter = (type: DateTypeEnum, date: string) => {
+export const DateFormatter = (
+  type: DateTypeEnum,
+  date: string | moment.Moment | Date
+) => {
   return moment(date).format(type);
 };
 
@@ -47,7 +50,8 @@ export const dateTimeInterval = (
 export const simpleIntervals = (
   intervalType: KlineIntervalEnum
 ): IChartInterval => {
-  const currentDateTime = new Date().toString();
+  const currentDateTime = moment();
+  console.log("Testing currenDateTime : ", currentDateTime);
   let interval = KlineIntervalEnum.FourHour;
   let num = 1;
   let days = "day";
@@ -72,6 +76,11 @@ export const simpleIntervals = (
       num = 3;
       days = "months";
       break;
+    case KlineIntervalEnum.sixMonths:
+      interval = KlineIntervalEnum.OneMonth;
+      num = 6;
+      days = "months";
+      break;
     case KlineIntervalEnum.oneYear:
       interval = KlineIntervalEnum.OneMonth;
       num = 1;
@@ -87,5 +96,13 @@ export const simpleIntervals = (
     interval,
     startTime: dateTimeInterval(num, days, DateTypeEnum.unix),
     endTime: DateFormatter(DateTypeEnum.unix, currentDateTime),
+  };
+};
+
+export const advanceIntervals = (range: string[]) => {
+  return {
+    interval: KlineIntervalEnum.OneDay,
+    startTime: DateFormatter(DateTypeEnum.unix, range[0]),
+    endTime: DateFormatter(DateTypeEnum.unix, range[1]),
   };
 };

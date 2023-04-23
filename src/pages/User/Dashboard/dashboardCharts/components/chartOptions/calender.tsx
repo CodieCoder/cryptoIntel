@@ -5,26 +5,38 @@ import "react-calendar/dist/Calendar.css";
 import "react-calendar/dist/Calendar.css";
 import { Value } from "@wojtekmaj/react-daterange-picker/dist/cjs/shared/types";
 
-const Calender = () => {
-  const [dates, setDates] = useState<Value>(new Date());
-  const onChange = (value: Value) => {
-    console.log("Testing onchange : ", value);
-    setDates(value);
+interface ICalenderDateRange {
+  onChange: (value: any) => void;
+}
+
+const CalenderDateRange: React.FC<ICalenderDateRange> = ({ onChange }) => {
+  const [isShow, setIsShow] = useState(true);
+  const [dates, setDates] = useState<Value>();
+
+  const onHide = () => {
+    setIsShow(false);
   };
+
   return (
     <div className="calender">
-      {/* <Form.Group controlId="calender"> */}
-      <div>
+      {isShow && (
         <DateRangePicker
-          onChange={onChange}
+          onChange={(values) => {
+            setDates(values);
+            onChange(values);
+          }}
           value={dates}
           calendarClassName="calendarClassName"
           className="calender-date-picker"
           clearIcon={<span></span>}
+          isOpen={true}
+          calendarIcon={null}
+          closeCalendar={true}
+          onCalendarClose={onHide}
         />
-      </div>
+      )}
     </div>
   );
 };
 
-export default Calender;
+export default CalenderDateRange;

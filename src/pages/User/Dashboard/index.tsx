@@ -13,7 +13,7 @@ const UserDashboard = () => {
             sm={12}
             md={10}
             lg={4}
-            className="userDashboard-pane-fav"
+            className="userDashboard-pane-box"
           >
             <FavouriteDashboard />
           </Col>
@@ -22,7 +22,7 @@ const UserDashboard = () => {
             sm={12}
             md={12}
             lg={8}
-            className="userDashboard-pane-fav"
+            className="userDashboard-pane-box"
           >
             <DashboardChart />
           </Col>

@@ -81,17 +81,19 @@ const DashboardChart: React.FC = () => {
         );
       case ChartTypeEnum.advanced:
         return (
-          <AdvancedRealTimeChart
-            theme="light"
-            interval="D"
-            // style="5"
-            autosize
-            show_popup_button={true}
-            popup_width="1000"
-            popup_height="600"
-            hide_side_toolbar={true}
-            symbol={`${selectedCoin?.symbol}${currency}`}
-          ></AdvancedRealTimeChart>
+          <div style={{ height: "20rem" }}>
+            <AdvancedRealTimeChart
+              theme="light"
+              interval="D"
+              // style="5"
+              autosize
+              show_popup_button={true}
+              popup_width="1000"
+              popup_height="600"
+              hide_side_toolbar={true}
+              symbol={`${selectedCoin?.symbol}${currency}`}
+            ></AdvancedRealTimeChart>
+          </div>
         );
     }
   };
@@ -108,14 +110,15 @@ const DashboardChart: React.FC = () => {
           {selectedCoin && coinKlineData ? (
             <div className="dashboard-chart-div">
               <div className="dashboard-chart-top">
+                <ChartTopBoxes info={createTopChartInfo(selectedCoin)} />
+              </div>
+              <div className="dashboard-chart-top">
                 <ChartTools
                   intervalType={intervalType}
                   setIntervalType={setIntervalType}
                   setChartType={setChartType}
+                  chartType={chartType}
                 />
-              </div>
-              <div className="dashboard-chart-top">
-                <ChartTopBoxes info={createTopChartInfo(selectedCoin)} />
               </div>
               <div className="dashboard-chart-bdoy">
                 <div className="dashboard-chart-body-options"></div>

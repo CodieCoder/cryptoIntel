@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getNewsBrief } from "../../Apis/news";
 import { IBriefObject } from "./constants";
@@ -22,8 +22,8 @@ const NewsBrief = () => {
     <div className="widget-news-brief">
       {data?.data?.error === false &&
         briefData?.map((brief: IBriefObject, index: number) => (
-          <div className="each">
-            <EachBrief brief={brief} key={index} />
+          <div className="each" key={index}>
+            <EachBrief brief={brief} />
           </div>
         ))}
     </div>

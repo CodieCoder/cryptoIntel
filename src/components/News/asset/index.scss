@@ -45,7 +45,12 @@
 }
 
 .news-landscape-card {
+  padding: 0.5rem;
   .news-landscape-card-div {
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #bbb;
     .news-landscape-left {
       overflow: hidden;
       height: 12rem;
