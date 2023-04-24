@@ -1,3 +1,4 @@
 # cryptoIntel
 A website for cryptocurrency data, news and analysis. 
-...an way to show and practice web development skills
+It is a website that will provide newbies and experts in crypto trading relevant and excellent tools for success.
+
