@@ -1,3 +1,4 @@
+import { SITE_CONFIGURATION } from "site_config";
 import "./index.scss";
 
 const Footer = () => {
@@ -13,7 +14,7 @@ const Footer = () => {
         <br />
         <div className="row footer-div">
           <div className="col-4">
-            <div className="footer-hd">Cryptowise</div>
+            <div className="footer-hd">{SITE_CONFIGURATION.SITE_NAME}</div>
           </div>
           <div className="col-lg-6 col-md-4 col-sm-10">
             <div className="footer-links">
