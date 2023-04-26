@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BaseUrl = process.env.REACT_APP_API_ENDPOINT;
+// const BaseUrl = process.env.REACT_APP_API_ENDPOINT;
+const BaseUrl = "https://repulsive-tutu-hare.cyclic.app";
 
 const AxiosClient = axios.create({
   baseURL: BaseUrl,
