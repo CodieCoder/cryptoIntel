@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "react-query";
 import ProfileForm from "./ProfileForm";
-import NoData from "components/Errors/NoData";
 import { getUserProfile, updateUserProfile } from "Apis/user/profile";
 import useUserProvider from "../useUserContext";
 import ContainerBox from "components/Container";
@@ -9,7 +8,7 @@ import { IconTypesEnum } from "components/Container/constants";
 import usePagesProvider from "usePagesProvider";
 
 const Profile = () => {
-  const { userDetails, logOut } = useUserProvider();
+  const { userDetails } = useUserProvider();
   const { notify } = usePagesProvider();
   const [isFormDisabled, setIsFormDisabled] = useState(true);
 
