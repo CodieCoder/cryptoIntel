@@ -1,5 +1,5 @@
-import { KlineIntervalEnum } from "components/Charts/constants";
-import moment from "moment";
+import { KlineIntervalEnum } from "components/Charts/constants"
+import moment from "moment"
 
 export enum DateTypeEnum {
   justDate = "l",
@@ -12,8 +12,8 @@ export const DateFormatter = (
   type: DateTypeEnum,
   date: string | moment.Moment | Date
 ) => {
-  return moment(date).format(type);
-};
+  return moment(date).format(type)
+}
 
 export enum DateIntervalEnum {
   Year = "year",
@@ -30,9 +30,9 @@ export enum DateIntervalEnum {
 }
 
 export interface IChartInterval {
-  interval: KlineIntervalEnum;
-  startTime: string | number;
-  endTime: string | number;
+  interval: KlineIntervalEnum
+  startTime: string | number
+  endTime: string | number
 }
 
 export const dateTimeInterval = (
@@ -43,66 +43,65 @@ export const dateTimeInterval = (
   const date = moment().subtract(
     num,
     days as moment.unitOfTime.DurationConstructor
-  );
-  return moment(date).format(format);
-};
+  )
+  return moment(date).format(format)
+}
 
 export const simpleIntervals = (
   intervalType: KlineIntervalEnum
 ): IChartInterval => {
-  const currentDateTime = moment();
-  console.log("Testing currenDateTime : ", currentDateTime);
-  let interval = KlineIntervalEnum.FourHour;
-  let num = 1;
-  let days = "day";
+  const currentDateTime = moment()
+  let interval = KlineIntervalEnum.FourHour
+  let num = 1
+  let days = "day"
   switch (intervalType) {
     case KlineIntervalEnum.OneDay:
-      interval = KlineIntervalEnum.FourHour;
-      num = 1;
-      days = "day";
-      break;
+      interval = KlineIntervalEnum.FourHour
+      num = 1
+      days = "day"
+      break
     case KlineIntervalEnum.OneWeek:
-      interval = KlineIntervalEnum.OneDay;
-      num = 1;
-      days = "week";
-      break;
+      interval = KlineIntervalEnum.OneDay
+      num = 1
+      days = "week"
+      break
     case KlineIntervalEnum.OneMonth:
-      interval = KlineIntervalEnum.OneWeek;
-      num = 1;
-      days = "month";
-      break;
+      interval = KlineIntervalEnum.OneWeek
+      num = 1
+      days = "month"
+      break
     case KlineIntervalEnum.threeMonths:
-      interval = KlineIntervalEnum.OneMonth;
-      num = 3;
-      days = "months";
-      break;
+      interval = KlineIntervalEnum.OneMonth
+      num = 3
+      days = "months"
+      break
     case KlineIntervalEnum.sixMonths:
-      interval = KlineIntervalEnum.OneMonth;
-      num = 6;
-      days = "months";
-      break;
+      interval = KlineIntervalEnum.OneMonth
+      num = 6
+      days = "months"
+      break
     case KlineIntervalEnum.oneYear:
-      interval = KlineIntervalEnum.OneMonth;
-      num = 1;
-      days = "year";
-      break;
+      interval = KlineIntervalEnum.OneMonth
+      num = 1
+      days = "year"
+      break
     default:
-      interval = KlineIntervalEnum.FourHour;
-      num = 1;
-      days = "day";
+      interval = KlineIntervalEnum.FourHour
+      num = 1
+      days = "day"
   }
 
   return {
     interval,
     startTime: dateTimeInterval(num, days, DateTypeEnum.unix),
     endTime: DateFormatter(DateTypeEnum.unix, currentDateTime),
-  };
-};
+  }
+}
 
 export const advanceIntervals = (range: string[]) => {
   return {
     interval: KlineIntervalEnum.OneDay,
     startTime: DateFormatter(DateTypeEnum.unix, range[0]),
     endTime: DateFormatter(DateTypeEnum.unix, range[1]),
-  };
-};
+  }
+}

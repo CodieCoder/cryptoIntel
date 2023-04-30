@@ -1,82 +1,87 @@
-import React, { useEffect, useState } from "react";
-import Headlines from "../../../components/Headlines";
-import { useQuery } from "react-query";
-import { getNews } from "../../../Apis/news";
-import "./index.scss";
-import { Row, Col, Spinner } from "react-bootstrap";
-import LandscapeCards from "../../../components/News/LandsscapeNewsCard/landscapeCard";
-import NewsBrief from "../../../Widgets/Briefs";
-import { TNews } from "Constants";
+import React, { useEffect, useState } from "react"
+import Headlines from "components/Headlines"
+import { useQuery } from "react-query"
+import { getNews } from "Apis/news"
+import "./index.scss"
+import { Row, Col, Spinner } from "react-bootstrap"
+import LandscapeCards from "components/News/LandsscapeNewsCard/landscapeCard"
+import NewsBrief from "Widgets/Briefs"
+import { TNews } from "Constants"
+import Loading from "components/Loading"
+import CoinPagination from "components/Pagination/Pagination"
+import NewsOptions from "../newsOptions"
 
 const NewsPage: React.FC = () => {
-  const [newsData, setNewsData] = useState<TNews[]>();
+  const [newsData, setNewsData] = useState<TNews[]>()
   // const [error, setError] = useState(false);
-  // const [page, setPage] = useState(1);
-  // const [pageSize, setPageSize] = useState(20);
+  const [pageNo, setPageNo] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
+  const [totalPages, setTotalPage] = useState(10)
+  const [category, setCategory] = useState("All")
 
   const {
     data: allNewsData,
     isLoading,
-    // isFetching,
-    // refetch: refetchNews,
-  } = useQuery("all-news", () => getNews(1, 20), {
+    isFetching,
+    refetch: refetchNews,
+  } = useQuery("all-news", () => getNews(pageNo, pageSize), {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-  });
+  })
 
   //const
   useEffect(() => {
     if (allNewsData?.data?.error === false) {
       setNewsData(
         allNewsData.data?.result?.data?.filter((news: any) => news?.image)
-      );
+      )
+      setTotalPage(allNewsData.data?.result?.totalPages)
       // setLoading(false);
-    } else {
-      // setError(true);
-    } // eslint-disable-next-line
-  }, [allNewsData]);
+    }
+  }, [allNewsData])
+
+  useEffect(() => {
+    refetchNews()
+  }, [pageNo, pageSize])
 
   return (
     <div className="container news-page">
-      {isLoading && (
-        <div className="loading-div">
-          <Spinner
-            as="span"
-            animation="border"
-            role="status"
-            variant="dark"
-            aria-hidden="true"
-          />
+      <Loading loading={isLoading || isFetching}>
+        <div>
           <br />
-          Loading...
+          {newsData && <Headlines />}
+
+          <Row>
+            <Col xs={12} sm={12} md={8} className="right-pane">
+              <h3>Latest news</h3>
+              <NewsOptions
+                setPageSize={setPageSize}
+                setCategory={setCategory}
+              />
+              <Row xs={1} sm={1} md={1} lg={1} className="news-cards">
+                {newsData &&
+                  newsData?.map((eachNews: any, index: number) => (
+                    <div className="news-cards-each" key={index}>
+                      <LandscapeCards news={eachNews} />
+                    </div>
+                  ))}
+                <CoinPagination
+                  pageNo={pageNo}
+                  setPageNo={setPageNo}
+                  totalPages={totalPages}
+                />
+              </Row>
+            </Col>
+            <Col xs={12} sm={12} md={4} className="left-pane">
+              <div className="news-brief-component">
+                <NewsBrief />
+              </div>
+            </Col>
+          </Row>
         </div>
-      )}
-
-      <div>
-        <br />
-        {newsData && <Headlines news={newsData?.slice(0, 3)} />}
-
-        <Row>
-          <Col xs={12} sm={12} md={8} className="right-pane">
-            <h3>Latest news</h3>
-            <Row xs={1} sm={1} md={1} lg={1} className="g-4 news-cards">
-              {newsData &&
-                newsData?.slice(3).map((eachNews: any, index: number) => (
-                  <div className="news-cards-each" key={index}>
-                    <LandscapeCards news={eachNews} />
-                  </div>
-                ))}
-            </Row>
-          </Col>
-          <Col xs={12} sm={12} md={4} className="left-pane">
-            <div className="news-brief-component">
-              <NewsBrief />
-            </div>
-          </Col>
-        </Row>
-      </div>
+      </Loading>
     </div>
-  );
-};
+  )
+}
 
-export default NewsPage;
+export default NewsPage
