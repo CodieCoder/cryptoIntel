@@ -5,21 +5,22 @@ import {
 } from "components/Charts/constants";
 import { ICoin } from "Constants";
 import { DateFormatter, DateTypeEnum } from "utils/dateFormatter";
+import { numberFormat, priceFormat } from "utils/numberFormat";
 import { ILinearChartData } from "../constants";
 
-export const createTopChartInfo = (selectedCoin?: ICoin) => {
+export const createTopChartInfo = (selectedCoin: ICoin, currency: string) => {
   return [
     {
       title: "Market cap",
-      data: selectedCoin?.market_cap,
+      data: priceFormat(selectedCoin?.market_cap, currency),
     },
     {
       title: "Total volume",
-      data: selectedCoin?.total_volume,
+      data: numberFormat(selectedCoin?.total_volume),
     },
     {
       title: "Circulating supply",
-      data: selectedCoin?.circulating_supply,
+      data: numberFormat(selectedCoin?.circulating_supply),
     },
   ];
 };

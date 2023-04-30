@@ -9,12 +9,15 @@ import { IconTypesEnum } from "components/Container/constants";
 import usePagesProvider from "usePagesProvider";
 
 const Profile = () => {
-  const { userDetails } = useUserProvider();
+  const { userDetails, logOut } = useUserProvider();
   const { notify } = usePagesProvider();
   const [isFormDisabled, setIsFormDisabled] = useState(true);
 
   const updateProfile = async (data: any) => {
-    return userDetails && (await updateUserProfile(userDetails.userKey, data));
+    return (
+      userDetails?.userKey &&
+      (await updateUserProfile(userDetails.userKey, data))
+    );
   };
 
   const {
@@ -26,10 +29,9 @@ const Profile = () => {
     "user-profile",
     () => userDetails && getUserProfile(userDetails?.userKey),
     {
-      refetchOnMount: false,
+      refetchOnMount: true,
       refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      enabled: !!userDetails,
+      refetchOnReconnect: true,
     }
   );
 
@@ -69,15 +71,13 @@ const Profile = () => {
         icon={IconTypesEnum.userProfile}
       >
         <div className="profile-form">
-          {profileData?.result ? (
+          {profileData?.result && (
             <ProfileForm
               profileData={profileData?.result}
               editHandler={editHandler}
               isFormDisabled={isFormDisabled}
               UpdateUserProfile={UpdateUserProfile}
             />
-          ) : (
-            <NoData />
           )}
         </div>
       </ContainerBox>

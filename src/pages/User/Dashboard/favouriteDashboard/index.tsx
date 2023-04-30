@@ -11,8 +11,8 @@ import useUserProvider from "pages/User/useUserContext";
 
 const FavouriteDashboard = () => {
   const { currency, favouriteCoins } = usePagesProvider();
-
   const { setSelectedCoin } = useUserProvider();
+
   const [coins, setCoins] = useState<any>();
 
   const getFavouriteCoinsPrices = () => {
@@ -41,7 +41,7 @@ const FavouriteDashboard = () => {
   useEffect(() => {
     favouriteCoins?.length > 0 && refetch();
     // eslint-disable-next-line
-  }, [favouriteCoins]);
+  }, [favouriteCoins, currency]);
 
   return (
     <>

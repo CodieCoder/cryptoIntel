@@ -110,7 +110,9 @@ const DashboardChart: React.FC = () => {
           {selectedCoin && coinKlineData ? (
             <div className="dashboard-chart-div">
               <div className="dashboard-chart-top">
-                <ChartTopBoxes info={createTopChartInfo(selectedCoin)} />
+                <ChartTopBoxes
+                  info={createTopChartInfo(selectedCoin, currency)}
+                />
               </div>
               <div className="dashboard-chart-top">
                 <ChartTools

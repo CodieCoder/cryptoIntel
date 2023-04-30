@@ -33,7 +33,7 @@ const UserProvider = (props: { children: React.ReactNode }) => {
   const dataState = useMemo(() => {
     const logOut = () => {
       logoutUser();
-      NavigateTo("/login");
+      NavigateTo("/");
     };
 
     return {

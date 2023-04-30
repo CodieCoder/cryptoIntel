@@ -5,3 +5,7 @@ export const priceFormat = (price: number, currency: string) => {
     significantFigures: 2,
   });
 };
+
+export const numberFormat = (price: number) => {
+  return price.toLocaleString();
+};
