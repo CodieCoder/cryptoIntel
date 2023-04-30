@@ -5,7 +5,7 @@ import { NewsCategories } from "./constants"
 
 interface INewsOptions {
   setPageSize: React.Dispatch<React.SetStateAction<number>>
-  setCategory: React.Dispatch<React.SetStateAction<string>>
+  setCategory?: React.Dispatch<React.SetStateAction<string>>
   setCearchValue?: any
 }
 

@@ -3,7 +3,7 @@ import Headlines from "components/Headlines"
 import { useQuery } from "react-query"
 import { getNews } from "Apis/news"
 import "./index.scss"
-import { Row, Col, Spinner } from "react-bootstrap"
+import { Row, Col } from "react-bootstrap"
 import LandscapeCards from "components/News/LandsscapeNewsCard/landscapeCard"
 import NewsBrief from "Widgets/Briefs"
 import { TNews } from "Constants"
@@ -17,7 +17,7 @@ const NewsPage: React.FC = () => {
   const [pageNo, setPageNo] = useState(1)
   const [pageSize, setPageSize] = useState(10)
   const [totalPages, setTotalPage] = useState(10)
-  const [category, setCategory] = useState("All")
+  // const [category, setCategory] = useState("All")
 
   const {
     data: allNewsData,
@@ -42,6 +42,7 @@ const NewsPage: React.FC = () => {
 
   useEffect(() => {
     refetchNews()
+    // eslint-disable-next-line
   }, [pageNo, pageSize])
 
   return (
@@ -56,7 +57,7 @@ const NewsPage: React.FC = () => {
               <h3>Latest news</h3>
               <NewsOptions
                 setPageSize={setPageSize}
-                setCategory={setCategory}
+                // setCategory={setCategory}
               />
               <Row xs={1} sm={1} md={1} lg={1} className="news-cards">
                 {newsData &&

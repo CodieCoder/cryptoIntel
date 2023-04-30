@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 import EachHeadline from "./EachHeadline"
@@ -14,7 +14,6 @@ const Headlines = () => {
     data: allNewsData,
     isLoading,
     isFetching,
-    refetch: refetchNews,
   } = useQuery("headline-news", () => getNewsHeadlines(1, 3), {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
