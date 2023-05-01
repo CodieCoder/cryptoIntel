@@ -23,7 +23,6 @@ const NewsOptions: React.FC<INewsOptions> = ({ setPageSize, setCategory }) => {
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={50}>50</option>
-              <option value={50}>50</option>
               <option value={10}>100</option>
             </Form.Select>
           </Form.Group>

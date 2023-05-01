@@ -15,7 +15,7 @@ const NewsPage: React.FC = () => {
   const [newsData, setNewsData] = useState<TNews[]>()
   // const [error, setError] = useState(false);
   const [pageNo, setPageNo] = useState(1)
-  const [pageSize, setPageSize] = useState(10)
+  const [pageSize, setPageSize] = useState(5)
   const [totalPages, setTotalPage] = useState(10)
   // const [category, setCategory] = useState("All")
 
