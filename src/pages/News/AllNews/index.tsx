@@ -19,14 +19,15 @@ const NewsPage: React.FC = () => {
   const [totalPages, setTotalPage] = useState(10)
   // const [category, setCategory] = useState("All")
 
-  const { data: allNewsData, refetch: refetchNews } = useQuery(
-    "all-news",
-    () => getNews(pageNo, pageSize),
-    {
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  )
+  const {
+    data: allNewsData,
+    isLoading,
+    isFetching,
+    refetch: refetchNews,
+  } = useQuery("all-news", () => getNews(pageNo, pageSize), {
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  })
 
   //const
   useEffect(() => {
@@ -58,7 +59,7 @@ const NewsPage: React.FC = () => {
               // setCategory={setCategory}
             />
             <Row xs={1} sm={1} md={1} lg={1} className="news-cards">
-              {newsData ? (
+              {newsData && isLoading === false && isFetching === false ? (
                 newsData?.map((eachNews: any, index: number) => (
                   <div className="news-cards-each" key={index}>
                     <LandscapeCards news={eachNews} />
