@@ -1,4 +1,5 @@
 export enum IconTypesEnum {
+  coins = "coins",
   chart = "chart",
   favourite = "favourite",
   userProfile = "userProfile",

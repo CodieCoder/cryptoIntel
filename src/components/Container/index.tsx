@@ -3,6 +3,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { BsFillPieChartFill, BsStarFill } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
+import { GiTwoCoins } from "react-icons/gi";
 import "./asset/index.scss";
 import { IContainerBox, IconTypesEnum } from "./constants";
 
@@ -37,6 +38,8 @@ const ContainerBox: React.FC<IContainerBox> = ({
         return <BsFillPieChartFill className="icon-component" />;
       case IconTypesEnum.favourite:
         return <BsStarFill className="icon-component" />;
+      case IconTypesEnum.coins:
+        return <GiTwoCoins className="icon-component" />;
       case IconTypesEnum.userProfile:
         return (
           <BiUser className="icon-component" style={{ fontSize: "1.7rem" }} />

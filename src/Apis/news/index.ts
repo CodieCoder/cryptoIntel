@@ -13,5 +13,7 @@ export const getOneNews = async (newsId: string) => {
 };
 
 export const getNewsBrief = async (page?: number, pageSize?: number) => {
-  return await AxiosRequest.get(`news/brief`);
+  return await AxiosRequest.get(
+    `news/brief/?page=${page}&pageSize=${pageSize}`
+  );
 };

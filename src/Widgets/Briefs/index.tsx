@@ -1,33 +1,59 @@
+import CoinPagination from "components/Pagination/Pagination";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getNewsBrief } from "../../Apis/news";
-import { IBriefObject } from "./constants";
+import { IBriefObject, INewsBrief } from "./constants";
 import EachBrief from "./eachBrief";
 import "./index.scss";
+import BriefPlaceholder from "./placeholder";
 
-const NewsBrief = () => {
+const NewsBrief: React.FC<INewsBrief> = ({ count }) => {
   const [briefData, setBriefData] = useState<any>();
-  // const [page, setPage] = useState(1);
-  // const [pageSize, setPageSize] = useState(20);
-  const { data } = useQuery("news-brief", () => getNewsBrief(1, 20), {
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-  });
+  const [pageNo, setPageNo] = useState(1);
+  // const [pageSize, setPageSize] = useState(12);
+  const [totalPages, setTotalPage] = useState(10);
+  const { data, isLoading, isFetching, refetch } = useQuery(
+    "news-brief",
+    () => getNewsBrief(pageNo, count),
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   useEffect(() => {
-    data && setBriefData(data?.data?.result?.data);
+    if (data?.data?.error === false && data.data?.result?.data) {
+      setBriefData(data.data?.result?.data);
+      setTotalPage(data.data?.result?.totalPages);
+    }
   }, [data]);
+
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line
+  }, [pageNo, count]);
 
   return (
     <div className="widget-news-brief">
-      {data?.data?.error === false &&
+      {briefData && isLoading === false && isFetching === false ? (
         briefData?.map((brief: IBriefObject, index: number) => (
           <div className="each" key={index}>
             <EachBrief brief={brief} />
           </div>
-        ))}
+        ))
+      ) : (
+        <BriefPlaceholder count={count} />
+      )}
+      {briefData && (
+        <CoinPagination
+          pageNo={pageNo}
+          setPageNo={setPageNo}
+          totalPages={totalPages}
+          size="sm"
+        />
+      )}
     </div>
   );
 };
-
+// BriefPlaceholder;
 export default NewsBrief;

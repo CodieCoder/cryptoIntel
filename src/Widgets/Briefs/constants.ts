@@ -1,3 +1,6 @@
+export interface INewsBrief {
+  count: number;
+}
 export interface IBrief {
   brief: IBriefObject;
 }

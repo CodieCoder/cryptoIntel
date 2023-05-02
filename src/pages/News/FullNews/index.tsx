@@ -44,7 +44,7 @@ const FullNews = () => {
         </Col>
         <Col xs={12} sm={12} md={4} lg={4} className="one-news-right">
           <div className="heading">Hot Headlines</div>
-          <NewsBrief />
+          <NewsBrief count={6} />
         </Col>
       </Row>
     </div>

@@ -10,7 +10,7 @@ const LeftBody = () => {
         <br />
       </div>
       <div className="news-brief">
-        <NewsBrief />
+        <NewsBrief count={12} />
       </div>
     </div>
   );

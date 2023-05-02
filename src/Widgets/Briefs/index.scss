@@ -3,31 +3,27 @@
 .widget-news-brief {
   border-radius: 5px;
   padding: 0.8rem;
+  padding-top: 0.1rem;
   text-align: left;
   margin: auto;
-  // background-color: #fff;
   .each {
-    width: 80%;
+    width: 95%;
     margin: auto;
-    font-size: 0.9rem;
-    // border-bottom: 1px solid #eee;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
     .EachBrief {
-      margin-top: 1.5rem;
+      margin-top: 0.5rem;
       margin-bottom: 0.5rem;
-      box-shadow: 0px 0px 5px #ddd;
       border-radius: 5px;
-      background-color: #fff;
       .date {
-        // background-color: $primaryColor;
-        background-color: rgba(238, 238, 238, 0.2);
         padding: 0.3rem;
-        // color: #fff;
+        padding-top: 0.1rem;
         color: #888;
-        border-bottom: 1px solid #eee;
       }
       .title {
         padding: 0.4rem;
-        margin-top: 0.3rem;
+        padding-top: 0.1rem;
+        margin-top: 0.1rem;
       }
       .tags {
         font-style: italic;
@@ -35,6 +31,7 @@
         margin-top: 0.4rem;
         text-align: left;
         padding: 0.4rem;
+        padding-top: 0.1rem;
       }
     }
   }

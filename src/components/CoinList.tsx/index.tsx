@@ -72,7 +72,11 @@ const CoinsListing: React.FC<ICoinListist> = ({
   return (
     <>
       <CoinModal coin={selectedCoin} show={modalOn} toggler={handleClose} />
-      <ContainerBox loading={isLoading || isFetching} title="Coin list">
+      <ContainerBox
+        loading={isLoading || isFetching}
+        title="Coin list"
+        // icon="coins"
+      >
         <div className="container coin-list-div">
           <div className="coin-list-search-div">
             <input
