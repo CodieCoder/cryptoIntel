@@ -1,5 +1,4 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
 import Placeholder from "react-bootstrap/esm/Placeholder";
 import "./asset/index.scss";
 

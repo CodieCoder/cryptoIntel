@@ -16,11 +16,3 @@ const EachBrief: React.FC<IBrief> = ({ brief }) => {
 };
 
 export default EachBrief;
-
-//   date: string
-//   title: string
-//   url: string
-//   tags: string
-//   language: string
-//   source_info: string
-//   randkey: string
