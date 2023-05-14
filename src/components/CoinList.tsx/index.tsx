@@ -9,6 +9,7 @@ import CoinPagination from "../Pagination/Pagination";
 import { useQuery } from "react-query";
 import { getAllCoinsMarket } from "../../Apis/coins/getCoins";
 import ContainerBox from "components/Container";
+import { IconTypesEnum } from "components/Container/constants";
 
 interface ICoinListist {
   pagination?: boolean;
@@ -75,7 +76,7 @@ const CoinsListing: React.FC<ICoinListist> = ({
       <ContainerBox
         loading={isLoading || isFetching}
         title="Coin list"
-        // icon="coins"
+        icon={IconTypesEnum.coins}
       >
         <div className="container coin-list-div">
           <div className="coin-list-search-div">

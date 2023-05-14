@@ -80,8 +80,8 @@ $trendingBackgroundColor: #fff;
 .general-loading-submit-btn {
   transition: 0.5s;
   padding: 0.5rem;
-  color: $primaryColor;
-  border: 1px solid $primaryColor;
+  color: $primaryColor_dark;
+  border: 1px solid $primaryColor_dark;
   border-radius: 3px;
   font-weight: bolder;
   width: auto;
@@ -89,7 +89,7 @@ $trendingBackgroundColor: #fff;
   background-color: #fff;
   &:hover {
     transition: 0.5s;
-    background-color: $primaryColor_light;
+    background-color: $primaryColor_dark;
     color: #fff;
   }
   &:active {
@@ -97,7 +97,7 @@ $trendingBackgroundColor: #fff;
   }
   &.loading {
     transition: 0.5s;
-    background-color: $primaryColor_light;
+    background-color: $primaryColor_dark;
     color: #fff;
   }
   .general-loading-submit-spin {

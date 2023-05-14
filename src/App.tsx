@@ -16,6 +16,7 @@ import CoinsPage from "./pages/Coins";
 import NewsPage from "./pages/News/AllNews";
 import LoginModal from "./components/Modals/LoginModal";
 import FullNews from "./pages/News/FullNews";
+import ContactPage from "pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/user/" element={<UserIndex />}>
                   <Route path="/user/:subpages" element={<UserIndex />} />
                 </Route>
+                <Route path="/contact" element={<ContactPage />} />
               </Routes>
             </div>
             <div className="boilerplate_footer">
