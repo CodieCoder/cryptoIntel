@@ -80,7 +80,6 @@
     }
   }
   .coin-modal-body {
-    background-color: #eee;
     font-size: 0.9rem;
 
     .coin-modal-top-div {
@@ -93,25 +92,6 @@
       margin-top: 0rem;
       // text-align: center;
       // padding-right: 3%;
-
-      .coin-modal-top-details {
-        // display: flex;
-        // border-left: 1px solid #ccc;
-        margin: auto;
-        // text-align: left;
-        .coin-modal-top-details-hds {
-          // display: inline;
-          font-weight: bold;
-          letter-spacing: 0.5px;
-          // float: left;
-        }
-        .coin-modal-details-text {
-          // display: inline;
-          font-weight: 600;
-          // float: right;
-          // margin-left: 10%;
-        }
-      }
     }
     .coin-modal-ohlc {
       margin-top: 1rem;
