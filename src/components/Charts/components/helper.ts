@@ -15,11 +15,11 @@ export const createTopChartInfo = (selectedCoin: ICoin, currency: string) => {
       data: priceFormat(selectedCoin?.market_cap, currency),
     },
     {
-      title: "Total volume",
+      title: "Volume",
       data: numberFormat(selectedCoin?.total_volume),
     },
     {
-      title: "Circulating supply",
+      title: "Supply",
       data: numberFormat(selectedCoin?.circulating_supply),
     },
   ];
