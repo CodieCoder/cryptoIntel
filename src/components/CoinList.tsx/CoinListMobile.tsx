@@ -1,10 +1,11 @@
+import CryptoFavourite from "components/HtmlElements/CryptoFavourite";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 
 const CoinList = ({ coin, showModal }: { coin: any; showModal: any }) => {
   return (
-    <tr className="coinlist-table-tr" onClick={() => showModal(coin)}>
+    <tr className="coinlist-table-tr">
       <td className="coinlist-table-td">
-        <i className="bi bi-star"></i>
+        <CryptoFavourite coin={coin} />
       </td>
       <td className="coinlist-table-td">{coin?.market_cap_rank}</td>
       <td className="coinlist-table-td">
@@ -14,9 +15,10 @@ const CoinList = ({ coin, showModal }: { coin: any; showModal: any }) => {
           className="float-start"
           alt={coin?.symbol}
         />
-        <div className="coinlist-table-name">{coin?.name}</div>
+        <div className="coinlist-table-name" onClick={() => showModal(coin)}>
+          {coin?.name}
+        </div>
       </td>
-      {/* <td className="coinlist-table-td">{coin?.symbol.toUpperCase()}</td> */}
       <td className="coinlist-table-td">
         {coin?.current_price.toLocaleString()}
       </td>

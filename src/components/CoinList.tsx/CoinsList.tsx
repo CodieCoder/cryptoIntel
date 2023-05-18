@@ -22,7 +22,6 @@ const CoinList: React.FC<ICoinList> = ({ coin, showModal }) => {
       </td>
       <td className="coinlist-table-td">{coin?.market_cap_rank}</td>
       <td className="coinlist-table-td">
-        {/* <img src={coin?.image} width="20px" className="float-start" /> */}
         <span className="float-start">
           <CoinIcon src={coin?.image} />
         </span>
