@@ -24,11 +24,7 @@ const CoinList = ({ coin, showModal }: { coin: any; showModal: any }) => {
       </td>
 
       <td className="coinlist-table-td">
-        <Sparklines
-          // svgHeight={40}
-          // svgWidth={40}
-          data={coin?.sparkline_in_7d?.price}
-        >
+        <Sparklines data={coin?.sparkline_in_7d?.price}>
           <SparklinesLine
             color={`${coin?.price_change_24h < 0 ? "red" : "green"}`}
           />

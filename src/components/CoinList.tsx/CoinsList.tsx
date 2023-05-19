@@ -9,12 +9,6 @@ interface ICoinList {
   showModal: any;
 }
 const CoinList: React.FC<ICoinList> = ({ coin, showModal }) => {
-  // const [coinsList, setCoinsList] = useState<string[]>([])
-
-  // useEffect(() => {
-  //   setCoinsList(coin)
-  // }, [])
-
   return (
     <tr className="coinlist-table-tr">
       <td className="coinlist-table-td">

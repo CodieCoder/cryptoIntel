@@ -1,7 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Spinner from "react-bootstrap/esm/Spinner";
 import { BsStar, BsStarFill } from "react-icons/bs";
+import { useMutation } from "react-query";
+import usePagesProvider from "usePagesProvider";
 import { updateFavourite } from "../../Apis/user/favourite";
-import PagesContext from "../../Context";
 import CoinIcon from "./CoinIcon";
 
 const CryptoFavourite = ({ coin }: { coin: any }) => {
@@ -12,22 +14,18 @@ const CryptoFavourite = ({ coin }: { coin: any }) => {
     login,
     setShowLoginModal,
     userDetails,
-  } = useContext(PagesContext);
+  } = usePagesProvider();
 
   const [isFavourite, setIsFavourite] = useState(false);
-  const favouriteClickHandler = async () => {
-    //add to favourite or show login/signup modal
-    //check is user is logged in
-    const isAdded = isFavourite;
-    if (login === true) {
-      //add to favourite
-      const updatedFav = await updateFavourite(userDetails?.userKey, coin?.id);
-      if (updatedFav?.error === false) {
-        updateFavouriteCoinsHandler(updatedFav?.result);
+
+  const { mutate: updatedFav, isLoading } = useMutation(updateFavourite, {
+    onSuccess: (data: any) => {
+      if (data?.error === false) {
+        updateFavouriteCoinsHandler(data?.result);
         notify.success(
           <span>
             <CoinIcon src={coin?.image} /> &nbsp; {coin?.name}
-            {isAdded ? (
+            {isFavourite ? (
               <span> removed from favourites</span>
             ) : (
               <span> added to favourites</span>
@@ -35,15 +33,22 @@ const CryptoFavourite = ({ coin }: { coin: any }) => {
           </span>
         );
       } else {
-        notify.error(updatedFav?.result || "An error occured.");
+        notify.error(data?.result || "An error occured.");
       }
+    },
+    onError: (error: any) => notify.error("An error occured."),
+  });
 
-      return true;
+  const favouriteClickHandler = async () => {
+    //add to favourite or show login/signup modal
+    //check is user is logged in
+    if (login === true) {
+      updatedFav({ userId: userDetails?.userKey, coinId: coin?.id });
+      //add to favourite
     } else {
       //show login/signup modal
       notify.warning(`You need to login first`);
       setShowLoginModal(true);
-      return false;
     }
   };
 
@@ -58,13 +63,25 @@ const CryptoFavourite = ({ coin }: { coin: any }) => {
   }, [login, favouriteCoins, coin.id]);
 
   return (
-    <span className="favourite-star" onClick={favouriteClickHandler}>
-      {isFavourite === true ? (
-        <BsStarFill className="isFavourite" />
+    <>
+      {isLoading ? (
+        <Spinner
+          as="span"
+          animation="border"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
       ) : (
-        <BsStar />
+        <span className="favourite-star" onClick={favouriteClickHandler}>
+          {isFavourite === true ? (
+            <BsStarFill className="isFavourite" />
+          ) : (
+            <BsStar />
+          )}
+        </span>
       )}
-    </span>
+    </>
   );
 };
 export default CryptoFavourite;
