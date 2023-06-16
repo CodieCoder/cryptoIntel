@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from "react";
-import Headlines from "components/Headlines";
-import { useQuery } from "react-query";
-import { getNews } from "Apis/news";
-import "./index.scss";
-import { Row, Col } from "react-bootstrap";
-import LandscapeCards from "components/News/LandsscapeNewsCard/landscapeCard";
-import NewsBrief from "Widgets/Briefs";
-import { TNews } from "Constants";
-import CoinPagination from "components/Pagination/Pagination";
-import NewsOptions from "../newsOptions";
-import NewsPlaceholder from "components/News/placeholder";
+import React, { useEffect, useState } from "react"
+import Headlines from "components/Headlines"
+import { useQuery } from "react-query"
+import { getNews } from "Apis/news"
+import "./index.scss"
+import { Row, Col } from "react-bootstrap"
+import LandscapeCards from "components/News/LandsscapeNewsCard/landscapeCard"
+import NewsBrief from "Widgets/Briefs"
+import { TNews } from "Constants"
+import CoinPagination from "components/Pagination/Pagination"
+import NewsOptions from "../newsOptions"
+import NewsPlaceholder from "components/News/placeholder"
 
 const NewsPage: React.FC = () => {
-  const [newsData, setNewsData] = useState<TNews[]>();
-  // const [error, setError] = useState(false);
-  const [pageNo, setPageNo] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
-  const [totalPages, setTotalPage] = useState(10);
-  // const [category, setCategory] = useState("All")
+  const [newsData, setNewsData] = useState<TNews[]>()
+  const [pageNo, setPageNo] = useState(1)
+  const [pageSize, setPageSize] = useState(5)
+  const [totalPages, setTotalPage] = useState(10)
 
   const {
     data: allNewsData,
@@ -27,23 +25,21 @@ const NewsPage: React.FC = () => {
   } = useQuery("all-news", () => getNews(pageNo, pageSize), {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-  });
+  })
 
-  //const
   useEffect(() => {
     if (allNewsData?.data?.error === false) {
       setNewsData(
         allNewsData.data?.result?.data?.filter((news: any) => news?.image)
-      );
-      setTotalPage(allNewsData.data?.result?.totalPages);
-      // setLoading(false);
+      )
+      setTotalPage(allNewsData.data?.result?.totalPages)
     }
-  }, [allNewsData]);
+  }, [allNewsData])
 
   useEffect(() => {
-    refetchNews();
+    refetchNews()
     // eslint-disable-next-line
-  }, [pageNo, pageSize]);
+  }, [pageNo, pageSize])
 
   return (
     <div className="container news-page">
@@ -54,10 +50,7 @@ const NewsPage: React.FC = () => {
         <Row>
           <Col xs={12} sm={12} md={8} className="right-pane">
             <h3>Latest news</h3>
-            <NewsOptions
-              setPageSize={setPageSize}
-              // setCategory={setCategory}
-            />
+            <NewsOptions setPageSize={setPageSize} />
             <Row xs={1} sm={1} md={1} lg={1} className="news-cards">
               {newsData && isLoading === false && isFetching === false ? (
                 newsData?.map((eachNews: any, index: number) => (
@@ -79,13 +72,13 @@ const NewsPage: React.FC = () => {
           </Col>
           <Col xs={12} sm={12} md={4} className="left-pane">
             <div className="news-brief-component">
-              <NewsBrief count={pageSize} />
+              <NewsBrief count={Math.floor(pageSize + pageSize * 0.5)} />
             </div>
           </Col>
         </Row>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NewsPage;
+export default NewsPage

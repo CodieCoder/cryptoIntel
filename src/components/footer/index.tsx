@@ -1,5 +1,5 @@
-import { SITE_CONFIGURATION } from "site_config";
-import "./index.scss";
+import { SITE_CONFIGURATION } from "site_config"
+import "./index.scss"
 
 const Footer = () => {
   return (
@@ -47,12 +47,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="col">
-            <div className="footer-socials">Pages</div>
+            <div className="footer-socials">&copy; 2023</div>
           </div>
         </div>
       </footer>
     </>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

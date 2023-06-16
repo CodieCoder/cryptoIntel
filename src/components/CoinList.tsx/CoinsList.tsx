@@ -1,14 +1,16 @@
-import React from "react";
-import { Sparklines, SparklinesLine } from "react-sparklines";
-import CoinIcon from "../HtmlElements/CoinIcon";
-import CryptoFavourite from "../HtmlElements/CryptoFavourite";
-import NumberType from "../NumberType";
+import React from "react"
+import { Sparklines, SparklinesLine } from "react-sparklines"
+import CoinIcon from "../HtmlElements/CoinIcon"
+import CryptoFavourite from "../HtmlElements/CryptoFavourite"
+import NumberType from "../NumberType"
+import { priceFormat } from "utils/numberFormat"
 
 interface ICoinList {
-  coin: any;
-  showModal: any;
+  coin: any
+  showModal: any
+  currency: string
 }
-const CoinList: React.FC<ICoinList> = ({ coin, showModal }) => {
+const CoinList: React.FC<ICoinList> = ({ coin, showModal, currency }) => {
   return (
     <tr className="coinlist-table-tr">
       <td className="coinlist-table-td">
@@ -25,9 +27,7 @@ const CoinList: React.FC<ICoinList> = ({ coin, showModal }) => {
       </td>
       <td className="coinlist-table-td">{coin?.symbol.toUpperCase()}</td>
       <td className="coinlist-table-td">
-        {coin?.current_price.toLocaleString()}
-
-        {/* {priceFormat(coin?.current_price.toLocaleString())} */}
+        {priceFormat(coin?.current_price, currency)}
       </td>
       <td className="coinlist-table-td">
         <NumberType
@@ -43,18 +43,14 @@ const CoinList: React.FC<ICoinList> = ({ coin, showModal }) => {
       </td>
       <td className="coinlist-table-td">{coin?.market_cap.toLocaleString()}</td>
       <td className="coinlist-table-td">
-        <Sparklines
-          // svgHeight={40}
-          // svgWidth={40}
-          data={coin?.sparkline_in_7d?.price}
-        >
+        <Sparklines data={coin?.sparkline_in_7d?.price}>
           <SparklinesLine
             color={`${coin?.price_change_24h < 0 ? "red" : "green"}`}
           />
         </Sparklines>
       </td>
     </tr>
-  );
-};
+  )
+}
 
-export default CoinList;
+export default CoinList

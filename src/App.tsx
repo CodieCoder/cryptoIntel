@@ -1,24 +1,23 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import Header from "./components/header/";
-import Homepage from "./pages/Homepage";
-import Footer from "./components/footer";
-import Coinpage from "./pages/Coinpage";
-import "./App.scss";
-import RegistrationPage from "./pages/Registration";
-import LoginPage from "./pages/Login";
-import PagesProvider from "./Provider";
-import UserIndex from "./pages/User";
-import { QueryClient, QueryClientProvider } from "react-query";
-import Notify from "./components/Notification/notify";
-import CoinsPage from "./pages/Coins";
-import NewsPage from "./pages/News/AllNews";
-import LoginModal from "./components/Modals/LoginModal";
-import FullNews from "./pages/News/FullNews";
-import ContactPage from "pages/Contact";
+import React from "react"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import "bootstrap-icons/font/bootstrap-icons.css"
+import Header from "./components/header/"
+import Homepage from "./pages/Homepage"
+import Footer from "./components/footer"
+import Coinpage from "./pages/Coinpage"
+import "./App.scss"
+import RegistrationPage from "./pages/Registration"
+import PagesProvider from "./Provider"
+import UserIndex from "./pages/User"
+import { QueryClient, QueryClientProvider } from "react-query"
+import Notify from "./components/Notification/notify"
+import CoinsPage from "./pages/Coins"
+import NewsPage from "./pages/News/AllNews"
+import LoginModal from "./components/Modals/LoginModal"
+import FullNews from "./pages/News/FullNews"
+import ContactPage from "pages/Contact"
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 function App() {
   return (
@@ -40,7 +39,6 @@ function App() {
                 </Route>
                 <Route path="/coin/:coinId" element={<Coinpage />} />
                 <Route path="/register/" element={<RegistrationPage />} />
-                <Route path="/login/" element={<LoginPage />} />
                 <Route path="/user/" element={<UserIndex />}>
                   <Route path="/user/:subpages" element={<UserIndex />} />
                 </Route>
@@ -55,7 +53,7 @@ function App() {
         </BrowserRouter>
       </PagesProvider>
     </QueryClientProvider>
-  );
+  )
 }
 
-export default App;
+export default App

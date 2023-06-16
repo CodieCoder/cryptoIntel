@@ -1,5 +1,5 @@
-import "./index.scss";
-import NewsBrief from "Widgets/Briefs";
+import "./index.scss"
+import NewsBrief from "Widgets/Briefs"
 
 const LeftBody = () => {
   return (
@@ -13,7 +13,7 @@ const LeftBody = () => {
         <NewsBrief count={12} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LeftBody;
+export default LeftBody

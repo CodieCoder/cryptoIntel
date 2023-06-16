@@ -1,10 +1,13 @@
 .left-body {
-  // background-color: #f00;
   margin: auto;
-  // width: 100%;
 }
 
 .news-brief {
   height: 55rem;
-  // overflow: auto;
+}
+
+@media (max-width: 760px) {
+  .news-brief {
+    height: 85rem;
+  }
 }
