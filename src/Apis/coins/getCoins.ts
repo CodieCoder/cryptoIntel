@@ -20,3 +20,7 @@ export const getMarketById = async (coinId: string, currency: string) => {
 export const getTrendingCoins = async () => {
   return await AxiosClient.get(`${getCoins_CoinGecko.Trending}`);
 };
+
+export const getCoinData = async (coinId:string) => {
+  return await AxiosClient.get(`${getCoins_CoinGecko.CoinData}${coinId}?localization=false&sparkline=true`);
+};

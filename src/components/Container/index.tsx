@@ -1,7 +1,11 @@
 import Loading from "components/Loading";
 import React from "react";
 import { Container } from "react-bootstrap";
-import { BsFillPieChartFill, BsStarFill } from "react-icons/bs";
+import {
+  BsFillInfoSquareFill,
+  BsFillPieChartFill,
+  BsStarFill,
+} from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { GiTwoCoins } from "react-icons/gi";
 import { RiContactsLine } from "react-icons/ri";
@@ -35,17 +39,19 @@ const ContainerBox: React.FC<IContainerBox> = ({
 
   const commonIconTypes = (iconName: string) => {
     switch (iconName) {
+      case IconTypesEnum.about:
+        return <BsFillInfoSquareFill className='icon-component' />;
       case IconTypesEnum.chart:
-        return <BsFillPieChartFill className="icon-component" />;
+        return <BsFillPieChartFill className='icon-component' />;
       case IconTypesEnum.favourite:
-        return <BsStarFill className="icon-component" />;
+        return <BsStarFill className='icon-component' />;
       case IconTypesEnum.coins:
-        return <GiTwoCoins className="icon-component" />;
+        return <GiTwoCoins className='icon-component' />;
       case IconTypesEnum.contact:
-        return <RiContactsLine className="icon-component" />;
+        return <RiContactsLine className='icon-component' />;
       case IconTypesEnum.userProfile:
         return (
-          <BiUser className="icon-component" style={{ fontSize: "1.7rem" }} />
+          <BiUser className='icon-component' style={{ fontSize: "1.7rem" }} />
         );
       default:
         return;
@@ -53,14 +59,14 @@ const ContainerBox: React.FC<IContainerBox> = ({
   };
 
   return (
-    <Container className="containerBox">
+    <Container className='containerBox'>
       <Loading loading={loading || false}>
         <div className={getClassName()}>
-          <div className="containerBox-header">
-            <div className="containerBox-icon">{getIcon()}</div>
-            <div className="containerBox-title">{title}</div>
+          <div className='containerBox-header'>
+            <div className='containerBox-icon'>{getIcon()}</div>
+            <div className='containerBox-title'>{title}</div>
           </div>
-          <div className="containerBox-content">{children}</div>
+          <div className='containerBox-content'>{children}</div>
         </div>
       </Loading>
     </Container>
