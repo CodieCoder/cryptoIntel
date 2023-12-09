@@ -1,7 +1,6 @@
-import React from "react"
-import Body from "./Body"
-import Trending from "../../components/Trending"
-import "./index.scss"
+import Body from "./Body";
+import Trending from "../../components/Trending";
+import "./index.scss";
 
 const Homepage = () => {
   return (
@@ -9,7 +8,7 @@ const Homepage = () => {
       <Trending />
       <Body />
     </div>
-  )
-}
+  );
+};
 
-export default Homepage
+export default Homepage;

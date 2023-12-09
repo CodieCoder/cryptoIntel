@@ -1,11 +1,11 @@
-import { VscHome } from "react-icons/vsc"
-import { GrBitcoin } from "react-icons/gr"
-import { TbNews } from "react-icons/tb"
-import { MdOutlineContactSupport } from "react-icons/md"
-import { TbHeartHandshake } from "react-icons/tb"
-import { FaUserPlus } from "react-icons/fa"
-import { CiLogin } from "react-icons/ci"
-import { NavLink } from "react-router-dom"
+import { VscHome } from "react-icons/vsc";
+import { GrBitcoin } from "react-icons/gr";
+import { TbNews } from "react-icons/tb";
+import { MdOutlineContactSupport } from "react-icons/md";
+import { TbHeartHandshake } from "react-icons/tb";
+import { FaUserPlus } from "react-icons/fa";
+import { CiLogin } from "react-icons/ci";
+import { NavLink } from "react-router-dom";
 
 export const SitePages = [
   {
@@ -43,13 +43,13 @@ export const SitePages = [
     path: "/login",
     icon: <CiLogin />,
   },
-]
+];
 
 export const MobileMenu = (fn: (value: string) => void) => {
   return (
     <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
       {SitePages.map((link, index) => {
-        if (link.title === "Login" || link.title === "Join us") return null
+        if (link.title === "Login" || link.title === "Join us") return null;
         return (
           <li
             key={index}
@@ -59,11 +59,11 @@ export const MobileMenu = (fn: (value: string) => void) => {
             <div className="mobile-top-memu-link-icon">{link.icon}</div>
             <div className="mobile-top-memu-link-title">{link.title}</div>
           </li>
-        )
+        );
       })}
     </ul>
-  )
-}
+  );
+};
 
 export const DesktopMenu = () => {
   return (
@@ -74,7 +74,7 @@ export const DesktopMenu = () => {
           link.title === "Login" ||
           link.title === "Join us"
         )
-          return null
+          return null;
         return (
           <div
             className="desktop-top-header-menus"
@@ -83,8 +83,8 @@ export const DesktopMenu = () => {
           >
             <NavLink to={link.path}>{link.title}</NavLink>
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};

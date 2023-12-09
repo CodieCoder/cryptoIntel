@@ -1,33 +1,35 @@
-import React from "react"
-import "./index.scss"
+import React from "react";
+import { CurrencyDetails, getCurrencyDetails } from "utils/currency";
+import "./index.scss";
 
-// interface Type{
-//  type:string = "number" || "percent" || "%"
-// }
+interface INumberType {
+  type: string;
+  number: number;
+  length: number;
+  checker: number;
+  icon?: boolean;
+  currency?: string;
+}
 
-const NumberType = ({
+const NumberType: React.FC<INumberType> = ({
   type,
   number,
   length,
   checker,
   icon,
-}: {
-  type: string
-  number: number
-  length: number
-  checker: number
-  icon?: boolean
+  currency = CurrencyDetails[0].title,
 }) => {
-  number = number > 0.001 ? Number(number) : number
-  number = number > 0.001 ? Number(number.toFixed(length)) : number
-  checker = Number(checker)
+  const currentCurrency = getCurrencyDetails(currency);
+  number = number > 0.001 ? Number(number) : number;
+  number = number > 0.001 ? Number(number.toFixed(length)) : number;
+  checker = Number(checker);
   const typeCheck = (type: string) => {
     if (type === "percent" || type === "%" || type === "percentage") {
-      return "%"
+      return "%";
     } else {
-      return ""
+      return "";
     }
-  }
+  };
   return (
     <span
       className={` number-color ${
@@ -43,9 +45,10 @@ const NumberType = ({
           )}
         </span>
       )}{" "}
-      {number?.toLocaleString()} {typeCheck(type)}
+      {type === "number" && currentCurrency.symbol} {number?.toLocaleString()}{" "}
+      {typeCheck(type)}
     </span>
-  )
-}
+  );
+};
 
-export default NumberType
+export default NumberType;

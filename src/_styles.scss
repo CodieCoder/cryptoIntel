@@ -4,13 +4,25 @@ $border: 1px solid rgba(200, 200, 200, 0.5);
 $borderRadius: 3px;
 $boxShadow: 0px 1px 2px #ddd;
 $fontFamily: raleway, roboto, Helvetica, sans-serif;
+// $mainPageBackground: rgba(240, 240, 240, 0.9);
+$mainPageBackground: rgba(250, 250, 250, 0.7);
+$containerBoxBackground: #fff;
+$footerBackgroundColor: rgba(10, 10, 10, 0.8);
 
 //colors
 //text colors
 $green: rgb(3, 126, 3);
 $red: rgb(126, 7, 3);
-$primaryColor: #149;
-$primaryColor_light: #11449980;
+$primaryColor: rgba(60, 199, 198, 1);
+$primaryColor_light: rgba(60, 199, 198, 0.3);
+$primaryColor_dark: rgba(40, 179, 178, 1);
+
+//LINKS
+a {
+  &:hover {
+    color: $primaryColor;
+  }
+}
 
 //COIN ICONS
 .coinIcon {
@@ -22,8 +34,11 @@ $primaryColor_light: #11449980;
   font-size: larger;
 }
 .isFavourite {
-  color: rgb(247, 81, 108);
+  color: $primaryColor;
 }
+
+//TRENDING COINS
+$trendingBackgroundColor: #fff;
 
 // PAGE
 .page-section {
@@ -45,8 +60,8 @@ $primaryColor_light: #11449980;
 .general-submit-btn {
   transition: 0.5s;
   padding: 0.5rem;
-  color: #149;
-  border: 1px solid #149;
+  color: $primaryColor;
+  border: 1px solid $primaryColor;
   border-radius: 3px;
   font-weight: bolder;
   width: 5rem;
@@ -65,8 +80,8 @@ $primaryColor_light: #11449980;
 .general-loading-submit-btn {
   transition: 0.5s;
   padding: 0.5rem;
-  color: #149;
-  border: 1px solid #149;
+  color: $primaryColor_dark;
+  border: 1px solid $primaryColor_dark;
   border-radius: 3px;
   font-weight: bolder;
   width: auto;
@@ -74,7 +89,7 @@ $primaryColor_light: #11449980;
   background-color: #fff;
   &:hover {
     transition: 0.5s;
-    background-color: $primaryColor_light;
+    background-color: $primaryColor_dark;
     color: #fff;
   }
   &:active {
@@ -82,7 +97,7 @@ $primaryColor_light: #11449980;
   }
   &.loading {
     transition: 0.5s;
-    background-color: $primaryColor_light;
+    background-color: $primaryColor_dark;
     color: #fff;
   }
   .general-loading-submit-spin {

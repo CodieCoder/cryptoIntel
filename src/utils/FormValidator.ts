@@ -1,46 +1,47 @@
-import { CountryList } from "../Assets/CountryList"
+import { CountryList } from "../Assets/CountryList";
 
 export const EmailChecker = (email: string): boolean => {
   const checkr = new RegExp(
+    // eslint-disable-next-line
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  )
-  return checkr.test(email)
-}
+  );
+  return checkr.test(email);
+};
 
 export const PhoneNumberChecker = (phone: string) => {
-  const checkr = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
+  const checkr = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
 
-  return checkr.test(phone)
-}
+  return checkr.test(phone);
+};
 
 export const PasswordChecker = (password: string) => {
-  const upperCase: RegExp = /[A-Z]/g
-  const lowerCase: RegExp = /[a-z]/g
-  const number: RegExp = /[0-9]/g
+  const upperCase: RegExp = /[A-Z]/g;
+  const lowerCase: RegExp = /[a-z]/g;
+  const number: RegExp = /[0-9]/g;
   if (
     password.match(upperCase) &&
     password.match(lowerCase) &&
     password.match(number)
   ) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
-}
+};
 
 export const CountryChecker = (country: string) => {
   const checker = CountryList.some(
     (eachCountry) => eachCountry.name === country
-  )
-  return checker
-}
+  );
+  return checker;
+};
 
 export interface RegsitrationFormValidator {
-  formField: string
+  formField: string;
   // type: "email" | "password" | "phone" | "text";
-  type: string
-  range: string
-  errCheck: (value: boolean) => void
+  type: string;
+  range: string;
+  errCheck: (value: boolean) => void;
 }
 
 export enum USER_INFO_CONSTANT {
@@ -71,65 +72,65 @@ export enum ValidatorEnum {
 }
 
 export const formValidator = (data: RegsitrationFormValidator): boolean => {
-  const { formField, type, range, errCheck } = data
+  const { formField, type, range, errCheck } = data;
   // let result = false;
-  const getMinMax = range.split("-")
-  const min: number = Number(getMinMax[0])
-  const max: number = Number(getMinMax[1])
+  const getMinMax = range.split("-");
+  const min: number = Number(getMinMax[0]);
+  const max: number = Number(getMinMax[1]);
   if (formField.length < min || formField.length > max) {
-    errCheck(true)
-    return false
+    errCheck(true);
+    return false;
   }
   switch (type) {
     case ValidatorEnum.EMAIL:
       if (EmailChecker(formField)) {
-        errCheck(false)
-        return true
+        errCheck(false);
+        return true;
       } else {
-        errCheck(true)
-        return false
+        errCheck(true);
+        return false;
       }
     case ValidatorEnum.PASSWORD:
       if (PasswordChecker(formField) === true) {
-        errCheck(false)
-        return true
+        errCheck(false);
+        return true;
       } else {
-        errCheck(true)
-        return false
+        errCheck(true);
+        return false;
       }
     case ValidatorEnum.PHONE:
       if (PhoneNumberChecker(formField) === true) {
-        errCheck(false)
-        return true
+        errCheck(false);
+        return true;
       } else {
-        errCheck(true)
-        return false
+        errCheck(true);
+        return false;
       }
     case ValidatorEnum.GENDER:
       if (formField === "Male" || formField === "Female") {
-        errCheck(false)
-        return true
+        errCheck(false);
+        return true;
       } else {
-        errCheck(true)
-        return false
+        errCheck(true);
+        return false;
       }
     case ValidatorEnum.COUNTRY:
       if (CountryChecker(formField) === true) {
-        errCheck(false)
-        return true
+        errCheck(false);
+        return true;
       } else {
-        errCheck(true)
-        return false
+        errCheck(true);
+        return false;
       }
     default:
-      errCheck(false)
-      return true
+      errCheck(false);
+      return true;
   }
   // return result;
-}
+};
 
 export const UserDevice = () => {
   //TODO
   //Get User device
-  return navigator.userAgent
-}
+  return navigator.userAgent;
+};
