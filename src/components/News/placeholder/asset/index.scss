@@ -1,0 +1,11 @@
+.EachNewsPlaceholder {
+  height: 12rem;
+  background-color: #fff;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #ddd;
+  margin-top: 1rem;
+  .EachNewsPlaceholder-body {
+    opacity: 0.6;
+  }
+}

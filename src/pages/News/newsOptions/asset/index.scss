@@ -1,0 +1,16 @@
+.NewsOptions {
+  .newsoptions-cols {
+    // background-color: #ddd;
+    text-align: start;
+    margin: 0.5rem;
+    .select {
+      font-weight: 600;
+    }
+    .qty {
+      width: 5rem;
+    }
+    .categories {
+      width: 10rem;
+    }
+  }
+}

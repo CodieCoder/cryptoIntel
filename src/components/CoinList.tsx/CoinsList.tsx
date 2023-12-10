@@ -1,31 +1,33 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React from "react"
 import { Sparklines, SparklinesLine } from "react-sparklines"
+import CoinIcon from "../HtmlElements/CoinIcon"
+import CryptoFavourite from "../HtmlElements/CryptoFavourite"
 import NumberType from "../NumberType"
+import { priceFormat } from "utils/numberFormat"
 
 interface ICoinList {
   coin: any
   showModal: any
+  currency: string
 }
-const CoinList: React.FC<ICoinList> = ({ coin, showModal }) => {
-  const [coinsList, setCoinsList] = useState<string[]>([])
-
-  useEffect(() => {
-    setCoinsList(coin)
-  })
-
+const CoinList: React.FC<ICoinList> = ({ coin, showModal, currency }) => {
   return (
     <tr className="coinlist-table-tr">
       <td className="coinlist-table-td">
-        <i className="bi bi-star"></i>
+        <CryptoFavourite coin={coin} />
       </td>
       <td className="coinlist-table-td">{coin?.market_cap_rank}</td>
       <td className="coinlist-table-td">
-        <img src={coin?.image} width="20px" className="float-start" />
-        <div className="coinlist-table-name">{coin?.name}</div>
+        <span className="float-start">
+          <CoinIcon src={coin?.image} />
+        </span>
+        <div className="coinlist-table-name" onClick={() => showModal(coin)}>
+          {coin?.name}
+        </div>
       </td>
       <td className="coinlist-table-td">{coin?.symbol.toUpperCase()}</td>
       <td className="coinlist-table-td">
-        {coin?.current_price.toLocaleString()}
+        {priceFormat(coin?.current_price, currency)}
       </td>
       <td className="coinlist-table-td">
         <NumberType
@@ -41,11 +43,7 @@ const CoinList: React.FC<ICoinList> = ({ coin, showModal }) => {
       </td>
       <td className="coinlist-table-td">{coin?.market_cap.toLocaleString()}</td>
       <td className="coinlist-table-td">
-        <Sparklines
-          // svgHeight={40}
-          // svgWidth={40}
-          data={coin?.sparkline_in_7d?.price}
-        >
+        <Sparklines data={coin?.sparkline_in_7d?.price}>
           <SparklinesLine
             color={`${coin?.price_change_24h < 0 ? "red" : "green"}`}
           />

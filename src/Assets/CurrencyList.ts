@@ -1,4 +1,3 @@
-
 export const CURRENCY_LIST = [
   {
     name: "USD",

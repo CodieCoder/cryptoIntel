@@ -1,16 +1,16 @@
-import React, { useState, useContext } from "react"
-import "./MobileHeader.scss"
-import { LOGINMODAL, SITEINFO, USERDETAILS } from "../../Constants"
-import DesktopHeaderUser from "./headerUser/DesktopHeaderUser"
-import { NavLink, useNavigate } from "react-router-dom"
-import { Offcanvas } from "react-bootstrap"
-import { MobileMenu } from "./HomeLinks"
-import PagesContext from "../../Context"
+import React, { useState, useContext } from "react";
+import "./MobileHeader.scss";
+import { LOGINMODAL, SITEINFO, USERDETAILS } from "../../Constants";
+import DesktopHeaderUser from "./headerUser/DesktopHeaderUser";
+import { useNavigate } from "react-router-dom";
+import { Offcanvas } from "react-bootstrap";
+import { MobileMenu } from "./HomeLinks";
+import PagesContext from "../../Context";
 
 interface IDesktopHeader {
-  isLogin: boolean
-  userDetails: USERDETAILS | undefined
-  logoutHandler: () => void
+  isLogin: boolean;
+  userDetails: USERDETAILS | undefined;
+  logoutHandler: () => void;
 }
 
 const MobileHeader: React.FC<IDesktopHeader> = ({
@@ -18,15 +18,15 @@ const MobileHeader: React.FC<IDesktopHeader> = ({
   userDetails,
   logoutHandler,
 }) => {
-  const navigate = useNavigate()
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false)
+  const navigate = useNavigate();
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
-  const { setShowLoginModal, setLoginModalTab } = useContext(PagesContext)
+  const { setShowLoginModal, setLoginModalTab } = useContext(PagesContext);
 
   const goToPage = (page: string) => {
-    navigate(page)
-    setIsOverlayOpen(false)
-  }
+    navigate(page);
+    setIsOverlayOpen(false);
+  };
   return (
     <div className="container-fluid">
       <nav className="navbar fixed-top mobile-top-header">
@@ -51,8 +51,8 @@ const MobileHeader: React.FC<IDesktopHeader> = ({
               <div
                 className="mobile-top-header-links"
                 onClick={() => {
-                  setLoginModalTab(LOGINMODAL.Signup)
-                  setShowLoginModal(true)
+                  setLoginModalTab(LOGINMODAL.Signup);
+                  setShowLoginModal(true);
                 }}
               >
                 Sign up
@@ -60,8 +60,8 @@ const MobileHeader: React.FC<IDesktopHeader> = ({
               <div
                 className="mobile-top-header-links"
                 onClick={() => {
-                  setLoginModalTab(LOGINMODAL.Login)
-                  setShowLoginModal(true)
+                  setLoginModalTab(LOGINMODAL.Login);
+                  setShowLoginModal(true);
                 }}
               >
                 Log in
@@ -94,7 +94,7 @@ const MobileHeader: React.FC<IDesktopHeader> = ({
         </div>
       </nav>
     </div>
-  )
-}
+  );
+};
 
-export default MobileHeader
+export default MobileHeader;

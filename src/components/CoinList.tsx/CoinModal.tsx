@@ -1,35 +1,33 @@
-import React, { useContext, useEffect, useState } from "react"
-import Image from "react-bootstrap/Image"
-import Modal from "react-bootstrap/Modal"
-import NumberType from "../NumberType"
-import moment from "moment"
-import { Sparklines, SparklinesLine, SparklinesSpots } from "react-sparklines"
-import { Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
-import PagesContext from "../../Context"
-import LivePrice from "../LivePrice"
+import { useContext, useEffect, useState } from "react";
+import Image from "react-bootstrap/Image";
+import Modal from "react-bootstrap/Modal";
+import NumberType from "../NumberType";
+import moment from "moment";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import PagesContext from "../../Context";
+import LivePrice from "../LivePrice";
+import CustomChart from "components/Charts";
 
 const CoinModal = ({
   coin,
   show,
   toggler,
 }: {
-  coin: any
-  show: boolean
-  toggler: any
+  coin: any;
+  show: boolean;
+  toggler: any;
 }) => {
-  const { vs_currency } = useContext(PagesContext)
-  const [modalOn, setModalOn] = useState<boolean>(show)
+  const { vs_currency } = useContext(PagesContext);
+  const [modalOn, setModalOn] = useState<boolean>(show);
 
   useEffect(() => {
-    setModalOn(show)
-  }, [show])
+    setModalOn(show);
+  }, [show]);
 
   const handleClose = () => {
-    toggler()
-  }
-
-  useEffect(() => {}, [])
+    toggler();
+  };
 
   return modalOn === true ? (
     <Modal
@@ -64,46 +62,8 @@ const CoinModal = ({
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="coin-modal-body">
-        <div className="container">
-          <br />
-          <div className="row coin-modal-top-div">
-            <div className="col-lg-4 col-md-12 col-sm-12 coin-modal-top-details">
-              <div className="coin-modal-top-details-hds">Rank </div>
-              <div className="coin-modal-details-text">
-                {coin?.market_cap_rank}
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-12 col-sm-12 coin-modal-top-details">
-              <div className="coin-modal-top-details-hds">Market cap </div>
-              <div className="coin-modal-details-text">
-                {coin?.market_cap?.toLocaleString()}
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-12 col-sm-12 coin-modal-top-details">
-              <div className="coin-modal-top-details-hds">Total Supply </div>
-              <div className="coin-modal-details-text">
-                {coin?.total_supply?.toLocaleString()}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          style={{
-            maxWidth: "50rem",
-            margin: "auto",
-            marginTop: "2rem",
-          }}
-        >
-          <Sparklines data={coin?.sparkline_in_7d?.price} height={90}>
-            <SparklinesLine
-              color={coin?.price_change_24h < 0 ? "#f35484" : "#0a8830"}
-            />
-            {/* <SparklinesSpots /> */}
-          </Sparklines>
-          <br />
-        </div>
-
-        <hr />
+        <CustomChart selectedCoin={coin} />
+        <br />
         <div className="container" style={{ margin: "auto" }}>
           <div className="row coin-modal-top-other-div">
             <div className="col-lg-3 col-md-12 col-sm-12 coin-modal-top-other-divs">
@@ -219,7 +179,7 @@ const CoinModal = ({
                   High date
                 </div>
                 <div className="coin-modal-top-other-details-text">
-                  {moment(coin?.ath_date).format("LLL")}
+                  {moment(coin?.ath_date).format("ll")}
                 </div>
               </div>
               <div className="coin-modal-top-other-details">
@@ -240,7 +200,7 @@ const CoinModal = ({
               <div className="coin-modal-top-other-details">
                 <div className="coin-modal-top-other-details-hds">Low date</div>
                 <div className="coin-modal-top-other-details-text">
-                  {moment(coin?.atl_date).format("LLL")}
+                  {moment(coin?.atl_date).format("ll")}
                 </div>
               </div>
             </div>
@@ -260,7 +220,7 @@ const CoinModal = ({
     </Modal>
   ) : (
     <></>
-  )
-}
+  );
+};
 
-export default CoinModal
+export default CoinModal;

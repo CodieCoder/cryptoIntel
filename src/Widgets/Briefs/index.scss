@@ -1,0 +1,38 @@
+@import "../../styles";
+
+.widget-news-brief {
+  border-radius: 5px;
+  padding: 0.8rem;
+  padding-top: 0.1rem;
+  text-align: left;
+  margin: auto;
+  .each {
+    width: 95%;
+    margin: auto;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    .EachBrief {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      .date {
+        padding: 0.3rem;
+        padding-top: 0.1rem;
+        color: #888;
+      }
+      .title {
+        padding: 0.4rem;
+        padding-top: 0.1rem;
+        margin-top: 0.1rem;
+      }
+      .tags {
+        font-style: italic;
+        color: #999;
+        margin-top: 0.4rem;
+        text-align: left;
+        padding: 0.4rem;
+        padding-top: 0.1rem;
+      }
+    }
+  }
+}

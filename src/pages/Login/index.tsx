@@ -1,18 +1,13 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Alert, Fade, FloatingLabel, Form } from "react-bootstrap"
-import { LoadingButton, MyButton } from "../../components/HtmlElements/Button"
-import {
-  formValidator,
-  USER_INFO_CONSTANT,
-  ValidatorEnum,
-} from "../../utils/FormValidator"
-import UserLogin from "./login"
+import { LoadingButton } from "../../components/HtmlElements/Button"
+import { formValidator, ValidatorEnum } from "../../utils/FormValidator"
+import UserLogin from "../../Apis/user/login"
 import "./index.scss"
-import { useNavigate } from "react-router-dom"
-import PagesContext from "../../Context"
+import usePagesProvider from "usePagesProvider"
 
 const LoginPage = () => {
-  const { notify, loginHandler } = useContext(PagesContext)
+  const { notify, loginHandler } = usePagesProvider()
   const [input_Email, setInput_Email] = useState("")
   const [err_Email, setErr_Email] = useState(false)
   const [input_Password, setInput_Password] = useState("")
@@ -35,7 +30,6 @@ const LoginPage = () => {
   }
 
   const LoginFn = (e: React.FormEvent<HTMLFormElement>) => {
-    // const form = e.currentTarget;
     e.preventDefault()
     e.stopPropagation()
     setLoginResponse(false)
@@ -66,11 +60,9 @@ const LoginPage = () => {
             setLoginResponse(true)
             notify.error("Network Error.")
           } else {
-            //redirect to User dashboard page
             //save user data in context
             if (data?.error === false) {
-              console.log("Testing USERDETAILS : ", data)
-              loginHandler(data.msg)
+              loginHandler(data.result)
             }
             setLoginResponse(true)
           }
@@ -87,8 +79,6 @@ const LoginPage = () => {
   return (
     <div className="container page-section">
       <div className="login-page">
-        {/* <div className="page_head_text">Login Page</div> 
-        <hr />*/}
         <div className="login-page-form-head">Welcome back Champ!</div>
 
         <Alert
@@ -121,7 +111,6 @@ const LoginPage = () => {
                   Invalid email. Ex. johndoe@example.com
                 </div>
               )}
-              {/* } */}
             </FloatingLabel>
           </Form.Group>
 

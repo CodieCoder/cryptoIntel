@@ -1,0 +1,14 @@
+@import "../../../_styles";
+
+.default-tooltip > .tooltip-inner {
+  background-color: $primaryColor_dark;
+  color: #fff;
+  border: 1px solid $primaryColor_dark;
+}
+
+.default-tooltip > .tooltip-arrow::before {
+  border-top: 5px solid $primaryColor_dark;
+}
+.default-tooltip > .tooltip.show {
+  opacity: 1 !important;
+}

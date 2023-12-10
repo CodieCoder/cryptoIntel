@@ -1,23 +1,25 @@
 import React from "react";
+import { CurrencyDetails, getCurrencyDetails } from "utils/currency";
 import "./index.scss";
 
-// interface Type{
-//  type:string = "number" || "percent" || "%"
-// }
+interface INumberType {
+  type: string;
+  number: number;
+  length: number;
+  checker: number;
+  icon?: boolean;
+  currency?: string;
+}
 
-const NumberType = ({
+const NumberType: React.FC<INumberType> = ({
   type,
   number,
   length,
   checker,
   icon,
-}: {
-  type: string;
-  number: number;
-  length: number;
-  checker: number;
-  icon: boolean;
+  currency = CurrencyDetails[0].title,
 }) => {
+  const currentCurrency = getCurrencyDetails(currency);
   number = number > 0.001 ? Number(number) : number;
   number = number > 0.001 ? Number(number.toFixed(length)) : number;
   checker = Number(checker);
@@ -34,7 +36,7 @@ const NumberType = ({
         checker > 0 ? "number-color-up" : "number-color-down"
       }`}
     >
-      {icon ? (
+      {icon && (
         <span>
           {checker > 0 ? (
             <i className="bi bi-caret-up-fill"></i>
@@ -42,10 +44,8 @@ const NumberType = ({
             <i className="bi bi-caret-down-fill"></i>
           )}
         </span>
-      ) : (
-        <span></span>
-      )}
-      {number?.toLocaleString()}
+      )}{" "}
+      {type === "number" && currentCurrency.symbol} {number?.toLocaleString()}{" "}
       {typeCheck(type)}
     </span>
   );

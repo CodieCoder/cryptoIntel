@@ -1,5 +1,3 @@
-import React from "react";
-
 const TrendingCoins = ({ coin }: { coin: any }) => {
   return (
     <div className="trending-coins-single">

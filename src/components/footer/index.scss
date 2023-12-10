@@ -1,9 +1,9 @@
 @import "/src/styles";
 
 .footer {
-  position: absolute;
+  // position: absolute;
   bottom: 0;
-  background-color: $primaryColor;
+  background-color: $footerBackgroundColor;
   min-height: 20rem;
   color: #fff;
   padding-bottom: 5%;

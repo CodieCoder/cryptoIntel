@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from "react";
 import TrendingCoins from "./TrendingCoins";
 import "./index.scss";
-import axios from "axios";
 import { Link } from "react-router-dom";
-const url: string = "https://api.coingecko.com/api/v3/search/trending";
-
-const client = axios.create({
-  baseURL: url,
-});
+import { getTrendingCoins } from "../../Apis/coins/getCoins";
+import { useQuery } from "react-query";
+import { Spinner, Container } from "react-bootstrap";
 
 const Trending = () => {
   const [trendData, setTrendData] = useState<any>();
 
-  const TrendingCoinsAPI = async () => {
-    let response = await client.get("?_limit=10");
-    setTrendData(response.data.coins);
-  };
+  const { data, isLoading, isFetching } = useQuery(
+    "trending-coins",
+    getTrendingCoins,
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   useEffect(() => {
-    TrendingCoinsAPI();
-  }, []);
+    setTrendData(data?.data?.coins);
+  }, [data]);
 
   const getTrends = () => {
     if (trendData?.length > 0) {
@@ -42,13 +43,26 @@ const Trending = () => {
   };
 
   return (
-    <div className="container">
-      <br />
+    <Container>
       <div className="trending-coins">
-        <h3>Trending Coins</h3>
-        <div className="row">{getTrends()}</div>
+        <h4>Trending Coins</h4>
+        {isLoading || isFetching ? (
+          <div className="loading-div">
+            <Spinner
+              as="span"
+              animation="border"
+              role="status"
+              variant="dark"
+              aria-hidden="true"
+            />
+            <br />
+            Loading...
+          </div>
+        ) : (
+          <div className="row">{getTrends()}</div>
+        )}
       </div>
-    </div>
+    </Container>
   );
 };
 

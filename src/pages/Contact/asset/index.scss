@@ -1,0 +1,29 @@
+@import "../../../styles";
+
+.contact-page {
+  width: 98vw;
+  max-width: 40rem;
+  margin: auto;
+  margin-top: 1rem;
+  .details {
+    padding: 1rem;
+    .each-detail {
+      display: flex;
+      font-weight: 700;
+      .icon {
+        padding: 0 0.3rem;
+      }
+      .detail {
+        padding-left: 0.5rem;
+        a {
+          text-decoration: none;
+          color: $primaryColor;
+        }
+      }
+    }
+  }
+  .see-more {
+    margin-top: 2rem;
+    text-align: center;
+  }
+}
