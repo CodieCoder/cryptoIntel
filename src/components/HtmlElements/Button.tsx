@@ -3,7 +3,7 @@ import { Spinner } from "react-bootstrap";
 
 interface ILoadingButton {
   children: ReactNode;
-  onClick?: () => {};
+  onClick?: () => void;
   className?: string | undefined | null;
   style?: any;
   loading?: boolean;
@@ -44,9 +44,9 @@ export const LoadingButton: React.FC<ILoadingButton> = ({
       {loading ? (
         <>
           <Spinner
-            animation="border"
-            variant="light"
-            className="general-loading-submit-spin"
+            animation='border'
+            variant='light'
+            className='general-loading-submit-spin'
           />
           &nbsp; Loading
         </>

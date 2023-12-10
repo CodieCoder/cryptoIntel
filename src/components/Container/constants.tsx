@@ -4,6 +4,7 @@ export enum IconTypesEnum {
   favourite = "favourite",
   userProfile = "userProfile",
   contact = "contact",
+  about = "about",
 }
 export interface IContainerBox {
   title?: React.ReactNode;
