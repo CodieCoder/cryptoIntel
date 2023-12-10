@@ -26,6 +26,7 @@ const Coinpage = () => {
 
   useEffect(() => {
     coinId && refetch();
+    // eslint-disable-next-line
   }, [coinId, vs_currency]);
 
   const coinData = data?.data;
