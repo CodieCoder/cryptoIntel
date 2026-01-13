@@ -1,0 +1,45 @@
+@import "../../../../../_styles";
+.chartTools-cols {
+  //   margin: auto;
+  .listGroup {
+    margin-top: 1rem;
+    padding: 0 !important;
+    height: 1.8rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .activeItem {
+    background-color: #ddd;
+    padding-top: 0.4rem;
+  }
+  .inactiveItem {
+    cursor: pointer;
+    margin: 0;
+    padding-top: 0.2rem;
+    &:hover {
+      color: #fff;
+      background-color: #ccc;
+    }
+  }
+  .calendarItem {
+    cursor: pointer;
+    margin: 0;
+    padding-top: 0.2rem;
+  }
+  .calendarItemActive {
+    background-color: #ddd;
+    padding-top: 0.4rem;
+  }
+}
+.chartTools {
+  .calendarClassName {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+  }
+  .calender-date-picker {
+    // margin: auto;
+    // margin-left: -3rem;
+    border: 2px solid #aaa;
+  }
+}

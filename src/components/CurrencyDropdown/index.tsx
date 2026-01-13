@@ -1,12 +1,11 @@
-import React, { useContext } from "react"
-import PagesContext from "../../Context"
-import { CURRENCY_LIST } from "../../Assets/CurrencyList"
+import React, { useContext } from "react";
+import PagesContext from "../../Context";
+import { CURRENCY_LIST } from "../../Assets/CurrencyList";
 
 const CurrencyDropdown = () => {
-  const { currency, setCurrency } = useContext(PagesContext)
-  console.log("Testing--- : ", currency)
+  const { currency, setCurrency } = useContext(PagesContext);
 
-  const changeCurrency = (data: string) => setCurrency(data?.toLowerCase())
+  const changeCurrency = (data: string) => setCurrency(data?.toLowerCase());
   //   useEffect(() => {}, [currency]);
   return (
     <span className="dropdown">
@@ -21,8 +20,9 @@ const CurrencyDropdown = () => {
             value?.symbol === currency ||
             value?.symbol2 === currency
           ) {
-            return value.name
+            return value.name;
           }
+          return [];
         })}
       </span>
       <ul className="dropdown-menu">
@@ -40,7 +40,7 @@ const CurrencyDropdown = () => {
         ))}
       </ul>
     </span>
-  )
-}
+  );
+};
 
-export default CurrencyDropdown
+export default CurrencyDropdown;

@@ -1,39 +1,38 @@
-import React, { useContext, useEffect, useState } from "react"
-import { Alert, Fade, FloatingLabel, Form } from "react-bootstrap"
-import { LoadingButton, MyButton } from "../../components/HtmlElements/Button"
-import UserRegistration from "./register"
-import { formValidator, ValidatorEnum } from "../../utils/FormValidator"
-import "./index.scss"
-import { CountryList } from "../../Assets/CountryList"
-import { useNavigate } from "react-router-dom"
-import PagesContext from "../../Context"
-import { LOGINMODAL } from "../../Constants"
+import React, { useContext, useState } from "react";
+import { Alert, Fade, FloatingLabel, Form } from "react-bootstrap";
+import { LoadingButton } from "../../components/HtmlElements/Button";
+import UserRegistration from "../../Apis/user/register";
+import { formValidator, ValidatorEnum } from "../../utils/FormValidator";
+import "./index.scss";
+import { CountryList } from "../../Assets/CountryList";
+import PagesContext from "../../Context";
+import { LOGINMODAL } from "../../Constants";
 
 const RegistrationPage = () => {
-  const { setLoginModalTab, notify } = useContext(PagesContext)
+  const { setLoginModalTab, notify } = useContext(PagesContext);
 
-  const [input_FullName, setInput_FullName] = useState<string>("")
-  const [err_FullName, setErr_FullName] = useState(true)
-  const [input_Email, setInput_Email] = useState<string>("")
-  const [err_Email, setErr_Email] = useState(true)
+  const [input_FullName, setInput_FullName] = useState<string>("");
+  const [err_FullName, setErr_FullName] = useState(true);
+  const [input_Email, setInput_Email] = useState<string>("");
+  const [err_Email, setErr_Email] = useState(true);
   // const [input_UserName, setInput_UserName] = useState<string>("")
   // const [err_UserName, setErr_UserName] = useState(true)
-  const [select_Gender, setSelect_Gender] = useState<string>("")
-  const [err_Gender, setErr_Gender] = useState(true)
-  const [select_Country, setSelect_Country] = useState<string>("")
-  const [err_Country, setErr_Country] = useState(true)
-  const [input_Password, setInput_Password] = useState<string>("")
-  const [err_Password, setErr_Password] = useState(true)
-  const [validated, setValidated] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [loginResponse, setLoginResponse] = useState<string | false>(false)
+  const [select_Gender, setSelect_Gender] = useState<string>("");
+  const [err_Gender, setErr_Gender] = useState(true);
+  const [select_Country, setSelect_Country] = useState<string>("");
+  const [err_Country, setErr_Country] = useState(true);
+  const [input_Password, setInput_Password] = useState<string>("");
+  const [err_Password, setErr_Password] = useState(true);
+  const [validated, setValidated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loginResponse, setLoginResponse] = useState<string | false>(false);
 
   const registerFn = (e: React.FormEvent<HTMLFormElement>) => {
     // const form = e.currentTarget;
-    e.preventDefault()
-    e.stopPropagation()
-    setValidated(true)
-    setLoginResponse(false)
+    e.preventDefault();
+    e.stopPropagation();
+    setValidated(true);
+    setLoginResponse(false);
     const formFIelds = [
       {
         formField: input_FullName,
@@ -71,48 +70,47 @@ const RegistrationPage = () => {
         range: "8-25",
         errCheck: setErr_Password,
       },
-    ]
+    ];
 
-    let errCheck = 0
-    formFIelds.map((field) => {
+    let errCheck = 0;
+    formFIelds.forEach((field) => {
       if (formValidator(field) === false) {
-        errCheck++
+        errCheck++;
       }
-    })
+      return;
+    });
     if (errCheck > 0) {
-      return
+      return;
     } else {
-      setIsLoading(true)
+      setIsLoading(true);
       const DataToPost = {
-        fullName: input_FullName,
+        fullname: input_FullName,
         country: select_Country,
         gender: select_Gender,
         email: input_Email,
         // username: input_UserName,
         password: input_Password,
-      }
+      };
       UserRegistration(DataToPost)
         .then((data) => {
           if (data === false) {
-            notify.error("Network Error.")
+            notify.error("Network Error.");
           } else {
             if (data?.error === false) {
-              console.log("Testing Good", data)
               //redirect to login page
-              notify.success("Registration successfull!")
-              setLoginModalTab(LOGINMODAL.Login)
+              notify.success("Registration successfull!");
+              setLoginModalTab(LOGINMODAL.Login);
             } else {
-              setLoginResponse(data?.msg)
+              setLoginResponse(data?.msg);
             }
           }
         })
         .catch((error) => {
-          console.error(error)
+          console.error(error);
         })
-        .finally(() => setIsLoading(false))
+        .finally(() => setIsLoading(false));
     }
-  }
-  // useEffect(() => {}, [validated]);
+  };
 
   return (
     <div className="container page-section">
@@ -168,8 +166,8 @@ const RegistrationPage = () => {
                 <Form.Select
                   aria-label="Select one"
                   onChange={(e) => {
-                    setErr_Gender(false)
-                    setSelect_Gender(e.target.value)
+                    setErr_Gender(false);
+                    setSelect_Gender(e.target.value);
                   }}
                 >
                   <option>Select gender</option>
@@ -208,7 +206,7 @@ const RegistrationPage = () => {
                       <option key={index} value={country.name}>
                         {country.name}
                       </option>
-                    )
+                    );
                   })}
                 </Form.Select>
                 {validated &&
@@ -300,7 +298,7 @@ const RegistrationPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RegistrationPage
+export default RegistrationPage;
