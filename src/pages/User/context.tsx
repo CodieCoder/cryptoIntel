@@ -1,5 +1,10 @@
-import React, { createContext } from "react"
+import { createContext } from "react";
+import { IUserContext } from "./constants";
 
-const UserContext = createContext<any>({})
+const UserContext = createContext<IUserContext>({
+  isLogin: false,
+  logOut: () => {},
+  setSelectedCoin: () => {},
+});
 
-export default UserContext
+export default UserContext;

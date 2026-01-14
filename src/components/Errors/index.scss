@@ -1,0 +1,39 @@
+// @import "/src/styles";\
+
+.error-noData {
+  width: 15rem;
+  margin: auto;
+  text-align: center;
+  font-size: 1.3rem;
+  .noData {
+    font-weight: 100;
+    .noData-icon {
+      font-size: 3rem;
+      color: rgba(60, 199, 198, 0.9);
+    }
+    .noData-text {
+      color: #666;
+    }
+  }
+}
+
+.error-serverError {
+  //   width: 15rem;
+  margin: auto;
+  text-align: center;
+  font-size: 1.3rem;
+  .serverError {
+    // font-weight: 100;
+    .serverError-icon {
+      font-size: 5rem;
+      color: #f00;
+    }
+    .serverError-text {
+      color: #666;
+    }
+    .serverError-summary {
+      text-align: left;
+      font-weight: 100;
+    }
+  }
+}

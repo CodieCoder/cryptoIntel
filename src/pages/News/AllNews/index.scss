@@ -1,0 +1,16 @@
+.news-page {
+  .right-pane {
+    .news-cards {
+      margin-top: -1rem;
+      .news-cards-each {
+        // margin-top: 2rem;
+      }
+    }
+  }
+  .left-pane {
+    margin-top: 3rem;
+    .news-brief-component {
+      overflow: auto;
+    }
+  }
+}

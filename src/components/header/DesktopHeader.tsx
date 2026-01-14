@@ -1,16 +1,16 @@
-import React, { useContext } from "react"
-import { NavLink } from "react-router-dom"
-import { LOGINMODAL, USERDETAILS } from "../../Constants"
-import PagesContext from "../../Context"
-import CurrencyDropdown from "../CurrencyDropdown"
-import "./DesktopHeader.scss"
-import DesktopHeaderUser from "./headerUser/DesktopHeaderUser"
-import { DesktopMenu } from "./HomeLinks"
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { LOGINMODAL, USERDETAILS } from "../../Constants";
+import PagesContext from "../../Context";
+import CurrencyDropdown from "../CurrencyDropdown";
+import "./DesktopHeader.scss";
+import DesktopHeaderUser from "./headerUser/DesktopHeaderUser";
+import { DesktopMenu } from "./HomeLinks";
 
 interface IDesktopHeader {
-  isLogin: boolean
-  userDetails: USERDETAILS | undefined
-  logoutHandler: () => void
+  isLogin: boolean;
+  userDetails: USERDETAILS | undefined;
+  logoutHandler: () => void;
 }
 
 const DesktopHeader: React.FC<IDesktopHeader> = ({
@@ -18,7 +18,7 @@ const DesktopHeader: React.FC<IDesktopHeader> = ({
   userDetails,
   logoutHandler,
 }) => {
-  const { setShowLoginModal, setLoginModalTab } = useContext(PagesContext)
+  const { setShowLoginModal, setLoginModalTab } = useContext(PagesContext);
   return (
     <div className="container">
       <div className="desktop-top-header">
@@ -44,8 +44,8 @@ const DesktopHeader: React.FC<IDesktopHeader> = ({
                 <div
                   className="desktop-top-header-links"
                   onClick={() => {
-                    setLoginModalTab(LOGINMODAL.Signup)
-                    setShowLoginModal(true)
+                    setLoginModalTab(LOGINMODAL.Signup);
+                    setShowLoginModal(true);
                   }}
                 >
                   Sign up
@@ -53,8 +53,8 @@ const DesktopHeader: React.FC<IDesktopHeader> = ({
                 <div
                   className="desktop-top-header-links"
                   onClick={() => {
-                    setLoginModalTab(LOGINMODAL.Login)
-                    setShowLoginModal(true)
+                    setLoginModalTab(LOGINMODAL.Login);
+                    setShowLoginModal(true);
                   }}
                 >
                   Log in
@@ -65,7 +65,7 @@ const DesktopHeader: React.FC<IDesktopHeader> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DesktopHeader
+export default DesktopHeader;

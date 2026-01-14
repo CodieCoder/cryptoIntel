@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react"
-import DesktopHeader from "./DesktopHeader"
-import MobileHeader from "./MobileHeader"
-import PagesContext from "../../Context"
+import { useContext } from "react";
+import DesktopHeader from "./DesktopHeader";
+import MobileHeader from "./MobileHeader";
+import PagesContext from "../../Context";
 
 const Header = () => {
-  const { userDetails, login, logoutHandler } = useContext(PagesContext)
+  const { userDetails, login, logoutHandler } = useContext(PagesContext);
   return (
     <div className="container-fluid">
       <div className="d-none d-md-block">
@@ -22,7 +22,7 @@ const Header = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

@@ -1,0 +1,21 @@
+@import "../../../_styles";
+
+.ChartTopBoxes {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  .ChartTopBoxes-row {
+    display: flex;
+    .ChartTopBoxes-boxes {
+      border-left: 3px solid $primaryColor;
+      margin: auto;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+      .ChartTopBoxes-title {
+        font-weight: 600;
+        color: #555;
+      }
+      .ChartTopBoxes-content {
+      }
+    }
+  }
+}

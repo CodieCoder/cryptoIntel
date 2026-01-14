@@ -1,5 +1,5 @@
-import React from "react";
-import "./index.scss";
+import { SITE_CONFIGURATION } from "site_config"
+import "./index.scss"
 
 const Footer = () => {
   return (
@@ -14,7 +14,7 @@ const Footer = () => {
         <br />
         <div className="row footer-div">
           <div className="col-4">
-            <div className="footer-hd">Pages</div>
+            <div className="footer-hd">{SITE_CONFIGURATION.SITE_NAME}</div>
           </div>
           <div className="col-lg-6 col-md-4 col-sm-10">
             <div className="footer-links">
@@ -47,12 +47,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="col">
-            <div className="footer-socials">Pages</div>
+            <div className="footer-socials">&copy; 2023</div>
           </div>
         </div>
       </footer>
     </>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
