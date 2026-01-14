@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import PagesContext from "../../Context";
 import { CURRENCY_LIST } from "../../Assets/CurrencyList";
 
@@ -6,7 +6,7 @@ const CurrencyDropdown = () => {
   const { currency, setCurrency } = useContext(PagesContext);
 
   const changeCurrency = (data: string) => setCurrency(data?.toLowerCase());
-  //   useEffect(() => {}, [currency]);
+
   return (
     <span className="dropdown">
       <span

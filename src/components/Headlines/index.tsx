@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-import EachHeadline from "./EachHeadline"
-import "./index.scss"
-import { useQuery } from "react-query"
-import { getNewsHeadlines } from "Apis/news"
-import { TNews } from "Constants"
-import Loading from "components/Loading"
+import EachHeadline from "./EachHeadline";
+import "./index.scss";
+import { useQuery } from "react-query";
+import { getNewsHeadlines } from "Apis/news";
+import { TNews } from "Constants";
+import Loading from "components/Loading";
 
 const Headlines = () => {
-  const [newsData, setNewsData] = useState<TNews[]>()
+  const [newsData, setNewsData] = useState<TNews[]>();
+
   const {
     data: allNewsData,
     isLoading,
@@ -17,14 +18,16 @@ const Headlines = () => {
   } = useQuery("headline-news", () => getNewsHeadlines(1, 3), {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-  })
+  });
+
   useEffect(() => {
     if (allNewsData?.data?.error === false) {
       setNewsData(
         allNewsData.data?.result?.data?.filter((news: any) => news?.image)
-      )
+      );
     }
-  }, [allNewsData])
+  }, [allNewsData]);
+
   return (
     <div className="container">
       <div className="headlines">
@@ -38,14 +41,14 @@ const Headlines = () => {
                         <EachHeadline news={news} />
                       </Link>
                     </div>
-                  )
+                  );
                 })
               : "Loading"}
           </div>
         </Loading>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Headlines
+export default Headlines;
