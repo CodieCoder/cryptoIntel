@@ -1,14 +1,20 @@
-import React from "react"
-import { Sparklines, SparklinesLine } from "react-sparklines"
-import CoinIcon from "../HtmlElements/CoinIcon"
-import CryptoFavourite from "../HtmlElements/CryptoFavourite"
-import NumberType from "../NumberType"
-import { priceFormat } from "utils/numberFormat"
+import React from "react";
+import {
+  Sparklines as SparklinesBase,
+  SparklinesLine as SparklinesLineBase,
+} from "react-sparklines";
+import CoinIcon from "../HtmlElements/CoinIcon";
+import CryptoFavourite from "../HtmlElements/CryptoFavourite";
+import NumberType from "../NumberType";
+import { priceFormat } from "utils/numberFormat";
+
+const Sparklines = SparklinesBase as any;
+const SparklinesLine = SparklinesLineBase as any;
 
 interface ICoinList {
-  coin: any
-  showModal: any
-  currency: string
+  coin: any;
+  showModal: any;
+  currency: string;
 }
 const CoinList: React.FC<ICoinList> = ({ coin, showModal, currency }) => {
   return (
@@ -50,7 +56,7 @@ const CoinList: React.FC<ICoinList> = ({ coin, showModal, currency }) => {
         </Sparklines>
       </td>
     </tr>
-  )
-}
+  );
+};
 
-export default CoinList
+export default CoinList;
