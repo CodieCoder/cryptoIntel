@@ -1,11 +1,5 @@
 import CryptoFavourite from "components/HtmlElements/CryptoFavourite";
-import {
-  Sparklines as SparklinesBase,
-  SparklinesLine as SparklinesLineBase,
-} from "react-sparklines";
-
-const Sparklines = SparklinesBase as any;
-const SparklinesLine = SparklinesLineBase as any;
+import { Sparklines, SparklinesLine } from "react-sparklines";
 
 const CoinList = ({ coin, showModal }: { coin: any; showModal: any }) => {
   return (

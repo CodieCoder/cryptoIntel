@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  Sparklines as SparklinesBase,
-  SparklinesLine as SparklinesLineBase,
-} from "react-sparklines";
+import { Sparklines, SparklinesLine } from "react-sparklines";
 import CoinIcon from "../HtmlElements/CoinIcon";
 import CryptoFavourite from "../HtmlElements/CryptoFavourite";
 import NumberType from "../NumberType";
 import { priceFormat } from "utils/numberFormat";
-
-const Sparklines = SparklinesBase as any;
-const SparklinesLine = SparklinesLineBase as any;
 
 interface ICoinList {
   coin: any;
